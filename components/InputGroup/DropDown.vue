@@ -1,5 +1,5 @@
 <template>
-  <div class="dropdown-wrapper" ref="dropdown" v-click-outside="closeDropdown">
+  <div class="dropdown_w" ref="dropdown" v-click-outside="closeDropdown">
     <button class="dropdown-button" @click="toggleDropdown" :aria-expanded="isOpen">
       {{ selectedLabel || placeholder }}
       <span class="arrow-icon" :class="{ rotate: isOpen }">
@@ -94,75 +94,23 @@ export default {
 </script>
 
 <style scoped>
-/* 스타일은 이전과 동일합니다. */
-.dropdown-wrapper {
-  position: relative;
-  display: inline-block;
-  font-family: Arial, sans-serif;
+.dropdown_w{
+  @apply relative border-[1px] border-[#E3E3E3] rounded-[6px]
 }
-
-.dropdown-button {
-  background-color: #fff;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  padding: 10px 15px;
-  min-width: 200px;
-  text-align: left;
-  cursor: pointer;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 14px;
-  color: #333;
-  transition: border-color 0.2s;
+.dropdown_w > button{
+  @apply flex w-full justify-between items-center
 }
-
-.dropdown-button:hover {
-  border-color: #007bff;
+.dropdown_w > button span{
+  @apply transition-all duration-200
 }
-
-.arrow-icon {
-  margin-left: 8px;
-  font-size: 10px;
-  transition: transform 0.3s;
+.dropdown_w > button span.rotate{
+  @apply transform rotate-180
 }
-
-.arrow-icon.rotate {
-  transform: rotate(180deg);
+.dropdown-menu{
+  @apply absolute w-full top-[calc(100%+3px)] left-0 p-2.5 bg-white border-[1px] border-[#E3E3E3] rounded-[6px] flex flex-col gap-[2px] z-50
 }
-
-.dropdown-menu {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  z-index: 10;
-  width: 100%;
-  list-style: none;
-  margin: 5px 0 0 0;
-  padding: 0;
-  background-color: #fff;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  max-height: 200px;
-  overflow-y: auto;
-}
-
-.menu-item {
-  padding: 10px 15px;
-  cursor: pointer;
-  font-size: 14px;
-  color: #333;
-  transition: background-color 0.2s;
-}
-
-.menu-item:hover {
-  background-color: #f0f0f0;
-}
-
-.menu-item.selected {
-  background-color: #e9f5ff;
-  color: #007bff;
-  font-weight: bold;
+.dropdown-menu li{
+  @apply text-[16px] text-[#5E6367] cursor-pointer rounded-[6px]
+  hover:bg-[#5E6367] hover:text-white
 }
 </style>

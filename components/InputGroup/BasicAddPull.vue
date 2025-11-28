@@ -1,6 +1,13 @@
 <template>
   <div class="stockRD">
-    <DropDown :items="areaLabels" :initial-label="selectedAreaLabel" placeholder="지역을 고르세요" @change="handleAreaChange" />
+    <div class="ch-item">
+      <DropDown :items="areaLabels" :initial-label="selectedAreaLabel" placeholder="지역을 고르세요" @change="handleAreaChange" />
+      <div class="btngroup">
+        <button>수정</button>
+        <button>삭제</button>
+      </div>
+    </div>
+    <button>종목추천 풀 생성</button>
   </div>
 </template>
 <script>

@@ -1,6 +1,6 @@
 <template>
   <tbody>
-    <tr v-for="(tbody, tbodyIndex) in tbodyList" :key="tbodyIndex">
+    <tr v-for="(tbodyList, tbodyListIndex) in tbodyLists" :key="tbodyListIndex">
       <td>
         <label for="">
           <input type="checkbox" name="" id="" />
@@ -9,17 +9,17 @@
       <!-- check -->
       <td>
         <div>
-          <span>{{ tbody.ListNumber }}</span>
+          <span>{{ tbodyList.ListNumber }}</span>
         </div>
       </td>
       <!--  NO. -->
       <td>
         <div class="itemName">
           <span class="name">
-            {{ tbody.ItmeName }}
+            {{ tbodyList.ItmeName }}
           </span>
           <span class="number">
-            ({{ tbody.ItemNumber }})
+            ({{ tbodyList.ItemNumber }})
           </span>
         </div>
       </td>
@@ -27,17 +27,17 @@
       <td>
         <div class="volatility">
           <span class="price">
-            {{ tbody.CurrentPrice }}
+            {{ tbodyList.CurrentPrice }}
           </span>
           <span class="per">
-            ({{ tbody.CurrentPer }})
+            ({{ tbodyList.CurrentPer }})
           </span>
         </div>
       </td>
       <!-- 현재가(등락률) -->
       <td>
         <div class="myInfo">
-          <div class="signal" v-html="tbody.Signal"></div>
+          <div class="signal" v-html="tbodyList.Signal"></div>
           <!--
             *********** v-html 예시 ************
             <span class="sgl001">매수</span>
@@ -50,16 +50,16 @@
           <div class="priceInfo">
             <div class="volatility">
               <span class="price">
-                {{ tbody.MyPrice }}
+                {{ tbodyList.MyPrice }}
               </span>
               <span class="per">
-                ({{ tbody.MyPer }})
+                ({{ tbodyList.MyPer }})
               </span>
             </div>
             <!-- 매도/매수 금액 -->
             <div class="date">
               <span>
-                {{ tbody.MyDate }}
+                {{ tbodyList.MyDate }}
               </span>
             </div>
             <!-- 보유일시 -->
@@ -70,22 +70,22 @@
       <!-- 나의 매수 금액 / 매도 금액 (수익률) -->
       <td>
         <div>
-          <span>{{ tbody.TargetPrice }}</span>
+          <span>{{ tbodyList.TargetPrice }}</span>
           &nbsp;/&nbsp;
-          <span>{{ tbody.StopPrice }}</span>
+          <span>{{ tbodyList.StopPrice }}</span>
         </div>
       </td>
       <!-- 목표가 / 손절가 -->
       <td>
         <div>
-          <span>{{ tbody.Recommendation }}</span>
+          <span>{{ tbodyList.Recommendation }}</span>
           <a href="#">조회</a>
         </div>
       </td>
       <!-- 종목추천발생 -->
       <td>
         <div>
-          <span>{{ tbody.Registration }}</span>
+          <span>{{ tbodyList.Registration }}</span>
         </div>
       </td>
       <!-- 등록일시 -->
@@ -97,7 +97,7 @@
 export default {
   data() {
     return {
-      tbodyList: Array.from({ length: 100 }, (_, i) => {
+      tbodyLists: Array.from({ length: 100 }, (_, i) => {
         const num = i + 1
         return {
           ListNumber: num,

@@ -1,122 +1,78 @@
 <template>
   <tbody>
-    <tr v-for="(tbody, tbodyIndex) in tbodyList" :key="tbodyIndex">
+    <tr v-for="(tbodyList, tbodyListIndex) in tbodyLists" :key="tbodyListIndex">
       <td>
-        <label for="">
-          <input type="checkbox" name="" id="" />
+        <label :for="`check_${tbodyListIndex}`">
+          <input type="checkbox" v-model="tbodyList.checked" :id="`check_${tbodyListIndex}`" />
         </label>
       </td>
-      <!-- check -->
       <td>
         <div>
-          <span>{{ tbody.ListNumber }}</span>
+          <span>{{ tbodyList.ListNumber }}</span>
         </div>
       </td>
-      <!--  NO. -->
       <td>
         <div class="itemName">
           <span class="name">
-            {{ tbody.ItmeName }}
+            {{ tbodyList.ItmeName }}
           </span>
-          <span class="number">
-            ({{ tbody.ItemNumber }})
-          </span>
+          <span class="number"> ({{ tbodyList.ItemNumber }}) </span>
         </div>
       </td>
-      <!-- 종목명 -->
       <td>
         <div class="volatility">
           <span class="price">
-            {{ tbody.CurrentPrice }}
+            {{ tbodyList.CurrentPrice }}
           </span>
-          <span class="per">
-            ({{ tbody.CurrentPer }})
-          </span>
+          <span class="per"> ({{ tbodyList.CurrentPer }}) </span>
         </div>
       </td>
-      <!-- 현재가(등락률) -->
       <td>
         <div class="myInfo">
-          <div class="signal" v-html="tbody.Signal"></div>
-          <!--
-            *********** v-html 예시 ************
-            <span class="sgl001">매수</span>
-            <span class="sgl002">매도</span>
-            <span class="sgl003">예약</span>
-            <span class="sgl004">만료</span>
-            <span class="sgl005">취소</span>
-            -->
-          <!-- 매도/매수 -->
+          <div class="signal" v-html="tbodyList.Signal"></div>
           <div class="priceInfo">
             <div class="volatility">
               <span class="price">
-                {{ tbody.MyPrice }}
+                {{ tbodyList.MyPrice }}
               </span>
-              <span class="per">
-                ({{ tbody.MyPer }})
-              </span>
+              <span class="per"> ({{ tbodyList.MyPer }}) </span>
             </div>
-            <!-- 매도/매수 금액 -->
             <div class="date">
               <span>
-                {{ tbody.MyDate }}
+                {{ tbodyList.MyDate }}
               </span>
             </div>
-            <!-- 보유일시 -->
+            </div>
           </div>
-          <!-- 금액/보유정보 -->
-        </div>
       </td>
-      <!-- 나의 매수 금액 / 매도 금액 (수익률) -->
       <td>
         <div>
-          <span>{{ tbody.TargetPrice }}</span>
+          <span>{{ tbodyList.TargetPrice }}</span>
           &nbsp;/&nbsp;
-          <span>{{ tbody.StopPrice }}</span>
+          <span>{{ tbodyList.StopPrice }}</span>
         </div>
       </td>
-      <!-- 목표가 / 손절가 -->
       <td>
         <div>
-          <span>{{ tbody.Recommendation }}</span>
+          <span>{{ tbodyList.Recommendation }}</span>
           <a href="#">조회</a>
         </div>
       </td>
-      <!-- 종목추천발생 -->
       <td>
         <div>
-          <span>{{ tbody.Registration }}</span>
+          <span>{{ tbodyList.Registration }}</span>
         </div>
       </td>
-      <!-- 등록일시 -->
-    </tr>
+      </tr>
   </tbody>
 </template>
 
 <script>
 export default {
-  data() {
-    return {
-      tbodyList: Array.from({ length: 20 }, (_, i) => {
-        const num = i + 1
-        return {
-          ListNumber: num,
-          ItmeName: `삼성전자 ${num}`,
-          ItemNumber: String(num).padStart(6, '0'),
-          CurrentPrice: (50000 + num * 100).toLocaleString(),
-          CurrentPer: `+${(num % 10)}.5%`,
-          Signal: num % 2 === 0
-            ? '<span class="sgl001">매수</span>'
-            : '<span class="sgl002">매도</span>',
-          MyPrice: '527,500',
-          MyPer: '+44.33%',
-          MyDate: `2025.11.${String((num % 30) + 1).padStart(2, '0')} 15:20`,
-          TargetPrice: '600,000',
-          StopPrice: '400,000',
-          Recommendation: '2025.11.27 15:21',
-          Registration: '2025.11.06 15:20'
-        }
-      })
+  props: {
+    tbodyLists: {
+      type: Array,
+      default: () => []
     }
   }
 }

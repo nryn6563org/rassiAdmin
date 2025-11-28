@@ -1,0 +1,24 @@
+.tab{
+  @apply flex w-full items-center
+}
+.tab-basic{
+  @apply h-[50px]
+}
+.tab-basic button{
+  @apply w-[240px] h-full rounded-full flex items-center justify-center
+}
+.tab-basic button span{
+  @apply text-[18px] text-[#5E6367]
+}
+.tab-basic button.active{
+  @apply bg-[#F2F4F6]
+}
+.tab-basic button.active span{
+  @apply text-[#141414] font-medium
+}
+.tab-basic button:hover{
+  @apply bg-[#F2F4F6]
+}
+.tab-basic button:hover span{
+  @apply text-[#141414] font-medium
+}

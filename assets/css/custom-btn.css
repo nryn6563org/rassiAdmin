@@ -1,0 +1,87 @@
+/* 매수 */
+button.btn001 {
+  @apply bg-[#FFE8E8] text-[#FC2F2F];
+}
+/* 매도 */
+button.btn002 {
+  @apply bg-[#E3ECFF] text-[#447AEC];
+}
+/* 예약취소 */
+button.btn003 {
+  @apply bg-[#F1F1F1] text-[#303B49];
+}
+/* 재등록 / 닫기 / 취소 */
+button.btn004 {
+  @apply bg-[#848A96] text-[#FFFFFF];
+}
+/* 추천예약 */
+button.btn005 {
+  @apply bg-[#C6FFC0] text-[#18D307];
+}
+/* 삭제하기 */
+button.btn006 {
+  @apply border-[1px] border-[#DDDDDD] text-[#848A96];
+}
+button.btn0061 {
+  @apply border-[1px] border-[#FF6C6C] text-[#FF6C6C];
+}
+button.btn0062 {
+  @apply bg-[#E6E6E6] text-[#5E6367];
+}
+/* 생성하기 */
+button.btn007 {
+  @apply bg-[#424242] text-[#FFFFFF];
+}
+/* 비활성하기 */
+button.btn008 {
+  @apply bg-[#575D69] text-[#FFFFFF];
+}
+/* 닫기 */
+button.btn009 {
+  @apply border-[1px] border-[#424242] text-[#424242];
+}
+/* 생성 */
+button.btn010 {
+  @apply bg-[#2C85FF] text-[#FFFFFF];
+}
+/* 수정 */
+button.btn011 {
+  @apply bg-[#CEDEFF] text-[#447AEC];
+}
+/* 목록 */
+button.btn012 {
+  @apply bg-[#5E6367] text-[#FFFFFF];
+}
+/* 차트추가 */
+button.btn013 {
+  @apply bg-[#2874F5] text-[#FFFFFF];
+}
+/* 종목 풀 생성 */
+button.btn014 {
+  @apply bg-[#848A96] text-[#FFFFFF]
+  hover:bg-[#2C85FF]
+}
+button {
+  @apply flex w-auto items-center;
+}
+button.btn-small {
+  @apply h-[34px] px-2 rounded-[5px];
+}
+button.btn-mid {
+  @apply h-[42px] px-4 rounded-[3px];
+}
+button.btn-large {
+  @apply h-[52px] px-[143px] rounded-[8px];
+}
+button.square {
+  @apply !rounded-none;
+}
+button.round {
+  @apply !rounded-[6px];
+}
+button.long {
+  @apply px-[338px];
+}
+button.btn-txt{
+  @apply underline text-[#5E6367]
+}

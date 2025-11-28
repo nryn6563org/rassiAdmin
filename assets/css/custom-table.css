@@ -1,0 +1,55 @@
+.table_w {
+  @apply flex flex-col w-full;
+}
+.table_w .table {
+  @apply w-full overflow-x-auto;
+}
+.table_w .table::-webkit-scrollbar {
+  @apply w-[70%]/* 세로스크롤넓이 */ h-[7px] /* 가로스크롤 높이 */;
+}
+/* 스크롤바 트랙 (배경) */
+.table_w .table::-webkit-scrollbar-track {
+  @apply bg-[#F2F2F2] rounded-[5px];
+}
+
+/* 스크롤바 핸들 (움직이는 부분) */
+.table_w .table::-webkit-scrollbar-thumb {
+  @apply bg-[#0263E8] rounded-[5px] cursor-grab
+}
+
+/* 핸들에 마우스를 올렸을 때 */
+.table_w .table::-webkit-scrollbar-thumb:hover {
+  @apply bg-[#0263E8];
+}
+.table_w .table table {
+}
+.table_w .table table thead tr th {
+  @apply h-[60px] text-center bg-[#F2F2F2] text-[16px] text-[#5E6367] tracking-[130%] font-medium;
+}
+.table_w .table table tbody tr {
+  @apply bg-white even:bg-[#F9FAFB];
+}
+.table_w .table table tbody tr td {
+  @apply h-[60px] text-center;
+}
+
+.pagination {
+  @apply flex w-full justify-center items-center gap-1 mt-7;
+}
+
+.pagination button {
+  @apply w-9 h-9 rounded-full border-[1px] border-[#999] flex justify-center items-center;
+}
+.pagination button.prev {
+  @apply mr-2;
+}
+.pagination button.next {
+  @apply ml-2;
+}
+.pagination strong {
+  @apply w-9 h-9 rounded-full bg-[#F1F1F1] text-[16px] text-[#858585] font-semibold flex justify-center items-center;
+}
+.pagination a {
+  @apply w-9 h-9 rounded-full bg-white text-[16px] text-[#858585] font-semibold flex justify-center items-center
+  hover:bg-[#F1F1F1];
+}
