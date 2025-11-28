@@ -111,6 +111,14 @@ export default {
       // 3. .table (컨테이너)의 현재 실제 넓이 값을 구합니다.
       const tableWrapperWidth = tableWrapperElement.getBoundingClientRect().width
 
+      // 🌟 디버깅 코드 추가 🌟
+      console.log('--- Table Width Check ---')
+      console.log('1. 고정 너비 합산 (totalFixedWidth):', totalFixedWidth)
+      console.log('2. 컨테이너 너비 (tableWrapperWidth):', tableWrapperWidth)
+      console.log('3. 조건 충족 여부 (합산 < 컨테이너):', totalFixedWidth < tableWrapperWidth)
+      console.log('-------------------------')
+      // 🌟 디버깅 코드 끝 🌟
+
       // 4. 조건에 따른 넓이 설정 로직을 적용합니다.
 
       // 🌟 조건 1: col width의 합산이 .table의 넓이 값보다 작으면 (테이블을 컨테이너에 꽉 채워야 함)
