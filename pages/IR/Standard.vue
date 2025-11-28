@@ -1,9 +1,19 @@
 <template>
-  <div>스탠다드종목추천</div>
+  <section>
+    <SearchTable />
+    <BasicTable />
+  </section>
 </template>
 
 <script>
+import BasicTable from '~/components/TableElement/BasicTable.vue'
+import SearchTable from '~/components/IR/SearchTable.vue'
+
 export default {
+  components: {
+    SearchTable,
+    BasicTable
+  },
   data() {
     return {
       // 페이지에서 사용할 제목 문자열
@@ -22,3 +32,6 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+</style>
