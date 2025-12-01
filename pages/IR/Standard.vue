@@ -1,10 +1,10 @@
 <template>
   <section>
     <StandardAddPull />
-    <BasicTab :tabs="tabsList" v-model="currentTab" />
+    <BasicTab :tabs="tabsList" :modelValue.sync="currentTab" />
     <StandardSearch />
-    <TextGuide :guideText="guide" />
     <StandardTableInfo />
+    <TextGuide :guideText="guide" />
     <StandardTable />
   </section>
 </template>

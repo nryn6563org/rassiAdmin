@@ -24,3 +24,12 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.textGuide{
+  @apply w-full h-10 flex items-center px-5 gap-2.5 bg-[#F9FAFB] my-4
+}
+.textGuide span{
+  @apply text-[18px] text-[#5E6367]
+}
+</style>

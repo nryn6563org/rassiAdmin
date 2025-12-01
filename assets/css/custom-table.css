@@ -30,7 +30,7 @@
   @apply bg-white even:bg-[#F9FAFB];
 }
 .table_w .table table tbody tr td {
-  @apply h-[60px] text-center;
+  @apply h-[60px] text-[16px] text-[#5E6367];
 }
 
 .pagination {
@@ -52,4 +52,21 @@
 .pagination a {
   @apply w-9 h-9 rounded-full bg-white text-[16px] text-[#858585] font-semibold flex justify-center items-center
   hover:bg-[#F1F1F1];
+}
+
+/* 검색영역 테이블 */
+.searchTable{
+  @apply w-full mb-9
+}
+.searchTable table{
+  @apply border-t-[1px] border-[#BEC2C3]
+}
+.searchTable table tbody th, .searchTable table tbody td{
+  @apply border-b-[1px] border-[#BEC2C3] h-[60px]
+}
+.searchTable table tbody th{
+  @apply bg-[#F1F1F1] pl-5 text-[18px] text-[#141414] font-normal text-left
+}
+.searchTable table tbody td{
+  @apply px-4
 }

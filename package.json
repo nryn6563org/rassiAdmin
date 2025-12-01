@@ -13,6 +13,8 @@
     "lintfix": "prettier --write --list-different . && npm run lint:js -- --fix"
   },
   "dependencies": {
+    "animate.css": "^4.1.1",
+    "modal-vanilla": "github:KaneCohen/modal-vanilla",
     "nuxt": "^2.15.8"
   },
   "devDependencies": {

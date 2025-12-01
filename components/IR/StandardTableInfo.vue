@@ -2,23 +2,19 @@
   <div class="tableInfo">
     <div class="lft">
       <div class="totalScore">
-        <span
-          >총 <em>{{ total }}</em> 건</span
-        >
+        <span>총&nbsp;<em>{{ total }}</em>&nbsp;건</span>
       </div>
+      <span></span>
       <!--  -->
       <div class="btn-group">
-        <button>
+        <button class="round btn002 btn-mid">
           <span>실시간 매도</span>
         </button>
-        <button>
+        <button class="round btn001 btn-mid">
           <span>실시간 매수</span>
         </button>
-        <button>
+        <button class="round btn0062 btn-mid">
           <span>코멘트 모아보기</span>
-        </button>
-        <button>
-          <span>삭제하기</span>
         </button>
       </div>
     </div>
@@ -55,7 +51,7 @@
       </div>
       <!-- 보기 개수 정렬 -->
 
-      <button>
+      <button class="btn-mid btn013 round">
         <span>종목 추천하기</span>
       </button>
     </div>
@@ -84,5 +80,50 @@ export default {
     }
   }
 }
-
 </script>
+
+<style scoped>
+.tableInfo {
+  @apply flex w-full justify-between items-center;
+}
+.tableInfo .lft {
+  @apply flex items-center gap-4;
+}
+.tableInfo .lft .totalScore{
+  @apply text-[20px] text-[#141414]
+}
+.tableInfo .lft .totalScore span em{
+  @apply text-[#0263E8] font-bold
+}
+.tableInfo .lft > span {
+  @apply w-[1px] h-4 bg-[#484F55];
+}
+.tableInfo .lft .btn-group {
+  @apply flex items-center gap-2.5;
+}
+
+.tableInfo .rit {
+  @apply flex items-center gap-2.5;
+}
+.tableInfo .rit .update{
+  @apply flex items-center gap-[2px] rounded-[6px] bg-[#F9FAFB] px-2 h-[42px]
+}
+.tableInfo .rit .update span{
+  @apply text-[16px] text-[#5E6367]
+}
+.tableInfo .rit .date{
+  @apply mr-2.5 text-[16px] text-[#5E6367]
+}
+.tableInfo .rit .viewArray .dropdown_w {
+  @apply w-[133px] p-2.5 mr-2.5;
+}
+.tableInfo .rit .viewArray .dropdown_w::v-deep button {
+  @apply text-[16px] text-[#5E6367];
+}
+.tableInfo .rit .viewArray .dropdown_w::v-deep ul {
+  @apply w-[133px] left-auto right-0;
+}
+.tableInfo .rit .viewArray .dropdown_w::v-deep ul li {
+  @apply h-8 leading-8 px-2.5;
+}
+</style>

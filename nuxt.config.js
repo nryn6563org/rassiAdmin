@@ -14,7 +14,8 @@ export default {
       { hid: 'description', name: 'description', content: '' },
       { name: 'format-detection', content: 'telephone=no' }
     ],
-    link: [{ rel: 'stylesheet', url: 'https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-std.min.css', crossorigin: 'anonymous' }]
+    link: [{ rel: 'stylesheet', url: 'https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-std.min.css', crossorigin: 'anonymous' }],
+    script: [{ src: 'https://cdn.jsdelivr.net/gh/KaneCohen/modal-vanilla@master/dist/index.js', defer: true }]
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
@@ -22,11 +23,13 @@ export default {
     '~/assets/css/common.css',
     '~/assets/css/custom-btn.css',
     '~/assets/css/custom-tab.css',
-    '~/assets/css/custom-table.css'
+    '~/assets/css/custom-table.css',
+    '~/assets/css/custom-modal.css',
+    'animate.css/animate.css'
   ],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: [],
+  plugins: [{ src: '~/plugins/modal-vanilla.client.js', mode: 'client' }],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
@@ -46,5 +49,12 @@ export default {
         }
       }
     }
+  },
+  pageTransition: {
+    name: 'page',
+    mode: 'out-in',
+    // Vue transition 속성에 animate.css 클래스 매핑
+    enterActiveClass: 'animate__animated animate__fadeIn animate__faster',
+    leaveActiveClass: 'animate__animated animate__fadeOut animate__faster'
   }
 }

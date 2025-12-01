@@ -10,3 +10,48 @@
     font-style: normal;
   }
 }
+
+.up{
+  @apply text-[#FF6C6C]
+}
+.dn{
+  @apply text-[#447AEC]
+}
+.tc001{
+  @apply text-[#FC2F2F]
+}
+.tc002{
+  @apply text-[#0263E8]
+}
+.tc003{
+  @apply text-[#18D307]
+}
+.tc004{
+  @apply text-[#5E6367]
+}
+.tc005{
+  @apply text-[#5E6367]
+}
+
+
+.custom-checkbox-input {
+  @apply appearance-none absolute z-[-1] opacity-0 w-0 h-0 overflow-hidden ;
+  clip:rect(0,0,0,0)
+}
+.custom-checkbox-box {
+  @apply flex justify-center items-center w-[18px] h-[18px] border-[1px] border-[#DDD] rounded-[2px] 
+  relative cursor-pointer align-middle transition-all ease-linear duration-200 
+}
+.custom-checkbox-input:checked + .custom-checkbox-box {
+  @apply bg-[#4285F4] border-[#4285F4]
+}
+.custom-checkbox-input:checked + .custom-checkbox-box::after {
+  @apply content-[''] block w-[5px] h-[10px] border-white border-r-[2px] border-b-[2px] rotate-[45deg] 
+  opacity-100 transition-all ease-linear duration-200
+}
+.custom-checkbox-box::after {
+  @apply opacity-[0]
+}
+.custom-checkbox-label{
+  @apply flex justify-center
+}

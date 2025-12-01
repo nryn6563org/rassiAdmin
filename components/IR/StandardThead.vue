@@ -3,11 +3,10 @@
     <tr>
       <th v-for="(item, index) in theadList" :key="index">
         <template v-if="index === 0">
-          <input
-            type="checkbox"
-            :checked="isAllChecked"
-            @change="$emit('toggle-all', $event.target.checked)"
-          />
+          <label for="checkAll" class="custom-checkbox-label">
+            <input id="checkAll" class="custom-checkbox-input" type="checkbox" :checked="isAllChecked" @change="$emit('toggle-all', $event.target.checked)" />
+            <span class="custom-checkbox-box"></span>
+          </label>
         </template>
         <template v-else>
           {{ item }}

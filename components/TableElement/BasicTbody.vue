@@ -89,6 +89,10 @@
         </div>
       </td>
       <!-- 등록일시 -->
+       <td></td>
+       <td></td>
+       <td></td>
+       <td></td>
     </tr>
   </tbody>
 </template>

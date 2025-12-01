@@ -62,7 +62,7 @@ button.btn014 {
   hover:bg-[#2C85FF]
 }
 button {
-  @apply flex w-auto items-center;
+  @apply flex items-center;
 }
 button.btn-small {
   @apply h-[34px] px-2 rounded-[5px];
@@ -84,4 +84,24 @@ button.long {
 }
 button.btn-txt{
   @apply underline text-[#5E6367]
+}
+
+/* 신호 */
+.signalBullet{
+  @apply w-[48px] h-[34px] rounded-[5px] text-[14px] font-medium flex justify-center items-center
+}
+.sgl001{
+  @apply bg-[#FFBDBD] text-[#FC2F2F]
+}
+.sgl002{
+  @apply bg-[#CEDEFF] text-[#447AEC]
+}
+.sgl003{
+  @apply bg-[#C9FFC4] text-[#18D307]
+}
+.sgl004{
+  @apply bg-[#F1F1F1] text-[#141414]
+}
+.sgl005{
+  @apply bg-[#F1F1F1] text-[#141414]
 }

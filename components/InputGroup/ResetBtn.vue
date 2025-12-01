@@ -19,3 +19,12 @@
     <span>초기화</span>
   </button>
 </template>
+
+<style scoped>
+.reset{
+  @apply flex h-10 items-center gap-[7px]
+}
+.reset span{
+  @apply text-[16px] text-[#5E6367]
+}
+</style>

@@ -1,15 +1,15 @@
 <template>
   <div class="popupAlarm">
     <div class="alarm">
-      <div v-for="(alarm, alarmIndex) in alarms" :key="alarmIndex">
+      <button v-for="(alarm, alarmIndex) in alarms" :key="alarmIndex">
         <span>{{ alarm.title }}</span>
         <strong v-html="formatAlarmNum(alarm.num)"></strong>
-      </div>
+      </button>
     </div>
     <!-- // -->
-    <div class="signal">
+    <button class="signal">
       <span>AI매매신호 종목추천 :</span><em>{{ signal }}</em>
-    </div>
+    </button>
     <!-- // -->
   </div>
 </template>
@@ -59,17 +59,23 @@ export default {
   @apply flex w-full h-[75px] rounded-[6px] bg-[#F9FAFB] justify-center items-center
 }
 
-.popupAlarm .alarm div{
+.popupAlarm .alarm button{
   @apply relative w-[calc(100%/3)] h-[45px] flex flex-col items-center first:before:hidden
   before:content-[''] before:w-[1px] before:h-4 before:bg-[#5E6367] before:absolute before:top-4 before:left-0
 }
-.popupAlarm .alarm div span{
+.popupAlarm .alarm button span{
   @apply h-4 leading-4 text-[14px] text-[#5E6367] font-medium
 }
-.popupAlarm .alarm div strong{
+.popupAlarm .alarm button strong{
   @apply h-6 leading-6 text-[20px] text-[#141414] font-bold mt-1 flex items-start
 }
-.popupAlarm .alarm div strong::v-deep em{
+.popupAlarm .alarm button:nth-child(1) strong{
+  @apply text-[#FC2F2F]
+}
+.popupAlarm .alarm button:nth-child(2) strong{
+  @apply text-[#447AEC]
+}
+.popupAlarm .alarm button strong::v-deep em{
   @apply text-[14px] h-5 leading-5 ml-[1px]
 }
 .signal{

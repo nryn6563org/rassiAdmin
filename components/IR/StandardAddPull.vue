@@ -48,13 +48,13 @@ export default {
 .ch-item .dropdown_w button{
   @apply text-[19px] text-[#141414]
 }
+.ch-item .dropdown_w::v-deep ul li{
+  @apply h-10 leading-10 px-2.5
+}
 .ch-item .btngroup{
   @apply flex gap-4 items-center
 }
 .ch-item .btngroup button{
   @apply text-[16px] w-fit
-}
-.ch-item .dropdown_w::v-deep ul li{
-  @apply h-10 leading-10 px-2.5
 }
 </style>
