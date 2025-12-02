@@ -13,7 +13,7 @@
         </div>
       </td>
       <td>
-        <div class="itemName">
+        <div class="itemName" :title="tbodyList.ItmeName">
           <span class="name">
             {{ tbodyList.ItmeName }}
           </span>
@@ -43,9 +43,7 @@
               <span class="price">
                 {{ tbodyList.MyPrice }}
               </span>
-              <span :class="['per', getSignalClass(tbodyList.Signal)]">
-                ({{ tbodyList.MyPer }})
-              </span>
+              <span :class="['per', getSignalClass(tbodyList.Signal)]"> ({{ tbodyList.MyPer }}) </span>
             </div>
             <div class="date">
               <span>
@@ -74,11 +72,11 @@
         </div>
       </td>
       <td>
-        <div class="trading" v-html="tbodyList.StockTrading"></div>
+        <div class="trading" v-html="tbodyList.StockTrading" @click="handleTradingClick($event)"></div>
       </td>
       <td>
         <div class="manage">
-          <button @click="triggerModal" class="btn012 btn-mid">
+          <button @click="showModal('StandardModal011')" class="btn012 btn-mid">
             <span>관리</span>
           </button>
         </div>
@@ -87,10 +85,17 @@
         <div class="cancel" v-html="tbodyList.StockCancel"></div>
       </td>
     </tr>
+    <tr>
+      <td colspan="11" class="empty">
+        <span>등록된 종목이 없습니다.</span>
+      </td>
+    </tr>
   </tbody>
 </template>
 
 <script>
+import StandardModal011 from '~/components/Modal/StandardModal011.vue'
+
 export default {
   props: {
     tbodyLists: {
@@ -108,20 +113,34 @@ export default {
       if (!signalHtml) {
         return ''
       }
-
       // sgl 뒤에 숫자 3자리가 오는 패턴을 찾습니다. (예: sgl001 -> 001 캡처)
       const match = signalHtml.match(/sgl(\d{3})/)
-
       if (match && match[1]) {
         // 캡처된 숫자를 이용해 tc 클래스 조합 반환
         return `tc${match[1]}`
       }
-
       return ''
     },
-    triggerModal() {
-      // 1. 'open-my-modal'이라는 신호를 전역으로 발송
-      this.$nuxt.$emit('open-my-modal')
+    handleTradingClick(event) {
+      const button = event.target.closest('button')
+      if (!button) { return }
+      this.showModal('StandardModal011')
+    },
+    showModal(type) {
+      let component = null
+
+      switch (type) {
+        case 'StandardModal011':
+          component = StandardModal011
+          break
+      }
+
+      // [핵심] 레이아웃에 있는 전역 모달에게 '열어달라'고 요청
+      if (component) {
+        this.$nuxt.$emit('open-global-modal', {
+          component
+        })
+      }
     }
   }
 }
@@ -134,8 +153,11 @@ export default {
 .itemName {
   @apply flex items-center pl-4 text-[16px] text-[#141414] tracking-[130%] font-medium;
 }
-td > .price{
-  @apply pl-4
+.itemName .name{
+  @apply max-w-[calc(100%-86px)] line-clamp-1
+}
+td > .price {
+  @apply pl-4;
 }
 .volatility {
   @apply flex items-center pl-4;
@@ -149,43 +171,47 @@ td > .price{
 .myInfo {
   @apply flex items-center gap-2.5 pl-6;
 }
-.myInfo .volatility{
-  @apply pl-0
+.myInfo .volatility {
+  @apply pl-0;
 }
 .priceInfo {
-  @apply flex flex-col w-[calc(100%-58px)] gap-[3px]
+  @apply flex flex-col w-[calc(100%-58px)] gap-[3px];
 }
-.priceInfo .date{
-  @apply text-[#5E6367]
+.priceInfo .date {
+  @apply text-[#5E6367];
 }
-.targetStop{
-  @apply flex w-full justify-center text-[#5E6367]
+.targetStop {
+  @apply flex w-full justify-center text-[#5E6367];
 }
-.recommendation{
-  @apply flex w-full justify-center items-center gap-[6px] text-[#5E6367]
+.recommendation {
+  @apply flex w-full justify-center items-center gap-[6px] text-[#5E6367];
 }
-a{
-  @apply underline
+a {
+  @apply underline;
 }
-.manage{
-  @apply flex w-full justify-center
+.manage {
+  @apply flex w-full justify-center;
 }
-.manage button span{
-  @apply w-[56px]
+.manage button span {
+  @apply w-[56px];
 }
-.registration{
-  @apply flex w-full justify-center text-[#5E6367]
+.registration {
+  @apply flex w-full justify-center text-[#5E6367];
 }
-.trading{
-  @apply flex w-full justify-center
+.trading {
+  @apply flex w-full justify-center;
 }
-.cancel{
-  @apply flex w-full justify-center items-center
+.cancel {
+  @apply flex w-full justify-center items-center;
 }
-.cancel::v-deep button{
-  @apply w-fit
+.cancel::v-deep button {
+  @apply w-fit;
 }
-.cancel::v-deep button span{
-  @apply w-[56px]
+.cancel::v-deep button span {
+  @apply w-[56px];
+}
+
+.hiddenTr {
+  @apply absolute top-0 left-[-9999em];
 }
 </style>

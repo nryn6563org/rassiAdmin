@@ -36,7 +36,7 @@ export default {
       // 테이블 태그에 적용할 스타일 너비
       tableStyleWidth: '100%',
       // tbody 임시 데이터
-      bodyData: Array.from({ length: 20 }, (_, i) => {
+      bodyData: Array.from({ length: 21 }, (_, i) => {
         const num = i + 1
         const remainder = num % 5
         const signalHtml = remainder === 1 ? '<span class="signalBullet sgl001">매수</span>' : remainder === 2 ? '<span class="signalBullet sgl002">매도</span>' : remainder === 3 ? '<span class="signalBullet sgl003">예약</span>' : remainder === 4 ? '<span class="signalBullet sgl004">만료</span>' : '<span class="signalBullet sgl005">취소</span>'

@@ -29,7 +29,10 @@ export default {
   ],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: [{ src: '~/plugins/modal-vanilla.client.js', mode: 'client' }],
+  plugins: [
+    '~/plugins/modal-vanilla.client.js',
+    '~/plugins/global-modal.js'
+  ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,

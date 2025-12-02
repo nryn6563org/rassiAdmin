@@ -33,7 +33,32 @@
   @apply text-[#5E6367]
 }
 
+.caution{
+  @apply !text-[#FC2F2F]
+}
 
+/* input */
+.custom-text-input {
+  @apply border-[1px] border-[#EAEAEA] rounded-[6px] p-2.5 text-[18px] text-[#5E6367] font-medium
+  placeholder:text-[#9E9E9E] placeholder:font-normal
+}
+/* radio */
+.custom-radio-label{
+  @apply relative flex items-center cursor-pointer
+}
+.custom-radio-input{
+  @apply absolute top-0 left-[-9999em] opacity-0 w-0 h-0 overflow-hidden
+}
+.custom-radio-label span{
+  @apply h-5 leading-5 pl-[21px] text-[18px] text-[#5E6367]
+  before:content-[''] before:absolute before:top-[1.5px] before:left-0 before:w-[17px] before:h-[17px] before:rounded-full before:border-[1.2px] before:border-[#404040]
+  after:content-[''] after:hidden after:absolute after:top-[4.5px] after:left-[3px] after:w-[11px] after:h-[11px] after:rounded-full after:bg-[#404040]
+}
+.custom-radio-input:checked + .custom-radio-txt:after{
+  @apply block
+}
+
+/* checkbox */
 .custom-checkbox-input {
   @apply appearance-none absolute z-[-1] opacity-0 w-0 h-0 overflow-hidden ;
   clip:rect(0,0,0,0)

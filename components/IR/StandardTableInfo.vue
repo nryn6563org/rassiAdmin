@@ -51,7 +51,7 @@
       </div>
       <!-- 보기 개수 정렬 -->
 
-      <button class="btn-mid btn013 round">
+      <button class="btn-mid btn013 round" @click="showModal('StandardModal011')">
         <span>종목 추천하기</span>
       </button>
     </div>
@@ -59,6 +59,7 @@
   </div>
 </template>
 <script>
+import StandardModal011 from '~/components/Modal/StandardModal011.vue'
 import DropDown from '@/components/InputGroup/DropDown.vue'
 
 export default {
@@ -75,8 +76,21 @@ export default {
   },
   methods: {
     handleChange(label) {
-      this.selectedAreaLabel = label
-      // 지역 변경시 필요한 추가 행동이 있다면 여기에 추가
+      this.selectedViewArray = label
+    },
+    showModal(type) {
+      let component = null
+
+      switch (type) {
+        case 'StandardModal011':
+          component = StandardModal011
+          break
+      }
+      if (component) {
+        this.$nuxt.$emit('open-global-modal', {
+          component
+        })
+      }
     }
   }
 }

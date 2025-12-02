@@ -1,54 +1,91 @@
 <template>
   <div ref="myStaticModal" class="modal animate__animated animate__fadeIn animate__faster" tabindex="-1" role="dialog">
     <div class="modal-dialog">
-      <div class="modal-content animate__animated animate__fadeInDown animate__faster">
-        <div class="modal-header">
-          <h5 class="modal-title">정적 모달</h5>
+      <div ref="modalContent" class="modal-content animate__animated animate__fadeInDown animate__faster">
+        <component :is="contentComponent" v-if="contentComponent"></component>
+        <!-- 본문내용 -->
+        <div class="close">
+          <button type="button" class="btn btn-secondary" @click="closeModal">
+            <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M1.36475 1.28711L23.321 23.287" stroke="#404040" stroke-width="2.60924" stroke-linecap="round" />
+              <path d="M1.32178 23.2871L23.278 1.28722" stroke="#404040" stroke-width="2.60924" stroke-linecap="round" />
+            </svg>
+          </button>
         </div>
-        <div class="modal-body">
-          <p>다른 컴포넌트에서 호출되었습니다!</p>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
-        </div>
+        <!-- 닫기 -->
       </div>
+      <!-- modal-content -->
     </div>
+    <!-- dialog -->
   </div>
 </template>
 
 <script>
 export default {
-  data() {
-    return {
-      modalInstance: null // 모달 인스턴스 저장용
+  props: {
+    contentComponent: {
+      type: [Object, String], // 문자열이나 객체 모두 허용
+      default: null
     }
   },
-  mounted() {
-    // 2. 이벤트 리스너 등록: 'open-my-modal'이라는 신호가 오면 실행
-    this.$nuxt.$on('open-my-modal', () => {
-      this.openModal()
-    })
+  data() {
+    return {
+      modalInstance: null
+    }
   },
+  // 메모리 누수 방지: 컴포넌트가 파괴될 때 모달 인스턴스도 정리
   beforeDestroy() {
-    // 3. 메모리 누수 방지를 위해 리스너 제거
-    this.$nuxt.$off('open-my-modal')
+    if (this.modalInstance && typeof this.modalInstance.destroy === 'function') {
+      this.modalInstance.destroy()
+    }
+    this.modalInstance = null
   },
   methods: {
     openModal() {
-      // 이미 인스턴스가 생성되어 있다면 show()만 호출
-      if (this.modalInstance) {
-        this.modalInstance.show()
-      } else {
-        // 처음 열 때 인스턴스 생성
-        // this.$refs.myStaticModal로 DOM에 접근
+      const modalEl = this.$refs.myStaticModal
+      const contentEl = this.$refs.modalContent
+
+      // 1. 열기 애니메이션 클래스 초기화
+      modalEl.classList.remove('animate__fadeOut')
+      contentEl.classList.remove('animate__fadeOutUp')
+      modalEl.classList.add('animate__fadeIn')
+      contentEl.classList.add('animate__fadeInDown')
+
+      // 2. 모달 인스턴스 생성 또는 재사용
+      if (!this.modalInstance) {
+        // vanilla modal 라이브러리 인스턴스 생성
+        // (플러그인에서 $Modal을 잘 주입했다고 가정)
         this.modalInstance = new this.$Modal({
           el: this.$refs.myStaticModal
         })
-        this.modalInstance.show()
       }
+
+      // 3. 라이브러리의 show 메서드 호출
+      this.modalInstance.show()
+    },
+
+    closeModal() {
+      if (!this.modalInstance) {
+        return
+      }
+
+      const modalEl = this.$refs.myStaticModal
+      const contentEl = this.$refs.modalContent
+
+      // 1. 닫기 애니메이션 클래스 추가
+      modalEl.classList.remove('animate__fadeIn')
+      contentEl.classList.remove('animate__fadeInDown')
+      modalEl.classList.add('animate__fadeOut')
+      contentEl.classList.add('animate__fadeOutUp')
+
+      // 2. 애니메이션 시간(예: 500ms)만큼 기다린 후 실제로 숨김 처리
+      // animate__faster는 보통 500ms입니다. 안전하게 450~500ms 뒤에 실행
+      setTimeout(() => {
+        if (this.modalInstance) {
+          this.modalInstance.hide() // 실제 라이브러리의 숨김 처리
+        }
+      }, 500)
     }
   }
 }
 </script>
-<style scoped>
-</style>

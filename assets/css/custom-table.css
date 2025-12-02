@@ -13,7 +13,7 @@
 }
 
 /* 스크롤바 핸들 (움직이는 부분) */
-.table_w .table::-webkit-scrollbar-thumb {
+.table_w .table::-webkit-scrollbar-thumb {  
   @apply bg-[#0263E8] rounded-[5px] cursor-grab
 }
 
@@ -31,6 +31,12 @@
 }
 .table_w .table table tbody tr td {
   @apply h-[60px] text-[16px] text-[#5E6367];
+}
+.table_w .table table tbody tr td.empty{
+  @apply bg-[#F9FAFB]
+}
+.table_w .table table tbody tr td.empty span{
+  @apply w-full h-[330px] flex justify-center items-center text-[20px] text-[#5E6367]
 }
 
 .pagination {
