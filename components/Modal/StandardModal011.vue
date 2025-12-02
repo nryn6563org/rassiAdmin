@@ -11,7 +11,6 @@
 
       <RsvRegistration v-if="currentTab === 1" />
       <!--  매수 예약 등록 -->
-
     </div>
   </div>
 </template>

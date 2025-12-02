@@ -30,10 +30,12 @@ export default {
   created() {
     // 이벤트 버스 리스너 등록: 어디서든 'open-global-modal' 이벤트를 보내면 실행됨
     this.$nuxt.$on('open-global-modal', this.openModalHandler)
+    this.$nuxt.$on('close-global-modal', this.closeModalHandler)
   },
   beforeDestroy() {
     // 메모리 누수 방지를 위해 리스너 해제
     this.$nuxt.$off('open-global-modal')
+    this.$nuxt.$off('close-global-modal')
   },
   methods: {
     openModalHandler({ component, title }) {
@@ -49,6 +51,12 @@ export default {
           console.error('GlobalModal ref를 찾을 수 없습니다.')
         }
       })
+    },
+    closeModalHandler() {
+      // GlobalModal 컴포넌트의 closeModal 메서드를 직접 호출하여 닫기 애니메이션 실행
+      if (this.$refs.globalModal && typeof this.$refs.globalModal.closeModal === 'function') {
+        this.$refs.globalModal.closeModal()
+      }
     }
   }
 }

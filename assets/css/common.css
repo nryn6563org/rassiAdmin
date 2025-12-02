@@ -39,7 +39,7 @@
 
 /* input */
 .custom-text-input {
-  @apply border-[1px] border-[#EAEAEA] rounded-[6px] p-2.5 text-[18px] text-[#5E6367] font-medium
+  @apply border-[1px] border-[#EAEAEA] rounded-[6px] p-2.5 text-[18px] text-[#141414] font-medium
   placeholder:text-[#9E9E9E] placeholder:font-normal
 }
 /* radio */
@@ -50,12 +50,12 @@
   @apply absolute top-0 left-[-9999em] opacity-0 w-0 h-0 overflow-hidden
 }
 .custom-radio-label span{
-  @apply h-5 leading-5 pl-[21px] text-[18px] text-[#5E6367]
+  @apply h-5 leading-5 pl-[21px] text-[18px] text-[#5E6367] transition-all duration-150
   before:content-[''] before:absolute before:top-[1.5px] before:left-0 before:w-[17px] before:h-[17px] before:rounded-full before:border-[1.2px] before:border-[#404040]
-  after:content-[''] after:hidden after:absolute after:top-[4.5px] after:left-[3px] after:w-[11px] after:h-[11px] after:rounded-full after:bg-[#404040]
+  after:content-[''] after:opacity-0 after:absolute after:top-[4.5px] after:left-[3px] after:w-[11px] after:h-[11px] after:rounded-full after:bg-[#404040]
 }
 .custom-radio-input:checked + .custom-radio-txt:after{
-  @apply block
+  @apply opacity-100
 }
 
 /* checkbox */

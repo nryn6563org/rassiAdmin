@@ -1,103 +1,155 @@
-.modal{
-  @apply fixed inset-0 w-full h-full z-[10014] bg-black bg-opacity-60 transition-all duration-300 hidden
+.modal {
+  @apply fixed inset-0 w-full h-full z-[10014] bg-black bg-opacity-60 transition-all duration-300 hidden;
 }
-.modal-dialog{
-  @apply flex w-full h-full max-h-[60%] justify-center items-center
+.modal-dialog {
+  @apply flex w-full h-full justify-center items-center;
 }
-.modal-content{
-  @apply relative block bg-white rounded-[20px] p-[30px_40px] w-[788px]
+.modal-content {
+  @apply relative block max-h-[80%] bg-white rounded-[20px] p-[30px_40px] w-[788px] overflow-hidden;
 }
-.close{
-  @apply absolute w-[25px] h-[25px] top-[30px] right-[50px]
+.close {
+  @apply absolute w-[25px] h-[25px] top-[30px] right-[50px];
 }
-.modal-wrap{
-  @apply flex flex-col w-full
+.modal-wrap {
+  @apply flex flex-col w-full h-full overflow-hidden;
 }
-.modal-header{
-  @apply w-full h-[70px] leading-[30px] py-5 border-b-[1px] border-[#E0E0E0]
+.modal-header {
+  @apply w-full h-[70px] leading-[30px] py-5 border-b-[1px] border-[#E0E0E0];
 }
-.modal-header strong{
-  @apply text-[28px] text-[#141414] font-medium
+.modal-header strong {
+  @apply text-[28px] text-[#141414] font-medium;
 }
-.modal-body{
-  @apply mt-[30px] w-full
+.modal-body {
+  @apply mt-[30px] w-full max-h-[calc(100%-100px)] overflow-hidden;
 }
-.modal-footer{
-  @apply w-full pt-[50px]
+.modal-footer {
+  @apply w-full pt-[50px];
 }
-.modal-footer .button-group{
-  @apply flex w-full justify-center items-center gap-2.5
+.modal-footer .button-group {
+  @apply flex w-full justify-center items-center gap-2.5;
 }
-.modal-footer .button-group button{
-  @apply w-[calc((100%/2)-10px)]
+.modal-footer .button-group button {
+  @apply w-[calc((100%/2)-10px)];
 }
 
 /* 
-  ** 추천종목관리 **
+  ** 추천종목관리 ** 
 */
-.suggestion{
-  @apply flex flex-col w-full mt-[30px] gap-10
+#AlarmSubmit,
+#RsvRegistration {
+  @apply flex flex-col w-full h-[700px] max-h-[calc(100%-50px)] overflow-hidden;
 }
-.suggestion section{
-  @apply flex flex-col w-full gap-3
+.suggestion {
+  @apply flex flex-col w-full h-full mt-[30px] gap-10 overflow-y-auto overflow-x-hidden;
 }
-.suggestion section > strong{
-  @apply text-[24px] text-black h-[30px] leading-[30px] font-normal
+.suggestion section {
+  @apply flex flex-col w-full gap-3;
 }
-.suggestion section .itemSearch{
-  @apply relative
+.suggestion section > strong {
+  @apply text-[24px] text-black h-[30px] leading-[30px] font-normal;
 }
-.suggestion section .itemSearch .custom-text-input{
-  @apply pr-[46px] w-[408px]
+.suggestion section > strong em {
+  @apply text-[#FC2F2F];
 }
-.suggestion section .itemSearch button{
-  @apply absolute top-2.5 left-[373px] z-10
+.suggestion section .itemSearch {
+  @apply relative;
 }
-.suggestion section .cho_pp{
-  @apply flex flex-col w-full gap-3
+.suggestion section .itemSearch .custom-text-input {
+  @apply pr-[46px] w-[408px];
 }
-.suggestion section .cho_radio{
-  @apply flex items-center gap-3
+.suggestion section .itemSearch button {
+  @apply absolute top-2.5 left-[373px] z-10;
 }
-.suggestion section .cho_radio > span{
-  @apply text-[18px] text-[#5E6367] mr-1
+.suggestion section .cho_pp {
+  @apply flex flex-col w-full gap-3;
 }
-.suggestion section .cho_input{
-  @apply flex flex-col w-full gap-5
+.suggestion section .cho_pp > .check .custom-checkbox-label {
+  @apply !justify-start items-center gap-2.5;
 }
-.suggestion section .cho_input > div{
-  @apply flex flex-wrap items-center gap-1
+.suggestion section .cho_pp > .check .custom-checkbox-txt {
+  @apply h-6 leading-6 text-[20px] text-[#5E6367];
 }
-.suggestion section .cho_input > div label{
-  @apply mr-[6px] text-[16px] text-[#5E6367]
+.suggestion section .cho_radio {
+  @apply flex items-center gap-3;
 }
-.suggestion section .cho_input div p{
-  @apply text-[16px] text-[#5E6367] w-full h-5 leading-5 mt-[6px]
+.suggestion section .cho_radio > span {
+  @apply text-[18px] text-[#5E6367] mr-1;
 }
-.suggestion section .check_comment{
-  @apply flex flex-col w-full gap-5
+.suggestion section .cho_input {
+  @apply flex flex-col w-full gap-5;
 }
-.suggestion section .check_comment > div{
-  @apply flex flex-col w-full gap-2.5
+.suggestion section .cho_input > div {
+  @apply flex flex-wrap items-center gap-1;
 }
-.suggestion section .check_comment > div .check .custom-checkbox-label{
-  @apply !justify-start items-center gap-2.5
+.suggestion section .cho_input > div label {
+  @apply mr-[6px] text-[16px] text-[#5E6367];
 }
-.suggestion section .check_comment > div .check .custom-checkbox-label .custom-checkbox-txt{
-  @apply h-6 leading-6 text-[20px] text-[#5E6367]
+.suggestion section .cho_input div p {
+  @apply text-[16px] text-[#5E6367] w-full h-5 leading-5 mt-[6px];
+}
+.suggestion section .check_comment {
+  @apply flex flex-col w-full gap-5;
+}
+.suggestion section .check_comment > div {
+  @apply flex flex-col w-full gap-2.5;
+}
+.suggestion section .check_comment > div input{
+  @apply mb-2.5
+}
+.suggestion section .check_comment > div > p {
+  @apply text-[16px] text-[#5E6367] w-full h-5 leading-5 mt-[6px];
+}
+.suggestion section .check_comment > div .check .custom-checkbox-label {
+  @apply !justify-start items-center gap-2.5;
+}
+.suggestion section .check_comment > div .check .custom-checkbox-label .custom-checkbox-txt {
+  @apply h-6 leading-6 text-[20px] text-[#5E6367];
 }
 
+.dateSetting{
+  @apply flex items-center gap-2.5
+}
+.dateSetting span{
+  @apply text-[16px] text-[#5E6367]
+}
+.dateSetting span em{
+  @apply text-[#0263E8] font-bold
+}
 
 /* txt */
-.suggestion section .txt{
-  @apply flex flex-col w-full gap-2.5
+.suggestion section .txt {
+  @apply flex flex-col w-full;
 }
-.suggestion section .txt p{
-  @apply text-[18px] text-[#5E6367] font-normal h-5 leading-5
+.suggestion section .txt > div {
+  @apply text-[18px] text-[#5E6367] font-normal h-5 leading-5 flex mb-2.5;
 }
-.suggestion section .txt p span{
-  @apply text-[#141414]
+.suggestion section .txt > div > .itemPrice {
+  @apply flex items-center gap-[6px] ml-[6px];
 }
-.suggestion section .txt > span{
-  @apply text-[16px] text-[#5E6367] h-5 leading-5
+.suggestion section .txt > div > .itemPrice span {
+  @apply text-[18px];
+}
+.suggestion section .txt > div > .itemPrice .prc {
+  @apply text-[#141414];
+}
+.suggestion section .txt > div > .itemPrice .date {
+  @apply text-[#5E6367];
+}
+.suggestion section .txt > div > .itemPrice button {
+  @apply mr-[6px];
+}
+.suggestion section .txt > div > .itemPrice button span {
+  @apply text-[16px] text-[#5E6367];
+}
+.suggestion section .txt > div > span {
+  @apply text-[#141414];
+}
+.suggestion section .txt > div > .empty {
+  @apply text-[#5E6367] ml-[6px];
+}
+.suggestion section .txt > span {
+  @apply text-[16px] text-[#5E6367] h-5 leading-5;
+}
+.suggestion section .txt > p {
+  @apply text-[18px] text-[#5E6367] font-normal h-5 leading-5;
 }
