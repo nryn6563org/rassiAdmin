@@ -27,6 +27,7 @@ export default {
       default: 'pullAdd'
     }
   },
+  modalClass: 'modal-pull',
   computed: {
     activeComponent() {
       switch (this.mode) {

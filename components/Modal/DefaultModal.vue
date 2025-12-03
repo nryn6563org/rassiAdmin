@@ -1,22 +1,14 @@
 <template>
   <div ref="myStaticModal" class="modal animate__animated animate__fadeIn animate__faster" tabindex="-1" role="dialog">
     <div class="modal-dialog">
-      <div ref="modalContent" class="modal-content animate__animated animate__fadeInDown animate__faster">
+      <div
+        ref="modalContent"
+        class="modal-content animate__animated animate__fadeInDown animate__faster"
+        :class="computedModalClass"
+      >
         <component :is="contentComponent" v-if="contentComponent" v-bind="componentProps"></component>
-        <!-- 본문내용 -->
-        <div class="close">
-          <button type="button" class="btn btn-secondary" @click="closeModal">
-            <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M1.36475 1.28711L23.321 23.287" stroke="#404040" stroke-width="2.60924" stroke-linecap="round" />
-              <path d="M1.32178 23.2871L23.278 1.28722" stroke="#404040" stroke-width="2.60924" stroke-linecap="round" />
-            </svg>
-          </button>
         </div>
-        <!-- 닫기 -->
-      </div>
-      <!-- modal-content -->
     </div>
-    <!-- dialog -->
   </div>
 </template>
 
@@ -40,6 +32,16 @@ export default {
   data() {
     return {
       modalInstance: null
+    }
+  },
+  computed: {
+    // 2. computed 속성 추가
+    computedModalClass() {
+      // contentComponent가 객체이고, 내부에 modalClass라는 사용자 정의 옵션이 있다면 반환
+      if (this.contentComponent && this.contentComponent.modalClass) {
+        return this.contentComponent.modalClass
+      }
+      return ''
     }
   },
   // 메모리 누수 방지: 컴포넌트가 파괴될 때 모달 인스턴스도 정리

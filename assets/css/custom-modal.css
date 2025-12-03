@@ -8,6 +8,9 @@
   /* max-h-[80%] 유지: 전체 모달의 크기 제한 */
   @apply relative block max-h-[80%] bg-white rounded-[20px] p-[30px_0] w-[788px] overflow-hidden flex flex-col;
 }
+.modal-content.modal-pull{
+  @apply !scale-[0.8]
+}
 .close {
   @apply absolute w-[25px] h-[25px] top-[30px] right-[50px];
 }

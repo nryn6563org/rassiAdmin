@@ -1,7 +1,7 @@
 <template>
   <div class="stockRD">
     <div class="ch-item">
-      <DropDown :items="pullLabels" :initial-label="selectedPullLabel" placeholder="" @change="handlePullChange" />
+      <PullDropDown :items="pullLabels" :initial-label="selectedPullLabel" placeholder="" @change="handlePullChange" />
       <div class="btngroup">
         <button class="btn-txt btnPullMdf" @click="handleModalClick($event)">수정</button>
         <button class="btn-txt btnPullDlt" @click="handleModalClick($event)">삭제</button>
@@ -11,12 +11,12 @@
   </div>
 </template>
 <script>
-import DropDown from '@/components/InputGroup/DropDown.vue'
+import PullDropDown from '@/components/InputGroup/PullDropDown.vue'
 import PullModal from '@/components/Modal/PullModal.vue'
 
 export default {
   components: {
-    DropDown
+    PullDropDown
   },
   data() {
     return {
