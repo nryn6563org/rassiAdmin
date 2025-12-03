@@ -1,7 +1,7 @@
 <template>
   <div class="stockRD">
     <div class="ch-item">
-      <PullDropDown :items="pullLabels" :initial-label="selectedPullLabel" placeholder="" @change="handlePullChange" />
+      <PullDropDown :items="pullLabels" :initial-label="selectedPullLabel" placeholder="" @change="handlePullChange" @update-order="myItems = $event" />
       <div class="btngroup">
         <button class="btn-txt btnPullMdf" @click="handleModalClick($event)">수정</button>
         <button class="btn-txt btnPullDlt" @click="handleModalClick($event)">삭제</button>

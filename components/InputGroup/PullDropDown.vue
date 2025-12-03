@@ -8,12 +8,13 @@
         </svg>
       </span>
     </button>
+
     <div v-if="isOpen" class="dropdown-menu" role="menu">
-      <ul>
-        <li v-for="(label, index) in items" :key="index" class="menu-item" :class="{ selected: label === selectedLabel }" @click="selectItem(label)" role="menuitem">
+      <draggable v-model="localItems" tag="ul" :animation="200" @end="onDragEnd">
+        <li v-for="label in localItems" :key="label" class="menu-item" :class="{ selected: label === selectedLabel }" @click="selectItem(label)" role="menuitem">
           {{ label }}
         </li>
-      </ul>
+      </draggable>
 
       <div class="info">
         <span>전체 풀 : <em>10</em></span>
@@ -24,13 +25,13 @@
 </template>
 
 <script>
-// 외부 클릭을 감지하기 위한 간단한 커스텀 디렉티브 (이전과 동일)
+import draggable from 'vuedraggable' // 라이브러리 import
+
 const clickOutside = {
   mounted(el, binding) {
     el.__ClickOutsideHandler__ = (event) => {
-      // 드롭다운 wrapper 자체가 아니며, wrapper의 자식 요소도 아닌 경우
       if (!(el === event.target || el.contains(event.target))) {
-        binding.value(event) // 바인딩된 메소드 (closeDropdown) 실행
+        binding.value(event)
       }
     }
     document.addEventListener('click', el.__ClickOutsideHandler__)
@@ -41,24 +42,23 @@ const clickOutside = {
 }
 
 export default {
-  // 외부 클릭 디렉티브 등록
+  components: {
+    draggable // 컴포넌트 등록
+  },
   directives: {
     clickOutside
   },
 
   props: {
-    // 드롭다운 목록: 이제 단순한 문자열 배열을 받습니다. (예: ['빨강', '파랑', '초록'])
     items: {
       type: Array,
       required: true,
       default: () => []
     },
-    // 드롭다운에 표시할 기본 텍스트
     placeholder: {
       type: String,
       default: '항목을 선택하세요'
     },
-    // 외부에서 초기 선택 Label을 받을 수 있도록 수정 (선택 사항)
     initialLabel: {
       type: String,
       default: null
@@ -67,15 +67,24 @@ export default {
 
   data() {
     return {
-      isOpen: false, // 드롭다운 메뉴 열림/닫힘 상태
-      selectedLabel: this.initialLabel // 현재 선택된 항목의 label
+      isOpen: false,
+      selectedLabel: this.initialLabel,
+      // props인 items를 직접 수정할 수 없으므로 로컬 변수 생성
+      localItems: []
     }
   },
 
   watch: {
-    // initialLabel이 변경될 때마다 selectedLabel을 업데이트
     initialLabel(newLabel) {
       this.selectedLabel = newLabel
+    },
+    // 부모로부터 items가 변경되면 로컬 데이터도 동기화
+    items: {
+      immediate: true,
+      handler(newItems) {
+        // 배열 복사 (참조 끊기)
+        this.localItems = [...newItems]
+      }
     }
   },
 
@@ -89,11 +98,16 @@ export default {
     },
 
     selectItem(label) {
-      this.selectedLabel = label // 내부 상태 업데이트
-      this.isOpen = false // 선택 후 드롭다운 닫기
-
-      // 부모 컴포넌트로 선택된 항목의 label만 전달
+      this.selectedLabel = label
+      this.isOpen = false
       this.$emit('change', label)
+    },
+
+    // 드래그가 끝났을 때 호출되는 메서드
+    onDragEnd() {
+      // 변경된 순서의 배열을 부모에게 알림 (필요한 경우)
+      // 부모 컴포넌트에서 @update:items="items = $event" 와 같이 받아주면 됩니다.
+      this.$emit('update-order', this.localItems)
     }
   }
 }
@@ -115,21 +129,30 @@ export default {
 .dropdown-menu {
   @apply absolute w-full max-h-[440px] top-[calc(100%+3px)] left-0 p-2.5 bg-white border-[1px] border-[#E3E3E3] rounded-[6px] flex flex-col gap-[2px] z-50 overflow-y-auto;
 }
-.dropdown-menu ul{
-  @apply h-[390px] overflow-y-auto flex flex-col gap-1
+
+/* 기존 .dropdown-menu ul 스타일을 draggable(렌더링 시 ul이 됨)에 적용 */
+.dropdown-menu ul {
+  @apply h-[390px] overflow-y-auto flex flex-col gap-1;
 }
+
 .dropdown-menu li {
   @apply w-[calc(100%-15px)] text-[16px] text-[#5E6367] cursor-pointer rounded-[6px]
-  hover:bg-[#EBF8FF]
+  hover:bg-[#EBF8FF];
 }
-.dropdown-menu .info{
-  @apply w-full flex items-center h-10 p-2.5 rounded-[3px] bg-[#F9FAFB]
+
+/* 드래그 중인 아이템 스타일 (선택 사항) */
+.sortable-ghost {
+  @apply bg-blue-100 opacity-50;
 }
-.dropdown-menu .info span{
+
+.dropdown-menu .info {
+  @apply w-full flex items-center h-10 p-2.5 rounded-[3px] bg-[#F9FAFB];
+}
+.dropdown-menu .info span {
   @apply relative z-20 text-[18px] h-5 leading-5 text-[#5E6367] mr-3 pl-3 first:pl-0
-  last:border-l-[1px] last:border-[#484F55]
+  last:border-l-[1px] last:border-[#484F55];
 }
-.dropdown-menu .info span em{
-  @apply text-[#3c68cd] font-bold
+.dropdown-menu .info span em {
+  @apply text-[#3c68cd] font-bold;
 }
 </style>
