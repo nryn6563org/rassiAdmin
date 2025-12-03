@@ -15,9 +15,9 @@
 </template>
 
 <script>
-import StandardThead from '~/components/IR/StandardThead.vue'
-import StandardTbody from '~/components/IR/StandardTbody.vue'
-import BasicPaging from '~/components/TableElement/BasicPaging.vue'
+import StandardThead from '@/components/IR/StandardThead.vue'
+import StandardTbody from '@/components/IR/StandardTbody.vue'
+import BasicPaging from '@/components/TableElement/BasicPaging.vue'
 
 export default {
   components: {
@@ -56,8 +56,8 @@ export default {
           StopPrice: '400,000',
           Recommendation: '2025.11.27 15:21',
           Registration: '2025.11.06 15:20',
-          StockTrading: num % 2 === 0 ? '<button class="btn001 btn-mid"><span>매수하기</span><button>' : '<button class="btn002 btn-mid"><span>매도하기</span><button>',
-          StockCancel: num % 2 === 0 ? '<button class="btn003 btn-mid"><span>예약취소</span><button>' : '<button class="btn006 btn-mid"><span>삭제</span><button>'
+          StockTrading: num % 2 === 0 ? '<button class="btn001 btn-mid btnBuy"><span>매수하기</span><button>' : '<button class="btn002 btn-mid btnSell"><span>매도하기</span><button>',
+          StockCancel: num % 2 === 0 ? '<button class="btn003 btn-mid btnCancel"><span>예약취소</span><button>' : '<button class="btn006 btn-mid btnDlt"><span>삭제</span><button>'
         }
       })
       // signalClass 삭제됨

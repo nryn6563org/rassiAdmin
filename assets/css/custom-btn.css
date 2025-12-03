@@ -21,7 +21,7 @@ button.btn005 {
 /* 삭제하기 */
 button.btn006 {
   @apply border-[1px] border-[#DDDDDD] text-[#848A96];
-}
+} 
 button.btn0061 {
   @apply border-[1px] border-[#FF6C6C] text-[#FF6C6C];
 }

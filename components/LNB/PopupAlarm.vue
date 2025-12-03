@@ -7,7 +7,7 @@
       </button>
     </div>
     <!-- // -->
-    <button class="signal">
+    <button class="signal" @click="handleModalClick($event)">
       <span>AI매매신호 종목추천 :</span><em>{{ signal }}</em>
     </button>
     <!-- // -->
@@ -15,6 +15,8 @@
 </template>
 
 <script>
+import ManageModal from '@/components/Modal/ManageModal.vue'
+
 export default {
   data() {
     return {
@@ -39,13 +41,37 @@ export default {
     // 💡 New method to format the number
     formatAlarmNum(number) {
       const maxLimit = 999
-
       // Check if the number exceeds the limit
       if (number > maxLimit) {
         return `${maxLimit}<em class="plus-sign">+</em>` // Return '999+'
       }
-
       return number // Return the number as is
+    },
+    handleModalClick(event) {
+      // 1. 클릭된 요소 중 가장 가까운 버튼 찾기
+      const button = event.target.closest('button')
+      if (!button) {
+        return
+      }
+
+      let component = null
+      let mode = ''
+
+      // 2. 버튼 클래스에 따라 컴포넌트 및 모드 설정
+      if (button.classList.contains('signal')) {
+        component = ManageModal
+        mode = 'signal'
+      }
+
+      // 3. 모달 열기 이벤트 발송
+      if (component) {
+        this.$nuxt.$emit('open-global-modal', {
+          component,
+          props: {
+            mode // TradingModal 등에서 사용할 모드값 전달
+          }
+        })
+      }
     }
   }
 }

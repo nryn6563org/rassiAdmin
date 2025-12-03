@@ -6,13 +6,13 @@
       <AdminPageTitle />
       <nuxt />
     </div>
-    <GlobalModal ref="globalModal" :contentComponent="activeContentComponent" :modalTitle="activeTitle" />
+    <GlobalModal ref="globalModal" :contentComponent="activeContentComponent" :modalTitle="activeTitle" :componentProps="modalProps" />
   </div>
 </template>
 <script>
 import AdminPageTitle from '../components/AdminPageTitle.vue'
-import RassiLNB from '~/components/RassiLNB.vue'
-import RassiHeader from '~/components/RassiHeader.vue'
+import RassiLNB from '@/components/RassiLNB.vue'
+import RassiHeader from '@/components/RassiHeader.vue'
 
 export default {
   components: {
@@ -24,7 +24,8 @@ export default {
     return {
       // 현재 모달에 띄울 컴포넌트의 이름(문자열)을 저장하는 변수
       activeContentComponent: null,
-      activeTitle: ''
+      activeTitle: '',
+      modalProps: {}
     }
   },
   created() {
@@ -38,17 +39,15 @@ export default {
     this.$nuxt.$off('close-global-modal')
   },
   methods: {
-    openModalHandler({ component, title }) {
+    openModalHandler({ component, title, props }) {
       this.activeContentComponent = component
       this.activeTitle = title
+      // [추가] 전달받은 props가 있으면 저장, 없으면 빈 객체
+      this.modalProps = props || {}
 
-      // 모달 내부의 openModal 메소드 호출
       this.$nextTick(() => {
-        // 수정: GlobalModal -> globalModal (소문자로 변경)
         if (this.$refs.globalModal && typeof this.$refs.globalModal.openModal === 'function') {
           this.$refs.globalModal.openModal()
-        } else {
-          console.error('GlobalModal ref를 찾을 수 없습니다.')
         }
       })
     },

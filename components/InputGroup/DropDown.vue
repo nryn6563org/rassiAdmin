@@ -107,7 +107,7 @@ export default {
   @apply transform rotate-180
 }
 .dropdown-menu{
-  @apply absolute w-full top-[calc(100%+3px)] left-0 p-2.5 bg-white border-[1px] border-[#E3E3E3] rounded-[6px] flex flex-col gap-[2px] z-50
+  @apply absolute w-full max-h-[440px] top-[calc(100%+3px)] left-0 p-2.5 bg-white border-[1px] border-[#E3E3E3] rounded-[6px] flex flex-col gap-[2px] z-50 overflow-y-auto
 }
 .dropdown-menu li{
   @apply text-[16px] text-[#5E6367] cursor-pointer rounded-[6px]

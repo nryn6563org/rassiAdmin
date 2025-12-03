@@ -7,13 +7,13 @@
       <span></span>
       <!--  -->
       <div class="btn-group">
-        <button class="round btn002 btn-mid">
+        <button class="round btn002 btn-mid stockSell" @click="handleModalClick($event)">
           <span>실시간 매도</span>
         </button>
-        <button class="round btn001 btn-mid">
+        <button class="round btn001 btn-mid stockBuy" @click="handleModalClick($event)">
           <span>실시간 매수</span>
         </button>
-        <button class="round btn0062 btn-mid">
+        <button class="round btn0062 btn-mid stockComment" @click="handleModalClick($event)">
           <span>코멘트 모아보기</span>
         </button>
       </div>
@@ -51,7 +51,7 @@
       </div>
       <!-- 보기 개수 정렬 -->
 
-      <button class="btn-mid btn013 round" @click="showModal('StandardModal011')">
+      <button class="btn-mid btn013 round stockStandard" @click="handleModalClick($event)">
         <span>종목 추천하기</span>
       </button>
     </div>
@@ -59,7 +59,9 @@
   </div>
 </template>
 <script>
-import StandardModal011 from '~/components/Modal/StandardModal011.vue'
+import StandardModal011 from '@/components/Modal/StandardModal011.vue'
+import TradingModal from '@/components/Modal/TradingModal.vue'
+import ManageModal from '@/components/Modal/ManageModal.vue'
 import DropDown from '@/components/InputGroup/DropDown.vue'
 
 export default {
@@ -78,22 +80,43 @@ export default {
     handleChange(label) {
       this.selectedViewArray = label
     },
-    showModal(type) {
-      let component = null
-
-      switch (type) {
-        case 'StandardModal011':
-          component = StandardModal011
-          break
+    handleModalClick(event) {
+      // 1. 클릭된 요소 중 가장 가까운 버튼 찾기
+      const button = event.target.closest('button')
+      if (!button) {
+        return
       }
+
+      let component = null
+      let mode = ''
+
+      // 2. 버튼 클래스에 따라 컴포넌트 및 모드 설정
+      if (button.classList.contains('stockBuy')) {
+        component = TradingModal
+        mode = 'stockBuy'
+      } else if (button.classList.contains('stockSell')) {
+        component = TradingModal
+        mode = 'stockSell'
+      } else if (button.classList.contains('stockComment')) {
+        component = ManageModal
+        mode = 'comment'
+      } else if (button.classList.contains('stockStandard')) {
+        component = StandardModal011
+      }
+
+      // 3. 모달 열기 이벤트 발송
       if (component) {
         this.$nuxt.$emit('open-global-modal', {
-          component
+          component,
+          props: {
+            mode // TradingModal 등에서 사용할 모드값 전달
+          }
         })
       }
     }
   }
 }
+
 </script>
 
 <style scoped>

@@ -5,25 +5,31 @@
   @apply flex w-full h-full justify-center items-center;
 }
 .modal-content {
-  @apply relative block max-h-[80%] bg-white rounded-[20px] p-[30px_40px] w-[788px] overflow-hidden;
+  /* max-h-[80%] 유지: 전체 모달의 크기 제한 */
+  @apply relative block max-h-[80%] bg-white rounded-[20px] p-[30px_0] w-[788px] overflow-hidden flex flex-col;
 }
 .close {
   @apply absolute w-[25px] h-[25px] top-[30px] right-[50px];
 }
 .modal-wrap {
+  /* 부모(.modal-content)의 패딩을 제외한 높이를 꽉 채움 */
   @apply flex flex-col w-full h-full overflow-hidden;
 }
 .modal-header {
-  @apply w-full h-[70px] leading-[30px] py-5 border-b-[1px] border-[#E0E0E0];
+  /* shrink-0: 공간이 부족해도 헤더 크기는 줄어들지 않음 */
+  @apply w-[calc(100%-80px)] mx-auto h-[70px] leading-[30px] py-5 border-b-[1px] border-[#E0E0E0] shrink-0;
 }
 .modal-header strong {
   @apply text-[28px] text-[#141414] font-medium;
 }
 .modal-body {
-  @apply mt-[30px] w-full max-h-[calc(100%-100px)] overflow-hidden;
+  /* flex-1: 헤더를 제외한 남은 공간을 모두 차지함 */
+  /* min-h-0: 내부 스크롤이 작동하기 위한 필수 속성 (Flexbox 버그 방지) */
+  @apply mt-[30px] w-full flex-1 min-h-0 overflow-hidden flex flex-col;
 }
 .modal-footer {
-  @apply w-full pt-[50px];
+  /* 푸터는 스크롤되지 않고 바닥에 고정되거나 콘텐츠 흐름의 끝에 위치 (여기서는 flex 흐름상 맨 아래) */
+  @apply w-[calc(100%-80px)] mx-auto pt-[30px] shrink-0; /* pt값을 50px -> 30px로 조금 줄여 공간 확보 (조절 가능) */
 }
 .modal-footer .button-group {
   @apply flex w-full justify-center items-center gap-2.5;
@@ -32,18 +38,27 @@
   @apply w-[calc((100%/2)-10px)];
 }
 
-/* 
-  ** 추천종목관리 ** 
+/* ** 추천종목관리 및 내부 레이아웃 ** */
+
+/* .modal-body 바로 아래에 있는 div (컴포넌트 래퍼) 
+   이 div가 suggestion과 footer를 감싸고 있다고 가정합니다.
 */
-#AlarmSubmit,
-#RsvRegistration {
-  @apply flex flex-col w-full h-[700px] max-h-[calc(100%-50px)] overflow-hidden;
+.modal-body > div:not(.tab) {
+  /* h-[700px] 고정 높이 제거 -> h-full로 변경하여 부모(modal-body) 높이만큼 채움 */
+  @apply flex flex-col w-full h-full min-h-0 overflow-hidden;
+}
+.modal-body > .tab{
+  @apply w-[calc(100%-80px)] mx-auto
 }
 .suggestion {
-  @apply flex flex-col w-full h-full mt-[30px] gap-10 overflow-y-auto overflow-x-hidden;
+  /* flex-1: Footer를 제외한 모든 공간을 차지 */
+  /* overflow-y-auto: 내용이 넘칠 때 이 영역만 스크롤 */
+  @apply flex-1 w-full min-h-[150px] mt-[30px] gap-10 px-10 overflow-y-auto overflow-x-hidden;
 }
+
+/* ... 이하 스타일은 기존과 동일하거나 스크롤바 디자인 등을 위해 유지 ... */
 .suggestion section {
-  @apply flex flex-col w-full gap-3;
+  @apply flex flex-col w-full gap-3 mt-10 first:mt-0;
 }
 .suggestion section > strong {
   @apply text-[24px] text-black h-[30px] leading-[30px] font-normal;
@@ -124,7 +139,7 @@
   @apply text-[18px] text-[#5E6367] font-normal h-5 leading-5 flex mb-2.5;
 }
 .suggestion section .txt > div > .itemPrice {
-  @apply flex items-center gap-[6px] ml-[6px];
+  @apply flex items-center gap-[6px] ml-[10px];
 }
 .suggestion section .txt > div > .itemPrice span {
   @apply text-[18px];
@@ -133,13 +148,13 @@
   @apply text-[#141414];
 }
 .suggestion section .txt > div > .itemPrice .date {
-  @apply text-[#5E6367];
+  @apply text-[#5E6367] text-[16px];
 }
 .suggestion section .txt > div > .itemPrice button {
-  @apply mr-[6px];
+  @apply ml-[6px];
 }
 .suggestion section .txt > div > .itemPrice button span {
-  @apply text-[16px] text-[#5E6367];
+  @apply text-[16px] text-[#5E6367] ml-1
 }
 .suggestion section .txt > div > span {
   @apply text-[#141414];

@@ -15,9 +15,9 @@
   </div>
 </template>
 <script>
-import BasicTab from '~/components/TabGroup/BasicTab.vue'
-import AlarmSubmit from '~/components/Modal/Standard/AlarmSubmit.vue'
-import RsvRegistration from '~/components/Modal/Standard/RsvRegistration.vue'
+import BasicTab from '@/components/TabGroup/BasicTab.vue'
+import AlarmSubmit from '@/components/Modal/Standard/AlarmSubmit.vue'
+import RsvRegistration from '@/components/Modal/Standard/RsvRegistration.vue'
 
 export default {
   components: {
@@ -38,7 +38,7 @@ export default {
   @apply gap-2;
 }
 .modal-body .tab::v-deep button {
-  @apply w-[calc((100%/2)-4px)] bg-[#F9FAFB] hover:bg-[#575D69];
+  @apply w-[calc((100%/2)-4px)] h-[52px] bg-[#F9FAFB] hover:bg-[#575D69];
 }
 .modal-body .tab::v-deep button span {
   @apply text-[#5E6367];

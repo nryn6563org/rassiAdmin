@@ -2,7 +2,7 @@
   <div ref="myStaticModal" class="modal animate__animated animate__fadeIn animate__faster" tabindex="-1" role="dialog">
     <div class="modal-dialog">
       <div ref="modalContent" class="modal-content animate__animated animate__fadeInDown animate__faster">
-        <component :is="contentComponent" v-if="contentComponent"></component>
+        <component :is="contentComponent" v-if="contentComponent" v-bind="componentProps"></component>
         <!-- 본문내용 -->
         <div class="close">
           <button type="button" class="btn btn-secondary" @click="closeModal">
@@ -24,8 +24,17 @@
 export default {
   props: {
     contentComponent: {
-      type: [Object, String], // 문자열이나 객체 모두 허용
+      type: [Object, String],
       default: null
+    },
+    modalTitle: {
+      type: String,
+      default: '기본 모달'
+    },
+    // [추가] Layout에서 내려주는 props 객체를 받음
+    componentProps: {
+      type: Object,
+      default: () => ({})
     }
   },
   data() {

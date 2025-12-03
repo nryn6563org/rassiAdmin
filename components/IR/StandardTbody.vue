@@ -72,20 +72,20 @@
         </div>
       </td>
       <td>
-        <div class="trading" v-html="tbodyList.StockTrading" @click="handleTradingClick($event)"></div>
+        <div class="trading" v-html="tbodyList.StockTrading" @click="handleModalClick($event)"></div>
       </td>
       <td>
         <div class="manage">
-          <button @click="showModal('StandardModal011')" class="btn012 btn-mid">
+          <button @click="handleModalClick($event)" class="btn012 btn-mid btnMng">
             <span>관리</span>
           </button>
         </div>
       </td>
       <td>
-        <div class="cancel" v-html="tbodyList.StockCancel"></div>
+        <div class="cancel" v-html="tbodyList.StockCancel" @click="handleModalClick($event)"></div>
       </td>
     </tr>
-    <tr>
+    <tr v-if="tbodyLists.length === 0">
       <td colspan="11" class="empty">
         <span>등록된 종목이 없습니다.</span>
       </td>
@@ -94,7 +94,8 @@
 </template>
 
 <script>
-import StandardModal011 from '~/components/Modal/StandardModal011.vue'
+import TradingModal from '@/components/Modal/TradingModal.vue'
+import ManageModal from '@/components/Modal/ManageModal.vue'
 
 export default {
   props: {
@@ -104,41 +105,50 @@ export default {
     }
   },
   methods: {
-    /**
-     * @description HTML 문자열에서 sgl00N 클래스를 추출하여 tc00N 클래스로 반환
-     * @param {string} signalHtml v-html로 들어오는 Signal 문자열 (<span class="sgl00N">...</span>)
-     * @returns {string} tc00N 클래스 (예: 'tc001', 'tc005')
-     */
     getSignalClass(signalHtml) {
       if (!signalHtml) {
         return ''
       }
-      // sgl 뒤에 숫자 3자리가 오는 패턴을 찾습니다. (예: sgl001 -> 001 캡처)
       const match = signalHtml.match(/sgl(\d{3})/)
-      if (match && match[1]) {
-        // 캡처된 숫자를 이용해 tc 클래스 조합 반환
-        return `tc${match[1]}`
-      }
-      return ''
+      return match && match[1] ? `tc${match[1]}` : ''
     },
-    handleTradingClick(event) {
+
+    handleModalClick(event) {
+      // 1. 클릭된 요소 중 가장 가까운 버튼 찾기
       const button = event.target.closest('button')
-      if (!button) { return }
-      this.showModal('StandardModal011')
-    },
-    showModal(type) {
-      let component = null
-
-      switch (type) {
-        case 'StandardModal011':
-          component = StandardModal011
-          break
+      if (!button) {
+        return
       }
 
-      // [핵심] 레이아웃에 있는 전역 모달에게 '열어달라'고 요청
+      let component = null
+      let mode = ''
+
+      // 2. 버튼 클래스에 따라 컴포넌트 및 모드 설정
+      if (button.classList.contains('btnBuy')) {
+        component = TradingModal
+        mode = 'buy'
+      } else if (button.classList.contains('btnSell')) {
+        component = TradingModal
+        mode = 'sell'
+      } else if (button.classList.contains('btnMng')) {
+        // 관리 버튼은 ManageModal 연결
+        component = ManageModal
+      } else if (button.classList.contains('btnCancel')) {
+        component = ManageModal // 혹은 취소 전용 모달
+        mode = 'cancel'
+      } else if (button.classList.contains('btnDlt')) {
+        // 삭제
+        component = ManageModal // 혹은 삭제 전용 모달
+        mode = 'delete'
+      }
+
+      // 3. 모달 열기 이벤트 발송
       if (component) {
         this.$nuxt.$emit('open-global-modal', {
-          component
+          component,
+          props: {
+            mode // TradingModal 등에서 사용할 모드값 전달
+          }
         })
       }
     }
@@ -153,8 +163,8 @@ export default {
 .itemName {
   @apply flex items-center pl-4 text-[16px] text-[#141414] tracking-[130%] font-medium;
 }
-.itemName .name{
-  @apply max-w-[calc(100%-86px)] line-clamp-1
+.itemName .name {
+  @apply max-w-[calc(100%-86px)] line-clamp-1;
 }
 td > .price {
   @apply pl-4;

@@ -4,23 +4,6 @@
 .table_w .table {
   @apply w-full overflow-x-auto;
 }
-.table_w .table::-webkit-scrollbar {
-  @apply w-[70%]/* 세로스크롤넓이 */ h-[7px] /* 가로스크롤 높이 */;
-}
-/* 스크롤바 트랙 (배경) */
-.table_w .table::-webkit-scrollbar-track {
-  @apply bg-[#F2F2F2] rounded-[5px];
-}
-
-/* 스크롤바 핸들 (움직이는 부분) */
-.table_w .table::-webkit-scrollbar-thumb {  
-  @apply bg-[#0263E8] rounded-[5px] cursor-grab
-}
-
-/* 핸들에 마우스를 올렸을 때 */
-.table_w .table::-webkit-scrollbar-thumb:hover {
-  @apply bg-[#0263E8];
-}
 .table_w .table table {
 }
 .table_w .table table thead tr th {
