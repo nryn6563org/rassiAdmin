@@ -1,5 +1,5 @@
 <template>
-  <div ref="myStaticModal" class="modal animate__animated animate__fadeIn animate__faster" tabindex="-1" role="dialog" @click="closeModal">
+  <div ref="myStaticModal" class="modal animate__animated animate__fadeIn animate__faster" tabindex="-1" role="dialog">
     <div class="modal-dialog">
       <div
         ref="modalContent"
