@@ -1,5 +1,5 @@
 <template>
-  <div ref="myStaticModal" class="modal animate__animated animate__fadeIn animate__faster" tabindex="-1" role="dialog">
+  <div ref="myStaticModal" class="modal animate__animated animate__fadeIn animate__faster" tabindex="-1" role="dialog" @click="closeModal">
     <div class="modal-dialog">
       <div
         ref="modalContent"
@@ -7,6 +7,16 @@
         :class="computedModalClass"
       >
         <component :is="contentComponent" v-if="contentComponent" v-bind="componentProps"></component>
+        <div class="close">
+          <button type="button" class="btn btn-secondary" @click="closeModal">
+            <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M1.36475 1.28711L23.321 23.287" stroke="#404040" stroke-width="2.60924" stroke-linecap="round" />
+              <path d="M1.32178 23.2871L23.278 1.28722" stroke="#404040" stroke-width="2.60924" stroke-linecap="round" />
+            </svg>
+          </button>
+        </div>
+        <!-- 닫기 -->
+
         </div>
     </div>
   </div>

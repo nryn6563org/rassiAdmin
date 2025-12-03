@@ -49,7 +49,7 @@ export default {
 }
 
 #userInfo > button {
-  @apply mt-2.5 h-4 leading-4 flex items-center;
+  @apply mt-2.5 h-4 leading-4 flex items-center w-fit;
 }
 #userInfo > button span {
   @apply text-[14px] text-[#5E6367] underline;
