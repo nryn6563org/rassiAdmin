@@ -19,20 +19,10 @@ export default {
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
-  css: [
-    '~/assets/css/common.css',
-    '~/assets/css/custom-btn.css',
-    '~/assets/css/custom-tab.css',
-    '~/assets/css/custom-table.css',
-    '~/assets/css/custom-modal.css',
-    'animate.css/animate.css'
-  ],
+  css: ['~/assets/css/common.css', '~/assets/css/custom-btn.css', '~/assets/css/custom-tab.css', '~/assets/css/custom-table.css', '~/assets/css/custom-modal.css', 'animate.css/animate.css'],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: [
-    '~/plugins/modal-vanilla.client.js',
-    '~/plugins/global-modal.js'
-  ],
+  plugins: ['~/plugins/modal-vanilla.client.js', '~/plugins/global-modal.js'],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
@@ -59,5 +49,10 @@ export default {
     // Vue transition 속성에 animate.css 클래스 매핑
     enterActiveClass: 'animate__animated animate__fadeIn animate__faster',
     leaveActiveClass: 'animate__animated animate__fadeOut animate__faster'
-  }
+  },
+  router: {
+    // 저장소 이름을 경로의 베이스로 설정합니다. (예: /my-repo-name/)
+    base: process.env.NODE_ENV === 'production' ? 'Admin' : '/'
+  },
+  target: 'static'
 }

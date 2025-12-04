@@ -45,7 +45,7 @@
       <!-- 활성/비활성 일시 -->
       <td>
         <div class="ad_date">
-          <span>{{ adDate }}</span>
+          <span>{{ tbodyList.adDate }}</span>
         </div>
       </td>
       <!-- 종목추천발생 -->

@@ -52,12 +52,11 @@ export default {
           MyPrice: '527,500',
           MyPer: '+44.33%',
           MyDate: `2025.11.${String((num % 30) + 1).padStart(2, '0')} 15:20`,
+          adDate: `2025.11.${String((num % 30) + 1).padStart(2, '0')} 15:20`,
           TargetPrice: '600,000',
           StopPrice: '400,000',
-          Recommendation: '2025.11.27 15:21',
-          Registration: '2025.11.06 15:20',
-          StockTrading: num % 2 === 0 ? '<button class="btn001 btn-mid btnBuy"><span>매수하기</span><button>' : '<button class="btn002 btn-mid btnSell"><span>매도하기</span><button>',
-          StockCancel: num % 2 === 0 ? '<button class="btn003 btn-mid btnCancel"><span>예약취소</span><button>' : '<button class="btn006 btn-mid btnDlt"><span>삭제</span><button>'
+          addDate: '2025.11.27 15:21',
+          Registration: '2025.11.06 15:20'
         }
       })
       // signalClass 삭제됨
