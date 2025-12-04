@@ -6,18 +6,18 @@
 
         <div class="pullModify">
           <p>풀 종목 수 : <span>100</span>종목</p>
-          <input type="text" placeholder="종목추천 풀 이름을 입력해 주세요." class="custom-text-input" style="width: 708px">
+          <input type="text" placeholder="종목추천 풀 이름을 입력해 주세요." class="custom-text-input" style="width: 492px">
         </div>
       </section>
     </div>
 
     <div class="modal-footer">
       <div class="button-group">
-        <button class="btn-large btn009" @click="handleClose">
+        <button class="btn-mid btn009" @click="handleClose">
           <span>닫기</span>
         </button>
 
-        <button class="btn-large btn007" @click="handleConfirm">
+        <button class="btn-mid btn007" @click="handleConfirm">
           <span>저장하기</span>
         </button>
       </div>

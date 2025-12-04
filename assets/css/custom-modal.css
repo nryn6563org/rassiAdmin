@@ -9,7 +9,7 @@
   @apply relative block bg-white rounded-[20px] p-[30px_0] w-[788px] flex flex-col;
 }
 .modal-content.modal-pull{
-  @apply !scale-[0.8]
+  @apply w-[548px] p-[21px_0]
 }
 .close {
   @apply absolute w-[25px] h-[25px] top-[30px] right-[50px];
@@ -22,17 +22,29 @@
   /* shrink-0: 공간이 부족해도 헤더 크기는 줄어들지 않음 */
   @apply w-[calc(100%-80px)] mx-auto h-[70px] leading-[30px] py-5 border-b-[1px] border-[#E0E0E0] shrink-0;
 }
+.modal-pull .modal-header{
+  @apply w-[calc(100%-56px)] h-[50px] leading-6 py-[13px]
+}
 .modal-header strong {
   @apply text-[28px] text-[#141414] font-medium;
+}
+.modal-pull .modal-header strong{
+  @apply text-[20px]
 }
 .modal-body {
   /* flex-1: 헤더를 제외한 남은 공간을 모두 차지함 */
   /* min-h-0: 내부 스크롤이 작동하기 위한 필수 속성 (Flexbox 버그 방지) */
   @apply mt-[30px] w-full flex flex-col;
 }
+.modal-pull {
+  @apply mt-[14px]
+}
 .modal-footer {
   /* 푸터는 스크롤되지 않고 바닥에 고정되거나 콘텐츠 흐름의 끝에 위치 (여기서는 flex 흐름상 맨 아래) */
   @apply w-[calc(100%-80px)] mx-auto pt-[30px]; /* pt값을 50px -> 30px로 조금 줄여 공간 확보 (조절 가능) */
+}
+.modal-pull .modal-footer{
+  @apply pt-6 w-[calc(100%-56px)]
 }
 .modal-footer .button-group {
   @apply flex w-full justify-center items-center gap-2.5;
@@ -59,12 +71,19 @@
   @apply flex-1 w-full min-h-[150px] mt-[30px] gap-10 px-10 overflow-y-auto overflow-x-hidden;
 }
 
+.modal-pull .suggestion {
+  @apply px-7
+}
+
 /* ... 이하 스타일은 기존과 동일하거나 스크롤바 디자인 등을 위해 유지 ... */
 .suggestion section {
   @apply flex flex-col w-full gap-3 mt-10 first:mt-0;
 }
 .suggestion section > strong {
   @apply text-[24px] text-black h-[30px] leading-[30px] font-normal;
+}
+.modal-pull .suggestion section > strong{
+  @apply text-[18px]
 }
 .suggestion section > strong em {
   @apply text-[#FC2F2F];
@@ -168,6 +187,12 @@
 .suggestion section .txt > span {
   @apply text-[16px] text-[#5E6367] h-5 leading-5;
 }
+.modal-pull .suggestion section .txt > span {
+  @apply text-[14px]
+}
 .suggestion section .txt > p {
   @apply text-[18px] text-[#5E6367] font-normal h-5 leading-5;
+}
+.modal-pull .suggestion section .txt > p {
+  @apply text-[14px]
 }

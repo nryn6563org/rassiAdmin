@@ -13,11 +13,11 @@
 
     <div class="modal-footer">
       <div class="button-group">
-        <button class="btn-large btn009" @click="handleClose">
+        <button class="btn-mid btn009" @click="handleClose">
           <span>닫기</span>
         </button>
 
-        <button class="btn-large btn0061" @click="handleConfirm">
+        <button class="btn-mid btn0061" @click="handleConfirm">
           <span>삭제하기</span>
         </button>
       </div>
