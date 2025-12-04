@@ -52,7 +52,7 @@ export default {
   data() {
     return {
       // 1. 검색 기간 관련 데이터
-      dateLabels: ['등록일시', '종목추천발생'],
+      dateLabels: ['등록일시', '활성일시', '비활성일시', '종목추천발생'],
       selectedDateLabel: '등록일시',
 
       dateBtns: ['전체', '오늘', '어제', '지난주', '이번주', '1개월', '3개월', '6개월'],
@@ -63,7 +63,7 @@ export default {
       selectedSearchLabel: '최근등록순',
 
       // 3. 검색 조건(2) 관련 데이터 (두 번째 빈 DropDown용)
-      statusLabels: ['수익상태전체', '수익 종목', '손실 종목'],
+      statusLabels: ['신호상태전체', '매수신호', '매도신호'],
       selectedStatusLabel: '수익상태전체'
     }
   },
