@@ -29,9 +29,7 @@
           <div class="signal" v-html="tbodyList.Signal"></div>
           <div class="priceInfo">
             <div class="volatility">
-              <span class="price">
-                {{ tbodyList.MyPrice }}원
-              </span>
+              <span class="price"> {{ tbodyList.MyPrice }}원 </span>
               <span :class="['per', getSignalClass(tbodyList.Signal)]">&nbsp;({{ tbodyList.MyPer }}) </span>
             </div>
             <div class="date">
@@ -56,15 +54,18 @@
         </div>
       </td>
       <!-- 등록일시 -->
-       <td>
+      <td>
         <div>
           <span>{{ tbodyList.Registration }}</span>
         </div>
-       </td>
+      </td>
       <!-- 추천활성 -->
       <td>
         <div class="checkingActive">
-          <input type="checkbox" name="" id="">
+          <label :for="`active_${tbodyListIndex}`">
+            <input type="checkbox" name="" :id="`active_${tbodyListIndex}`" />
+            <span class="custom-checkingActive"></span>
+          </label>
         </div>
       </td>
       <!-- 코맨트 -->

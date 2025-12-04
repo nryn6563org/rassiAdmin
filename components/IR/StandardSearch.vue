@@ -102,16 +102,16 @@ export default {
 <style scoped>
 /* 기존 스타일 유지 */
 .searchTable .dropdown_w {
-  @apply min-w-[133px] w-auto h-10 p-2.5 mr-2.5;
+  @apply min-w-[133px] h-10 p-2.5 mr-2.5;
 }
 .searchTable .dropdown_w::v-deep button {
   @apply h-5 leading-5 text-[16px] text-[#5E6367];
 }
 .searchTable .dropdown_w::v-deep ul {
-  @apply min-w-[153px] w-fit left-auto right-0;
+  @apply min-w-[153px] w-auto whitespace-nowrap left-auto right-0;
 }
 .searchTable .dropdown_w::v-deep ul li {
-  @apply h-8 leading-8 px-2.5 w-fit
+  @apply h-8 leading-8 px-2.5 block;
 }
 .searchTable tbody td {
   @apply flex items-center;

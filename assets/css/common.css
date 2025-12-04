@@ -107,5 +107,18 @@ input:disabled{
 
 /* 활성화 input */
 .checkingActive{
-  @apply relative
+  @apply relative flex w-full justify-center items-center
+}
+.checkingActive label{
+  @apply relative block w-[68px] h-[27px] rounded-full overflow-hidden
+}
+.checkingActive label input{
+  @apply absolute top-0 left-[-9999em] opacity-0
+}
+.checkingActive label input + .custom-checkingActive{
+  @apply relative after:w-[42px] after:h-[25px] after:content-[''] after:absolute after:block after:top-[1px] after:left-[1px] after:bg-white after:rounded-full after:cursor-pointer after:transition-all after:duration-150 after:z-20
+  before:content-[''] before:z-10 before:absolute before:inset-0 before:w-[68px] before:h-[27px] before:rounded-full before:bg-[#C5C5C5]
+}
+.checkingActive label input:checked + .custom-checkingActive{
+  @apply after:left-[25px] before:bg-[#4285F4]
 }

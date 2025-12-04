@@ -185,11 +185,11 @@ export default {
 
 /* 서브 메뉴 목록 (기본 숨김) */
 #globalMenu > div ul{
-  @apply hidden
+  @apply h-0 overflow-hidden transition-all duration-300 ease-linear
 }
 /* active일 때 서브 메뉴 표시 */
 #globalMenu > div.active ul{
-  @apply flex flex-col w-full
+  @apply flex flex-col w-full h-auto
 }
 #globalMenu > div ul li{
   @apply p-[13px_16px] h-[46px] flex items-center
