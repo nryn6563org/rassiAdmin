@@ -52,7 +52,7 @@ export default {
   },
   router: {
     // 저장소 이름을 경로의 베이스로 설정합니다. (예: /my-repo-name/)
-    base: process.env.NODE_ENV === 'production' ? 'Admin' : '/'
+    base:'RassiAdmin'
   },
   target: 'static'
 }
