@@ -16,6 +16,7 @@
         <button class="round btn006 btn-mid dlt" @click="handleModalClick($event)">
           <span>삭제하기</span>
         </button>
+        <span></span>
         <button class="round btn003 btn-mid stockComment" @click="handleModalClick($event)">
           <span>코멘트 모아보기</span>
         </button>
@@ -115,6 +116,9 @@ export default {
 }
 .tableInfo .lft .btn-group {
   @apply flex items-center gap-2.5;
+}
+.tableInfo .lft .btn-group > span{
+  @apply w-[1px] h-4 bg-[#484F55]
 }
 
 .tableInfo .rit {

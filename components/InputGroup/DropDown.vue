@@ -76,6 +76,11 @@ export default {
   methods: {
     toggleDropdown() {
       this.isOpen = !this.isOpen
+
+      // [추가] 드롭다운이 열렸을 때만 부모에게 알림 이벤트를 보냄
+      if (this.isOpen) {
+        this.$emit('opened')
+      }
     },
 
     closeDropdown() {

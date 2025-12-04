@@ -17,7 +17,7 @@
           <span class="name">
             {{ tbodyList.ItmeName }}
           </span>
-          <span class="number"> ({{ tbodyList.ItemNumber }}) </span>
+          <span class="number">({{ tbodyList.ItemNumber }}) </span>
         </div>
       </td>
       <td>
@@ -31,7 +31,7 @@
                 dn: tbodyList.CurrentPer.includes('-')
               }
             ]"
-            >({{ tbodyList.CurrentPer }})</span
+            >&nbsp;({{ tbodyList.CurrentPer }})</span
           >
         </div>
       </td>
@@ -41,7 +41,7 @@
           <div class="priceInfo">
             <div class="volatility">
               <span class="price">
-                {{ tbodyList.MyPrice }}
+                {{ tbodyList.MyPrice }}원
               </span>
               <span :class="['per', getSignalClass(tbodyList.Signal)]"> ({{ tbodyList.MyPer }}) </span>
             </div>
@@ -63,7 +63,7 @@
       <td>
         <div class="recommendation">
           <span>{{ tbodyList.Recommendation }}</span>
-          <a href="#">조회</a>
+          <button class="signal" @click="handleModalClick($event)">조회</button>
         </div>
       </td>
       <td>
@@ -140,6 +140,9 @@ export default {
         // 삭제
         component = ManageModal // 혹은 삭제 전용 모달
         mode = 'delete'
+      } else if (button.classList.contains('signal')) {
+        component = ManageModal
+        mode = 'signal'
       }
 
       // 3. 모달 열기 이벤트 발송
@@ -196,7 +199,7 @@ td > .price {
 .recommendation {
   @apply flex w-full justify-center items-center gap-[6px] text-[#5E6367];
 }
-a {
+.recommendation button {
   @apply underline;
 }
 .manage {

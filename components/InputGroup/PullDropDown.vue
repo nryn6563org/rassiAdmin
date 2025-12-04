@@ -91,6 +91,11 @@ export default {
   methods: {
     toggleDropdown() {
       this.isOpen = !this.isOpen
+
+      // [추가] 드롭다운이 열렸을 때만 부모에게 알림 이벤트를 보냄
+      if (this.isOpen) {
+        this.$emit('opened')
+      }
     },
 
     closeDropdown() {
@@ -127,12 +132,12 @@ export default {
   @apply transform rotate-180;
 }
 .dropdown-menu {
-  @apply absolute w-full max-h-[440px] top-[calc(100%+3px)] left-0 p-2.5 bg-white border-[1px] border-[#E3E3E3] rounded-[6px] flex flex-col gap-[2px] z-50 overflow-y-auto;
+  @apply absolute w-full max-h-[500px] top-[calc(100%+3px)] left-0 p-2.5 bg-white border-[1px] border-[#E3E3E3] rounded-[6px] flex flex-col gap-[2px] z-50 overflow-y-auto;
 }
 
 /* 기존 .dropdown-menu ul 스타일을 draggable(렌더링 시 ul이 됨)에 적용 */
 .dropdown-menu ul {
-  @apply h-[390px] overflow-y-auto flex flex-col gap-1;
+  @apply h-[450px] overflow-y-auto flex flex-col gap-1;
 }
 
 .dropdown-menu li {

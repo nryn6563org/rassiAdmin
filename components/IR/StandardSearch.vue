@@ -7,9 +7,9 @@
       </colgroup>
       <tbody>
         <tr>
-          <th>검색기간</th>
+          <th><span>검색기간</span></th>
           <td>
-            <DropDown :items="dateLabels" :initial-label="selectedDateLabel" :placeholder="'선택'" @change="handleDateChange" />
+            <DropDown ref="dateDrop" :items="dateLabels" :initial-label="selectedDateLabel" :placeholder="'선택'" @change="handleDateChange" @opened="closeOtherDropdowns('dateDrop')" />
             <DateInput />
             <span>~</span>
             <DateInput />
@@ -19,11 +19,11 @@
         </tr>
 
         <tr>
-          <th>검색조건</th>
+          <th><span>검색조건</span></th>
           <td>
-            <DropDown :items="searchLabels" :initial-label="selectedSearchLabel" :placeholder="'조건 선택'" @change="handleSearchChange" />
+            <DropDown ref="searchDrop" :items="searchLabels" :initial-label="selectedSearchLabel" :placeholder="'조건 선택'" @change="handleSearchChange" @opened="closeOtherDropdowns('searchDrop')" />
 
-            <DropDown :items="statusLabels" :initial-label="selectedStatusLabel" :placeholder="'상태 선택'" @change="handleStatusChange" />
+            <DropDown ref="statusDrop" :items="statusLabels" :initial-label="selectedStatusLabel" :placeholder="'상태 선택'" @change="handleStatusChange" @opened="closeOtherDropdowns('statusDrop')" />
 
             <span class="gubun"></span>
             <SearchInput />
@@ -68,6 +68,19 @@ export default {
     }
   },
   methods: {
+    // [추가] 다른 드롭다운 닫기 로직
+    closeOtherDropdowns(activeRef) {
+      // 관리할 드롭다운의 ref 이름 목록
+      const dropdownRefs = ['dateDrop', 'searchDrop', 'statusDrop']
+
+      dropdownRefs.forEach((refName) => {
+        // 현재 열린(activeRef) 드롭다운이 아니면 닫기 함수 실행
+        if (refName !== activeRef && this.$refs[refName]) {
+          // DropDown 컴포넌트 내부의 closeDropdown 메서드를 직접 호출
+          this.$refs[refName].closeDropdown()
+        }
+      })
+    },
     // 1. 날짜 기준 변경 핸들러
     handleDateChange(label) {
       this.selectedDateLabel = label
@@ -89,16 +102,16 @@ export default {
 <style scoped>
 /* 기존 스타일 유지 */
 .searchTable .dropdown_w {
-  @apply w-[133px] h-10 p-2.5 mr-2.5;
+  @apply min-w-[133px] w-auto h-10 p-2.5 mr-2.5;
 }
 .searchTable .dropdown_w::v-deep button {
   @apply h-5 leading-5 text-[16px] text-[#5E6367];
 }
 .searchTable .dropdown_w::v-deep ul {
-  @apply w-[153px] left-auto right-0;
+  @apply min-w-[153px] w-fit left-auto right-0;
 }
 .searchTable .dropdown_w::v-deep ul li {
-  @apply h-8 leading-8 px-2.5;
+  @apply h-8 leading-8 px-2.5 w-fit
 }
 .searchTable tbody td {
   @apply flex items-center;
@@ -109,13 +122,13 @@ export default {
 .searchTable .dateArray {
   @apply mx-2.5;
 }
-.gubun{
-  @apply w-[1px] h-4 bg-[#484F55]
+.gubun {
+  @apply w-[1px] h-4 bg-[#484F55];
 }
-.schInput{
-  @apply ml-2.5
+.schInput {
+  @apply ml-2.5;
 }
-.searchTable tbody td .date::v-deep .customDate{
-  @apply !p-[6px_12px]
+.searchTable tbody td .date::v-deep .customDate {
+  @apply !p-[6px_12px];
 }
 </style>

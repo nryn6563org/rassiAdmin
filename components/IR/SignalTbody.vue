@@ -30,9 +30,9 @@
           <div class="priceInfo">
             <div class="volatility">
               <span class="price">
-                {{ tbodyList.MyPrice }}
+                {{ tbodyList.MyPrice }}원
               </span>
-              <span :class="['per', getSignalClass(tbodyList.Signal)]"> ({{ tbodyList.MyPer }}) </span>
+              <span :class="['per', getSignalClass(tbodyList.Signal)]">&nbsp;({{ tbodyList.MyPer }}) </span>
             </div>
             <div class="date">
               <span>
@@ -45,7 +45,7 @@
       <!-- 활성/비활성 일시 -->
       <td>
         <div class="ad_date">
-          <span>{{ tbodyList.adDate }}</span>
+          <span>{{ tbodyList.AdDate }}</span>
         </div>
       </td>
       <!-- 종목추천발생 -->
@@ -57,11 +57,15 @@
       </td>
       <!-- 등록일시 -->
        <td>
-        <div>1</div>
+        <div>
+          <span>{{ tbodyList.Registration }}</span>
+        </div>
        </td>
       <!-- 추천활성 -->
       <td>
-        <div class="checkingActive">1</div>
+        <div class="checkingActive">
+          <input type="checkbox" name="" id="">
+        </div>
       </td>
       <!-- 코맨트 -->
       <td>
@@ -73,8 +77,10 @@
       </td>
       <!-- 삭제 -->
       <td>
-        <div class="delete">
-          <button @click="handleModalClick($event)" class="btn012 btn-mid btnMng"></button>
+        <div class="manage">
+          <button @click="handleModalClick($event)" class="btn006 btn-mid btnMng">
+            <span>삭제</span>
+          </button>
         </div>
       </td>
     </tr>

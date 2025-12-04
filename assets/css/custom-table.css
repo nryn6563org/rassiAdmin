@@ -15,11 +15,11 @@
 .table_w .table table tbody tr td {
   @apply h-[60px] text-[16px] text-[#5E6367];
 }
-.table_w .table table tbody tr td.empty{
-  @apply bg-[#F9FAFB]
+.table_w .table table tbody tr td.empty {
+  @apply bg-[#F9FAFB];
 }
-.table_w .table table tbody tr td.empty span{
-  @apply w-full h-[330px] flex justify-center items-center text-[20px] text-[#5E6367]
+.table_w .table table tbody tr td.empty span {
+  @apply w-full h-[330px] flex justify-center items-center text-[20px] text-[#5E6367];
 }
 
 .pagination {
@@ -43,19 +43,39 @@
   hover:bg-[#F1F1F1];
 }
 
-/* 검색영역 테이블 */
-.searchTable{
-  @apply w-full mb-9
+.searchTable {
+  @apply w-full mb-9;
 }
-.searchTable table{
-  @apply border-t-[1px] border-[#BEC2C3]
+
+/* 1. 테이블 전체 설정: border-collapse 필수 */
+.searchTable table {
+  @apply w-full border-collapse border-t-[1px] border-[#BEC2C3] table-fixed p-0 m-0;
 }
-.searchTable table tbody th, .searchTable table tbody td{
-  @apply border-b-[1px] border-[#BEC2C3] h-[60px]
+
+/* 2. [핵심 변경] 테두리를 셀이 아닌 'tr(행)'에 줍니다 */
+.searchTable table tbody tr {
+  @apply border-b-[1px] border-[#BEC2C3];
 }
-.searchTable table tbody th{
-  @apply bg-[#F1F1F1] pl-5 text-[18px] text-[#141414] font-normal text-left
+
+/* 3. th/td 공통: 높이 지정 및 기존 border-b 제거 */
+.searchTable table tbody th,
+.searchTable table tbody td {
+  /* border-b를 tr로 옮겼으므로 여기선 제거(혹은 0) 합니다 */
+  @apply h-[60px] border-b-0 align-middle;
 }
-.searchTable table tbody td{
-  @apply px-4
+
+/* 4. th 설정: 배경색 및 폰트 */
+.searchTable table tbody th {
+  /* bg-clip-padding은 여전히 유효합니다 (배경 침범 방지) */
+  @apply bg-[#F1F1F1] pl-5 text-left bg-clip-padding;
+}
+
+/* 5. th 내부 텍스트 */
+.searchTable table tbody th span {
+  @apply text-[18px] text-[#141414] font-normal leading-none;
+}
+
+/* 6. td 설정 */
+.searchTable table tbody td {
+  @apply px-4 text-[#141414];
 }

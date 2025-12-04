@@ -55,7 +55,8 @@ export default {
           adDate: `2025.11.${String((num % 30) + 1).padStart(2, '0')} 15:20`,
           TargetPrice: '600,000',
           StopPrice: '400,000',
-          addDate: '2025.11.27 15:21',
+          AdDate: '2025.11.27 15:21',
+          Recommendation: '2025.11.06 15:20',
           Registration: '2025.11.06 15:20'
         }
       })

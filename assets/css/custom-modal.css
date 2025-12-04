@@ -2,11 +2,11 @@
   @apply fixed inset-0 w-full h-full z-[10014] bg-black bg-opacity-60 transition-all duration-300 hidden;
 }
 .modal-dialog {
-  @apply flex w-full h-full justify-center items-center;
+  @apply flex w-full h-full justify-center items-start overflow-y-auto py-10;
 }
 .modal-content {
   /* max-h-[80%] 유지: 전체 모달의 크기 제한 */
-  @apply relative block max-h-[80%] bg-white rounded-[20px] p-[30px_0] w-[788px] overflow-hidden flex flex-col;
+  @apply relative block bg-white rounded-[20px] p-[30px_0] w-[788px] flex flex-col;
 }
 .modal-content.modal-pull{
   @apply !scale-[0.8]
@@ -16,7 +16,7 @@
 }
 .modal-wrap {
   /* 부모(.modal-content)의 패딩을 제외한 높이를 꽉 채움 */
-  @apply flex flex-col w-full h-full overflow-hidden;
+  @apply flex flex-col w-full;
 }
 .modal-header {
   /* shrink-0: 공간이 부족해도 헤더 크기는 줄어들지 않음 */
@@ -28,11 +28,11 @@
 .modal-body {
   /* flex-1: 헤더를 제외한 남은 공간을 모두 차지함 */
   /* min-h-0: 내부 스크롤이 작동하기 위한 필수 속성 (Flexbox 버그 방지) */
-  @apply mt-[30px] w-full flex-1 min-h-0 overflow-hidden flex flex-col;
+  @apply mt-[30px] w-full flex flex-col;
 }
 .modal-footer {
   /* 푸터는 스크롤되지 않고 바닥에 고정되거나 콘텐츠 흐름의 끝에 위치 (여기서는 flex 흐름상 맨 아래) */
-  @apply w-[calc(100%-80px)] mx-auto pt-[30px] shrink-0; /* pt값을 50px -> 30px로 조금 줄여 공간 확보 (조절 가능) */
+  @apply w-[calc(100%-80px)] mx-auto pt-[30px]; /* pt값을 50px -> 30px로 조금 줄여 공간 확보 (조절 가능) */
 }
 .modal-footer .button-group {
   @apply flex w-full justify-center items-center gap-2.5;

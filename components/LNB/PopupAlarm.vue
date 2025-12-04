@@ -95,12 +95,6 @@ export default {
 .popupAlarm .alarm button strong{
   @apply h-6 leading-6 text-[20px] text-[#141414] font-bold mt-1 flex items-start
 }
-.popupAlarm .alarm button:nth-child(1) strong{
-  @apply text-[#FC2F2F]
-}
-.popupAlarm .alarm button:nth-child(2) strong{
-  @apply text-[#447AEC]
-}
 .popupAlarm .alarm button strong::v-deep em{
   @apply text-[14px] h-5 leading-5 ml-[1px]
 }

@@ -112,45 +112,98 @@
 
         <div class="cho_pp">
           <div class="check">
-            <label for="checkTargetStop" class="custom-checkbox-label">
-              <input type="checkbox" id="checkTargetStop" class="custom-checkbox-input" v-model="isTargetStopMode" />
+            <label for="checkTargetPrice" class="custom-checkbox-label">
+              <input type="checkbox" id="checkTargetPrice" class="custom-checkbox-input" v-model="isTargetPriceMode" />
               <span class="custom-checkbox-box"></span>
-              <span class="custom-checkbox-txt">자동 매도 알림 설정</span>
+              <span class="custom-checkbox-txt">목표가 :</span>
             </label>
           </div>
 
           <div class="cho_radio">
             <span>입력 기준 :</span>
-            <label for="rdoTarget01" class="custom-radio-label">
-              <input type="radio" name="targetStandard" id="rdoTarget01" class="custom-radio-input" value="price" v-model="targetStandard" :disabled="!isTargetStopMode" />
+            <label for="rdoTargetPrice01" class="custom-radio-label">
+              <input type="radio" name="targetStandard" id="rdoTargetPrice01" class="custom-radio-input" value="price" v-model="targetStandard" :disabled="!isTargetPriceMode" />
               <span class="custom-radio-txt">금액</span>
             </label>
 
-            <label for="rdoTarget02" class="custom-radio-label">
-              <input type="radio" name="targetStandard" id="rdoTarget02" class="custom-radio-input" value="percent" v-model="targetStandard" :disabled="!isTargetStopMode" />
+            <label for="rdoTargetPrice02" class="custom-radio-label">
+              <input type="radio" name="targetStandard" id="rdoTargetPrice02" class="custom-radio-input" value="percent" v-model="targetStandard" :disabled="!isTargetPriceMode" />
               <span class="custom-radio-txt">수익률</span>
             </label>
           </div>
 
           <div class="cho_input">
             <div>
-              <input type="text" placeholder="목표가 입력" class="custom-text-input" style="width: 233px" :disabled="!isTargetStopMode || targetStandard === 'percent'" />
+              <input
+                type="text"
+                placeholder="목표가 입력"
+                class="custom-text-input"
+                style="width: 233px"
+                v-model="targetPrice"
+                :disabled="!isTargetPriceMode || targetStandard === 'percent'"
+              />
               <label>원</label>
 
-              <input type="text" value="+ 00.00" class="custom-text-input" style="width: 90px" :disabled="!isTargetStopMode || targetStandard === 'price'" />
+              <input
+                type="text"
+                placeholder="+ 00.00"
+                class="custom-text-input"
+                style="width: 90px"
+                v-model="targetRate"
+                :disabled="!isTargetPriceMode || targetStandard === 'price'"
+              />
               <label>%</label>
 
               <p class="caution">*현재가보다 낮거나 동일하게 설정할 수 없습니다.</p>
             </div>
+          </div>
+        </div>
 
+        <div class="cho_pp">
+          <div class="check">
+            <label for="checkStopLossPrice" class="custom-checkbox-label">
+              <input type="checkbox" id="checkStopLossPrice" class="custom-checkbox-input" v-model="isStopLossMode" />
+              <span class="custom-checkbox-box"></span>
+              <span class="custom-checkbox-txt">손절가 :</span>
+            </label>
+          </div>
+
+          <div class="cho_radio">
+            <span>입력 기준 :</span>
+            <label for="rdoStopLossPrice01" class="custom-radio-label">
+              <input type="radio" name="stopLossStandard" id="rdoStopLossPrice01" class="custom-radio-input" value="price" v-model="stopLossStandard" :disabled="!isStopLossMode" />
+              <span class="custom-radio-txt">금액</span>
+            </label>
+
+            <label for="rdoStopLossPrice02" class="custom-radio-label">
+              <input type="radio" name="stopLossStandard" id="rdoStopLossPrice02" class="custom-radio-input" value="percent" v-model="stopLossStandard" :disabled="!isStopLossMode" />
+              <span class="custom-radio-txt">수익률</span>
+            </label>
+          </div>
+
+          <div class="cho_input">
             <div>
-              <input type="text" placeholder="손절가 입력" class="custom-text-input" style="width: 233px" :disabled="!isTargetStopMode || targetStandard === 'percent'" />
+              <input
+                type="text"
+                placeholder="손절가 입력"
+                class="custom-text-input"
+                style="width: 233px"
+                v-model="stopLossPrice"
+                :disabled="!isStopLossMode || stopLossStandard === 'percent'"
+              />
               <label>원</label>
 
-              <input type="text" value="+ 00.00" class="custom-text-input" style="width: 90px" :disabled="!isTargetStopMode || targetStandard === 'price'" />
+              <input
+                type="text"
+                placeholder="- 00.00"
+                class="custom-text-input"
+                style="width: 90px"
+                v-model="stopLossRate"
+                :disabled="!isStopLossMode || stopLossStandard === 'price'"
+              />
               <label>%</label>
 
-              <p class="caution">*현재가보다 낮거나 동일하게 설정할 수 없습니다.</p>
+              <p class="caution">*현재가보다 높거나 동일하게 설정할 수 없습니다.</p>
             </div>
           </div>
 

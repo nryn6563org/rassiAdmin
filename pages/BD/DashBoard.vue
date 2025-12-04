@@ -61,7 +61,7 @@ export default {
           title: '게시물',
           items: [
             {
-              name: '나의 종목시황',
+              name: '나의 투자전략',
               link: '/',
               QTY: '124'
             },
