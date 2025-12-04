@@ -52,7 +52,7 @@ export default {
   @apply mt-0;
 }
 .pullModify{
-  @apply w-full mt-2 flex flex-col gap-2.5
+  @apply w-full flex flex-col gap-2.5
 }
 .pullModify p{
   @apply text-[18px] text-[#5E6367]

@@ -36,7 +36,7 @@
   /* min-h-0: 내부 스크롤이 작동하기 위한 필수 속성 (Flexbox 버그 방지) */
   @apply mt-[30px] w-full flex flex-col;
 }
-.modal-pull {
+.modal-pull .modal-body{
   @apply mt-[14px]
 }
 .modal-footer {
@@ -72,7 +72,7 @@
 }
 
 .modal-pull .suggestion {
-  @apply px-7
+  @apply px-7 min-h-0
 }
 
 /* ... 이하 스타일은 기존과 동일하거나 스크롤바 디자인 등을 위해 유지 ... */

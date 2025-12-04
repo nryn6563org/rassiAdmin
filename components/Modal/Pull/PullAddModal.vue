@@ -54,7 +54,4 @@ export default {
 .suggestion {
   @apply mt-0;
 }
-.pullAdd{
-  @apply w-full mt-2
-}
 </style>
