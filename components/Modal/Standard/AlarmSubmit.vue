@@ -5,14 +5,7 @@
         <strong>종목 선택</strong>
         <div class="itemSearch">
           <label for="itemSearchInput">
-            <input
-              type="text"
-              placeholder="종목명을 검색해 주세요."
-              id="itemSearchInput"
-              class="custom-text-input"
-              v-model="searchQuery"
-              @keyup.enter="searchItem"
-            />
+            <input type="text" placeholder="종목명을 검색해 주세요." id="itemSearchInput" class="custom-text-input" v-model="searchQuery" @keyup.enter="searchItem" />
             <button type="button" @click="searchItem">
               <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                 <rect width="26" height="26" transform="matrix(-1 0 0 1 26 0)" fill="url(#pattern0_779_12320)" />
@@ -20,7 +13,13 @@
                   <pattern id="pattern0_779_12320" patternContentUnits="objectBoundingBox" width="1" height="1">
                     <use xlink:href="#image0_779_12320" transform="scale(0.03125)" />
                   </pattern>
-                  <image id="image0_779_12320" width="32" height="32" preserveAspectRatio="none" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAAsTAAALEwEAmpwYAAABy0lEQVR4nO1WS0oDQRAdlLjxs1U8gnoH9QL+MOoJRqz3eqKGrHsn4jH8nscPGn+QA7iRZKEbIxUrMGYRnR41CHnQhGH61Xupqq7pKOrjv8J7PyQiawBOAVQBNGxVSZ7oO93zK+IkV0g+kmx2WwAeACz/mLD3fgDAQUrknGTinJsql8vDukRkGkCJ5EVq375ycxuAiQN4IbnZLai+E5Et29sy8RNpb2pA59xsBtNzKRNLQeLe+6FUzTez8kmKce/jOC5kNiAia+2ah9SyWCwOArjUGM651cwGSJ5Z+l0UCADbFuM4xMCtuZ8KNaCnwwxUQwzUlSwiI6EGKpXKqJWxnpkMoJHXgHNuzDLwnJlMOwF5SpAkyUxwCQCcGrkUagDArpXgMIS8YeSL0GNI8ir4GMZxXCBZsz7YysrnBzSDd0GDSCEii+1RrOM1+iacc/MAXkm+AViIQiEiEySfUh8j0dR+kXaauJZvL5c4gBsL1DJhRi51wumQ0SOqy7p9p11z/ecqHvw5lpS4/uqzlaP2jQvJXe60o0O8ozHX9fplN5+GTcxrAEfa7cENp0iSZLydRrvzTUZ/haQvzh6Id0ysTw33pwCAnon3EfUA70nzm/MsCZH5AAAAAElFTkSuQmCC" />
+                  <image
+                    id="image0_779_12320"
+                    width="32"
+                    height="32"
+                    preserveAspectRatio="none"
+                    xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAAsTAAALEwEAmpwYAAABy0lEQVR4nO1WS0oDQRAdlLjxs1U8gnoH9QL+MOoJRqz3eqKGrHsn4jH8nscPGn+QA7iRZKEbIxUrMGYRnR41CHnQhGH61Xupqq7pKOrjv8J7PyQiawBOAVQBNGxVSZ7oO93zK+IkV0g+kmx2WwAeACz/mLD3fgDAQUrknGTinJsql8vDukRkGkCJ5EVq375ycxuAiQN4IbnZLai+E5Et29sy8RNpb2pA59xsBtNzKRNLQeLe+6FUzTez8kmKce/jOC5kNiAia+2ah9SyWCwOArjUGM651cwGSJ5Z+l0UCADbFuM4xMCtuZ8KNaCnwwxUQwzUlSwiI6EGKpXKqJWxnpkMoJHXgHNuzDLwnJlMOwF5SpAkyUxwCQCcGrkUagDArpXgMIS8YeSL0GNI8ir4GMZxXCBZsz7YysrnBzSDd0GDSCEii+1RrOM1+iacc/MAXkm+AViIQiEiEySfUh8j0dR+kXaauJZvL5c4gBsL1DJhRi51wumQ0SOqy7p9p11z/ecqHvw5lpS4/uqzlaP2jQvJXe60o0O8ozHX9fplN5+GTcxrAEfa7cENp0iSZLydRrvzTUZ/haQvzh6Id0ysTw33pwCAnon3EfUA70nzm/MsCZH5AAAAAElFTkSuQmCC"
+                  />
                 </defs>
               </svg>
             </button>
@@ -72,24 +71,10 @@
 
           <div class="cho_input">
             <div>
-              <input
-                type="text"
-                placeholder="목표가 입력"
-                class="custom-text-input"
-                style="width: 233px"
-                v-model="targetPrice"
-                :disabled="!isTargetPriceMode || targetStandard === 'percent'"
-              />
+              <input type="text" placeholder="목표가 입력" class="custom-text-input" style="width: 233px" v-model="targetPrice" :disabled="!isTargetPriceMode || targetStandard === 'percent'" />
               <label>원</label>
 
-              <input
-                type="text"
-                placeholder="+ 00.00"
-                class="custom-text-input"
-                style="width: 90px"
-                v-model="targetRate"
-                :disabled="!isTargetPriceMode || targetStandard === 'price'"
-              />
+              <input type="number" step="0.01" placeholder="00.00" class="custom-text-input" style="width: 90px" v-model="targetRate" :disabled="!isTargetPriceMode || targetStandard === 'price'" />
               <label>%</label>
 
               <p class="caution">*현재가보다 낮거나 동일하게 설정할 수 없습니다.</p>
@@ -121,24 +106,10 @@
 
           <div class="cho_input">
             <div>
-              <input
-                type="text"
-                placeholder="손절가 입력"
-                class="custom-text-input"
-                style="width: 233px"
-                v-model="stopLossPrice"
-                :disabled="!isStopLossMode || stopLossStandard === 'percent'"
-              />
+              <input type="text" placeholder="손절가 입력" class="custom-text-input" style="width: 233px" v-model="stopLossPrice" :disabled="!isStopLossMode || stopLossStandard === 'percent'" />
               <label>원</label>
 
-              <input
-                type="text"
-                placeholder="- 00.00"
-                class="custom-text-input"
-                style="width: 90px"
-                v-model="stopLossRate"
-                :disabled="!isStopLossMode || stopLossStandard === 'price'"
-              />
+              <input type="number" step="0.01" placeholder="00.00" class="custom-text-input" style="width: 90px" v-model="stopLossRate" :disabled="!isStopLossMode || stopLossStandard === 'price'" />
               <label>%</label>
 
               <p class="caution">*현재가보다 높거나 동일하게 설정할 수 없습니다.</p>
@@ -164,14 +135,7 @@
               </label>
             </div>
             <div class="comment">
-              <input
-                type="text"
-                class="custom-text-input"
-                placeholder="매수 알림과 제시될 한 줄 코멘트를 작성해 주세요."
-                style="width: 708px"
-                v-model="buyCommentText"
-                :disabled="!useBuyComment"
-              />
+              <input type="text" class="custom-text-input" placeholder="매수 알림과 제시될 한 줄 코멘트를 작성해 주세요." style="width: 708px" v-model="buyCommentText" :disabled="!useBuyComment" />
               <p class="caution">*최소 5자, 최대 50자 범위로 입력해 주세요.</p>
             </div>
           </div>
@@ -179,26 +143,13 @@
           <div>
             <div class="check">
               <label for="checkTargetComment" class="custom-checkbox-label">
-                <input
-                  type="checkbox"
-                  id="checkTargetComment"
-                  class="custom-checkbox-input"
-                  v-model="useTargetComment"
-                  :disabled="!isTargetPriceMode"
-                />
+                <input type="checkbox" id="checkTargetComment" class="custom-checkbox-input" v-model="useTargetComment" :disabled="!isTargetPriceMode" />
                 <span class="custom-checkbox-box"></span>
                 <span class="custom-checkbox-txt">목표가 매도 코멘트 :</span>
               </label>
             </div>
             <div class="comment">
-              <input
-                type="text"
-                class="custom-text-input"
-                placeholder="목표가 매도 알림과 제시될 한 줄 코멘트를 작성해 주세요."
-                style="width: 708px"
-                v-model="targetCommentText"
-                :disabled="!useTargetComment || !isTargetPriceMode"
-              />
+              <input type="text" class="custom-text-input" placeholder="목표가 매도 알림과 제시될 한 줄 코멘트를 작성해 주세요." style="width: 708px" v-model="targetCommentText" :disabled="!useTargetComment || !isTargetPriceMode" />
               <p class="caution" v-if="!isTargetPriceMode">*목표가 설정 체크박스 선택 및 금액 입력이 선행되어야 합니다.</p>
               <p class="caution" v-else>*최소 5자, 최대 50자 범위로 입력해 주세요.</p>
             </div>
@@ -207,26 +158,13 @@
           <div>
             <div class="check">
               <label for="checkStopComment" class="custom-checkbox-label">
-                <input
-                  type="checkbox"
-                  id="checkStopComment"
-                  class="custom-checkbox-input"
-                  v-model="useStopComment"
-                  :disabled="!isStopLossMode"
-                />
+                <input type="checkbox" id="checkStopComment" class="custom-checkbox-input" v-model="useStopComment" :disabled="!isStopLossMode" />
                 <span class="custom-checkbox-box"></span>
                 <span class="custom-checkbox-txt">손절가 매도 코멘트 :</span>
               </label>
             </div>
             <div class="comment">
-              <input
-                type="text"
-                class="custom-text-input"
-                placeholder="손절가 매도 알림과 제시될 한 줄 코멘트를 작성해 주세요."
-                style="width: 708px"
-                v-model="stopCommentText"
-                :disabled="!useStopComment || !isStopLossMode"
-              />
+              <input type="text" class="custom-text-input" placeholder="손절가 매도 알림과 제시될 한 줄 코멘트를 작성해 주세요." style="width: 708px" v-model="stopCommentText" :disabled="!useStopComment || !isStopLossMode" />
               <p class="caution" v-if="!isStopLossMode">*손절가 설정 체크박스 선택 및 금액 입력이 선행되어야 합니다.</p>
               <p class="caution" v-else>*최소 5자, 최대 50자 범위로 입력해 주세요.</p>
             </div>
