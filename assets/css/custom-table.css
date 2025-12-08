@@ -47,35 +47,46 @@
   @apply w-full mb-9;
 }
 
-/* 1. 테이블 전체 설정: border-collapse 필수 */
 .searchTable table {
   @apply w-full border-collapse border-t-[1px] border-[#BEC2C3] table-fixed p-0 m-0;
 }
-
-/* 2. [핵심 변경] 테두리를 셀이 아닌 'tr(행)'에 줍니다 */
 .searchTable table tbody tr {
   @apply border-b-[1px] border-[#BEC2C3];
 }
-
-/* 3. th/td 공통: 높이 지정 및 기존 border-b 제거 */
 .searchTable table tbody th,
 .searchTable table tbody td {
-  /* border-b를 tr로 옮겼으므로 여기선 제거(혹은 0) 합니다 */
   @apply h-[60px] border-b-0 align-middle;
 }
-
-/* 4. th 설정: 배경색 및 폰트 */
 .searchTable table tbody th {
-  /* bg-clip-padding은 여전히 유효합니다 (배경 침범 방지) */
   @apply bg-[#F1F1F1] pl-5 text-left bg-clip-padding;
 }
-
-/* 5. th 내부 텍스트 */
 .searchTable table tbody th span {
   @apply text-[18px] text-[#141414] font-normal leading-none;
 }
-
-/* 6. td 설정 */
 .searchTable table tbody td {
+  @apply px-4 text-[#141414];
+}
+
+/* write */
+.writeTable{
+  @apply mb-2.5
+}
+.writeTable table {
+  @apply w-full border-collapse border-t-[1px] border-[#BEC2C3] table-fixed p-0 m-0;
+}
+.writeTable table tbody tr {
+  @apply border-b-[1px] border-[#BEC2C3];
+}
+.writeTable table tbody th,
+.writeTable table tbody td {
+  @apply min-h-[70px] border-b-0 align-middle py-[23px];
+}
+.writeTable table tbody th {
+  @apply bg-[#F1F1F1] text-center bg-clip-padding;
+}
+.writeTable table tbody th span {
+  @apply text-[18px] text-[#141414] font-normal leading-none;
+}
+.writeTable table tbody td {
   @apply px-4 text-[#141414];
 }

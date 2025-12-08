@@ -2,16 +2,19 @@
   <section>
     <StrategySearch />
     <StrategyTableInfo />
+    <StrategyTable />
   </section>
 </template>
 <script>
 import StrategySearch from '@/components/PM/Strategy/StrategySearch.vue'
 import StrategyTableInfo from '@/components/PM/Strategy/StrategyTableInfo.vue'
+import StrategyTable from '@/components/PM/Strategy/StrategyTable.vue'
 
 export default {
   components: {
     StrategySearch,
-    StrategyTableInfo
+    StrategyTableInfo,
+    StrategyTable
   },
   data() {
     return {

@@ -1,74 +1,55 @@
 <template>
   <tbody>
     <tr v-for="(tbodyList, tbodyListIndex) in tbodyLists" :key="tbodyListIndex">
-      <!-- check -->
       <td>
         <label :for="`check_${tbodyListIndex}`" class="custom-checkbox-label">
           <input type="checkbox" v-model="tbodyList.checked" :id="`check_${tbodyListIndex}`" class="custom-checkbox-input" />
           <span class="custom-checkbox-box"></span>
         </label>
       </td>
-      <!-- no -->
-      <td>
-        <div class="listNumber">
+      <!-- check -->
+       <td>
+        <div class="num">
           <span>{{ tbodyList.ListNumber }}</span>
         </div>
-      </td>
-      <!-- 종목명 -->
+       </td>
+      <!-- No -->
       <td>
-        <div class="itemName" :title="tbodyList.ItmeName">
-          <span class="name">
-            {{ tbodyList.ItmeName }}
-          </span>
-          <span class="number"> ({{ tbodyList.ItemNumber }}) </span>
+        <div class="obj">
+          <NuxtLink to="/" :title="tbodyList.obj">{{ tbodyList.Obj }}</NuxtLink>
         </div>
       </td>
-      <!-- 신호상태 -->
+      <!-- 제목 -->
       <td>
-        <div class="myInfo">
-          <div class="signal" v-html="tbodyList.Signal"></div>
-          <div class="priceInfo">
-            <div class="volatility">
-              <span class="price"> {{ tbodyList.MyPrice }}원 </span>
-              <span :class="['per', getSignalClass(tbodyList.Signal)]">&nbsp;({{ tbodyList.MyPer }}) </span>
-            </div>
-            <div class="date">
-              <span>
-                {{ tbodyList.MyDate }}
-              </span>
-            </div>
-          </div>
+        <div class="publicScope">
+          <span>{{ tbodyList.PublicScope }}</span>
         </div>
       </td>
-      <!-- 활성/비활성 일시 -->
+      <!-- 공개범위 -->
       <td>
-        <div class="ad_date">
-          <span>{{ tbodyList.AdDate }}</span>
+        <div class="relatedStock">
+          <span>{{ tbodyList.RelatedStock }}</span>
         </div>
       </td>
-      <!-- 종목추천발생 -->
+      <!-- 관련종목-->
       <td>
-        <div class="recommendation">
-          <span>{{ tbodyList.Recommendation }}</span>
-          <a href="#">조회</a>
+        <div class="prevImage">
+          <NuxtLink :to="tbodyList.PrevImage" target="_blank">미리보기</NuxtLink>
         </div>
       </td>
-      <!-- 등록일시 -->
+      <!-- 대표이미지 -->
       <td>
-        <div>
+        <div class="author">
+          <span>{{ tbodyList.Author }}</span>
+        </div>
+      </td>
+      <!-- 작성자 -->
+      <td>
+        <div class="registration">
           <span>{{ tbodyList.Registration }}</span>
         </div>
       </td>
-      <!-- 추천활성 -->
-      <td>
-        <div class="checkingActive">
-          <label :for="`active_${tbodyListIndex}`">
-            <input type="checkbox" name="" :id="`active_${tbodyListIndex}`" class="activeChecking" @change="handleModalClick($event)" />
-            <span class="custom-checkingActive"></span>
-          </label>
-        </div>
-      </td>
-      <!-- 코맨트 -->
+      <!-- 등록일시 -->
       <td>
         <div class="manage">
           <button @click="handleModalClick($event)" class="btn012 btn-mid btnMng3">
@@ -87,7 +68,7 @@
     </tr>
     <tr v-if="tbodyLists.length === 0">
       <td colspan="11" class="empty">
-        <span>등록된 종목이 없습니다.</span>
+        <span>등록된 게시물이 없습니다.</span>
       </td>
     </tr>
   </tbody>
@@ -172,44 +153,30 @@ export default {
 .listNumber {
   @apply text-[16px] text-[#5E6367] tracking-[130%] w-full text-center;
 }
-.itemName {
-  @apply flex items-center pl-4 text-[16px] text-[#141414] tracking-[130%] font-medium;
+.num{
+  @apply flex justify-center w-full
 }
-.itemName .name {
-  @apply max-w-[calc(100%-86px)] line-clamp-1;
+.obj a{
+  @apply w-full line-clamp-1 text-[16px] text-[#5E6367]
+  hover:underline
 }
-td > .price {
-  @apply pl-4;
+.publicScope {
+  @apply flex w-full justify-center
 }
-.volatility {
-  @apply flex items-center pl-4;
+.relatedStock {
+  @apply flex w-full justify-center
 }
-.volatility .price {
-  @apply text-[#141414] pr-[3px];
+.prevImage {
+  @apply flex w-full justify-center
 }
-.volatility .per {
-  @apply text-[16px];
+.prevImage a{
+  @apply underline
 }
-.myInfo {
-  @apply flex items-center gap-2.5 pl-6;
+.author {
+  @apply flex w-full justify-center
 }
-.myInfo .volatility {
-  @apply pl-0;
-}
-.priceInfo {
-  @apply flex flex-col w-[calc(100%-58px)] gap-[3px];
-}
-.priceInfo .date {
-  @apply text-[#5E6367];
-}
-.targetStop {
-  @apply flex w-full justify-center text-[#5E6367];
-}
-.recommendation {
-  @apply flex w-full justify-center items-center gap-[6px] text-[#5E6367];
-}
-a {
-  @apply underline;
+.registration {
+  @apply flex w-full justify-center
 }
 .manage, .delete {
   @apply flex w-full justify-center;
@@ -217,22 +184,6 @@ a {
 .manage button span, .delete button span {
   @apply w-[56px];
 }
-.registration {
-  @apply flex w-full justify-center text-[#5E6367];
-}
-.trading {
-  @apply flex w-full justify-center;
-}
-.cancel {
-  @apply flex w-full justify-center items-center;
-}
-.cancel::v-deep button {
-  @apply w-fit;
-}
-.cancel::v-deep button span {
-  @apply w-[56px];
-}
-
 .hiddenTr {
   @apply absolute top-0 left-[-9999em];
 }

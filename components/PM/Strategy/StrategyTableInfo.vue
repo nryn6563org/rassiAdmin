@@ -18,7 +18,7 @@
     <!-- ltf -->
 
     <div class="rit">
-      <button class="btn-mid btn013 round">
+      <button class="btn-mid btn007 round" @click="gotoWritePage">
         <span>글쓰기</span>
       </button>
     </div>
@@ -66,6 +66,9 @@ export default {
           }
         })
       }
+    },
+    gotoWritePage() {
+      this.$router.push('/PM/StrategyWrite')
     }
   }
 }
@@ -90,32 +93,14 @@ export default {
 .tableInfo .lft .btn-group {
   @apply flex items-center gap-2.5;
 }
-.tableInfo .lft .btn-group > span {
-  @apply w-[1px] h-4 bg-[#484F55];
+.tableInfo .lft .btn-group button{
+  @apply w-[103px]
 }
 
 .tableInfo .rit {
   @apply flex items-center gap-2.5;
 }
-.tableInfo .rit .update {
-  @apply flex items-center gap-[2px] rounded-[6px] bg-[#F9FAFB] px-2 h-[42px];
-}
-.tableInfo .rit .update span {
-  @apply text-[16px] text-[#5E6367];
-}
-.tableInfo .rit .date {
-  @apply mr-2.5 text-[16px] text-[#5E6367];
-}
-.tableInfo .rit .viewArray .dropdown_w {
-  @apply w-[133px] p-2.5 mr-2.5;
-}
-.tableInfo .rit .viewArray .dropdown_w::v-deep button {
-  @apply text-[16px] text-[#5E6367];
-}
-.tableInfo .rit .viewArray .dropdown_w::v-deep ul {
-  @apply w-[133px] left-auto right-0;
-}
-.tableInfo .rit .viewArray .dropdown_w::v-deep ul li {
-  @apply h-8 leading-8 px-2.5;
+.tableInfo .rit button{
+  @apply w-[103px]
 }
 </style>
