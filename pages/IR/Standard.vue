@@ -10,12 +10,12 @@
 </template>
 
 <script>
-import StandardAddPull from '@/components/IR/StandardAddPull.vue'
-import StandardSearch from '@/components/IR/StandardSearch.vue'
-import StandardTable from '@/components/IR/StandardTable.vue'
+import StandardAddPull from '@/components/IR/Standard/StandardAddPull.vue'
+import StandardSearch from '@/components/IR/Standard/StandardSearch.vue'
+import StandardTable from '@/components/IR/Standard/StandardTable.vue'
 import BasicTab from '@/components/TabGroup/BasicTab.vue'
 import TextGuide from '@/components/TextGuide.vue'
-import StandardTableInfo from '@/components/IR/StandardTableInfo.vue'
+import StandardTableInfo from '@/components/IR/Standard/StandardTableInfo.vue'
 
 export default {
   components: {

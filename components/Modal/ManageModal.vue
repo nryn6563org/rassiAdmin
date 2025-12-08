@@ -12,17 +12,27 @@
 <script>
 import CancelModal from '@/components/Modal/Manage/CancelModal.vue'
 import DeleteModal from '@/components/Modal/Manage/DeleteModal.vue'
-import ResevationModal from '@/components/Modal/Manage/ResevationModal001.vue'
+import ResevationModal001 from '@/components/Modal/Manage/ResevationModal001.vue'
+import ResevationModal002 from '@/components/Modal/Manage/ResevationModal002.vue'
+import ResevationModal003 from '@/components/Modal/Manage/ResevationModal003.vue'
 import CommentModal from '@/components/Modal/Manage/CommentModal.vue'
 import SignalModal from '@/components/Modal/Manage/SignalModal.vue'
+import AddItemModal from '@/components/Modal/Manage/AddItemModal.vue'
+import ActiveOnModal from '@/components/Modal/Manage/ActiveOnModal.vue'
+import ActiveOffModal from '@/components/Modal/Manage/ActiveOffModal.vue'
 
 export default {
   components: {
     CancelModal,
     DeleteModal,
-    ResevationModal,
+    ResevationModal001,
+    ResevationModal002,
+    ResevationModal003,
     CommentModal,
-    SignalModal
+    SignalModal,
+    AddItemModal,
+    ActiveOnModal,
+    ActiveOffModal
   },
   // [필수] 부모로부터 mode 데이터를 받기 위해 선언
   props: {
@@ -39,13 +49,23 @@ export default {
         case 'delete':
           return DeleteModal
         case 'manage':
-          return ResevationModal
+          return ResevationModal001
+        case 'manage2':
+          return ResevationModal002
+        case 'manage3':
+          return ResevationModal003
         case 'comment':
           return CommentModal
         case 'signal':
           return SignalModal
+        case 'addItem':
+          return AddItemModal
+        case 'activeOn':
+          return ActiveOnModal
+        case 'activeOff':
+          return ActiveOffModal
         default:
-          return ResevationModal // 기본값
+          return ResevationModal001 // 기본값
       }
     }
   }

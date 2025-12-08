@@ -23,7 +23,7 @@
 
 <script>
 import BasicThead from '@/components/TableElement/BasicThead.vue'
-import StandardTbody from '@/components/IR/StandardTbody.vue'
+import StandardTbody from '@/components/IR/Standard/StandardTbody.vue'
 import BasicPaging from '@/components/TableElement/BasicPaging.vue'
 
 export default {

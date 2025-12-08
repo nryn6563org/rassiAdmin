@@ -14,6 +14,12 @@
 .close {
   @apply absolute w-[25px] h-[25px] top-[30px] right-[50px];
 }
+.modal-pull .close{
+  @apply w-4 h-4 top-6 right-7
+}
+.modal-pull .close svg{
+  @apply w-full h-full
+}
 .modal-wrap {
   /* 부모(.modal-content)의 패딩을 제외한 높이를 꽉 채움 */
   @apply flex flex-col w-full;
@@ -52,6 +58,10 @@
 .modal-footer .button-group button {
   @apply w-[calc((100%/2)-10px)];
 }
+.modal-pull .modal-footer .button-group button.btn-large{
+  @apply !h-[42px]
+}
+
 
 /* ** 추천종목관리 및 내부 레이아웃 ** */
 
@@ -68,11 +78,11 @@
 .suggestion {
   /* flex-1: Footer를 제외한 모든 공간을 차지 */
   /* overflow-y-auto: 내용이 넘칠 때 이 영역만 스크롤 */
-  @apply flex-1 w-full min-h-[150px] mt-[30px] gap-10 px-10 overflow-y-auto overflow-x-hidden;
+  @apply w-full mt-[30px] gap-10 px-10;
 }
 
 .modal-pull .suggestion {
-  @apply px-7 min-h-0
+  @apply px-7 h-auto
 }
 
 /* ... 이하 스타일은 기존과 동일하거나 스크롤바 디자인 등을 위해 유지 ... */
@@ -185,7 +195,7 @@
   @apply text-[#5E6367] ml-[6px];
 }
 .suggestion section .txt > span {
-  @apply text-[16px] text-[#5E6367] h-5 leading-5;
+  @apply text-[16px] text-[#5E6367] min-h-5 leading-5;
 }
 .modal-pull .suggestion section .txt > span {
   @apply text-[14px]

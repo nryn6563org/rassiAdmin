@@ -7,13 +7,13 @@
       <span></span>
       <!--  -->
       <div class="btn-group">
-        <button class="round btn003 btn-mid rmdActive" @click="handleModalClick($event)">
+        <button class="round btn003 btn-mid stockActiveOn" @click="handleModalClick($event)">
           <span>추천 활성화</span>
         </button>
-        <button class="round btn003 btn-mid rmdDeactive" @click="handleModalClick($event)">
+        <button class="round btn003 btn-mid stockActiveOff" @click="handleModalClick($event)">
           <span>추천 비활성</span>
         </button>
-        <button class="round btn006 btn-mid dlt" @click="handleModalClick($event)">
+        <button class="round btn006 btn-mid stockDlt" @click="handleModalClick($event)">
           <span>삭제하기</span>
         </button>
         <span></span>
@@ -30,7 +30,7 @@
       </div>
       <!-- 보기 개수 정렬 -->
 
-      <button class="btn-mid btn013 round stockStandard" @click="handleModalClick($event)">
+      <button class="btn-mid btn013 round stockAdd" @click="handleModalClick($event)">
         <span>종목 등록</span>
       </button>
     </div>
@@ -38,8 +38,6 @@
   </div>
 </template>
 <script>
-import StandardModal011 from '@/components/Modal/StandardModal011.vue'
-import TradingModal from '@/components/Modal/TradingModal.vue'
 import ManageModal from '@/components/Modal/ManageModal.vue'
 import DropDown from '@/components/InputGroup/DropDown.vue'
 
@@ -70,17 +68,21 @@ export default {
       let mode = ''
 
       // 2. 버튼 클래스에 따라 컴포넌트 및 모드 설정
-      if (button.classList.contains('stockBuy')) {
-        component = TradingModal
-        mode = 'stockBuy'
-      } else if (button.classList.contains('stockSell')) {
-        component = TradingModal
-        mode = 'stockSell'
+      if (button.classList.contains('stockActiveOn')) {
+        component = ManageModal
+        mode = 'activeOn'
+      } else if (button.classList.contains('stockActiveOff')) {
+        component = ManageModal
+        mode = 'activeOff'
+      } else if (button.classList.contains('stockDlt')) {
+        component = ManageModal
+        mode = 'delete'
       } else if (button.classList.contains('stockComment')) {
         component = ManageModal
         mode = 'comment'
-      } else if (button.classList.contains('stockStandard')) {
-        component = StandardModal011
+      } else if (button.classList.contains('stockAdd')) {
+        component = ManageModal
+        mode = 'addItem'
       }
 
       // 3. 모달 열기 이벤트 발송

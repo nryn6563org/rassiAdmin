@@ -15,8 +15,8 @@
 </template>
 
 <script>
-import StandardThead from '@/components/IR/StandardThead.vue'
-import StandardTbody from '@/components/IR/StandardTbody.vue'
+import StandardThead from '@/components/IR/Standard/StandardThead.vue'
+import StandardTbody from '@/components/IR/Standard/StandardTbody.vue'
 import BasicPaging from '@/components/TableElement/BasicPaging.vue'
 
 export default {

@@ -16,8 +16,7 @@
           </button>
         </div>
         <!-- 닫기 -->
-
-        </div>
+</div>
     </div>
   </div>
 </template>
@@ -47,11 +46,28 @@ export default {
   computed: {
     // 2. computed 속성 추가
     computedModalClass() {
-      // contentComponent가 객체이고, 내부에 modalClass라는 사용자 정의 옵션이 있다면 반환
+      const classes = []
+
+      // 1. 자식 컴포넌트 파일에 정의된 고정 'modalClass'가 있으면 추가
       if (this.contentComponent && this.contentComponent.modalClass) {
-        return this.contentComponent.modalClass
+        classes.push(this.contentComponent.modalClass)
       }
-      return ''
+
+      // 2. props로 넘어온 mode가 'delete', 'activeOn', 'activeOff' 중 하나면 'modal-pull' 클래스 추가
+      // (componentProps가 존재하는지 안전하게 확인 후 체크)
+      if (
+        this.componentProps &&
+        (
+          this.componentProps.mode === 'delete' ||
+          this.componentProps.mode === 'activeOn' ||
+          this.componentProps.mode === 'activeOff'
+        )
+      ) {
+        classes.push('modal-pull')
+      }
+
+      // 배열을 공백으로 합쳐서 문자열로 반환 (예: "modal-manage modal-delete")
+      return classes.join(' ')
     }
   },
   // 메모리 누수 방지: 컴포넌트가 파괴될 때 모달 인스턴스도 정리

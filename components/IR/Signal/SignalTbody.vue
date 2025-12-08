@@ -63,7 +63,7 @@
       <td>
         <div class="checkingActive">
           <label :for="`active_${tbodyListIndex}`">
-            <input type="checkbox" name="" :id="`active_${tbodyListIndex}`" />
+            <input type="checkbox" name="" :id="`active_${tbodyListIndex}`" class="activeChecking" @change="handleModalClick($event)" />
             <span class="custom-checkingActive"></span>
           </label>
         </div>
@@ -71,7 +71,7 @@
       <!-- 코맨트 -->
       <td>
         <div class="manage">
-          <button @click="handleModalClick($event)" class="btn012 btn-mid btnMng">
+          <button @click="handleModalClick($event)" class="btn012 btn-mid btnMng3">
             <span>관리</span>
           </button>
         </div>
@@ -79,7 +79,7 @@
       <!-- 삭제 -->
       <td>
         <div class="manage">
-          <button @click="handleModalClick($event)" class="btn006 btn-mid btnMng">
+          <button @click="handleModalClick($event)" class="btn006 btn-mid btnDlt">
             <span>삭제</span>
           </button>
         </div>
@@ -94,7 +94,6 @@
 </template>
 
 <script>
-import TradingModal from '@/components/Modal/TradingModal.vue'
 import ManageModal from '@/components/Modal/ManageModal.vue'
 
 export default {
@@ -116,7 +115,9 @@ export default {
     handleModalClick(event) {
       // 1. 클릭된 요소 중 가장 가까운 버튼 찾기
       const button = event.target.closest('button')
-      if (!button) {
+      const activeCheckbox = event.target.closest('.activeChecking')
+
+      if (!button && !activeCheckbox) {
         return
       }
 
@@ -124,22 +125,33 @@ export default {
       let mode = ''
 
       // 2. 버튼 클래스에 따라 컴포넌트 및 모드 설정
-      if (button.classList.contains('btnBuy')) {
-        component = TradingModal
-        mode = 'buy'
-      } else if (button.classList.contains('btnSell')) {
-        component = TradingModal
-        mode = 'sell'
-      } else if (button.classList.contains('btnMng')) {
-        // 관리 버튼은 ManageModal 연결
+      if (button) {
+        if (button.classList.contains('btnMng3')) {
+          // 관리 버튼은 ManageModal 연결
+          component = ManageModal
+          mode = 'manage3'
+        } else if (button.classList.contains('btnCancel')) {
+          component = ManageModal // 혹은 취소 전용 모달
+          mode = 'cancel'
+        } else if (button.classList.contains('btnDlt')) {
+          // 삭제
+          component = ManageModal // 혹은 삭제 전용 모달
+          mode = 'delete'
+        }
+      } else if (activeCheckbox) {
         component = ManageModal
-      } else if (button.classList.contains('btnCancel')) {
-        component = ManageModal // 혹은 취소 전용 모달
-        mode = 'cancel'
-      } else if (button.classList.contains('btnDlt')) {
-        // 삭제
-        component = ManageModal // 혹은 삭제 전용 모달
-        mode = 'delete'
+
+        // 2. 체크 상태에 따른 모드 설정
+        if (activeCheckbox.checked) {
+          // 체크됨 (활성화 시도)
+          mode = 'activeOn'
+        } else {
+          // 체크 해제됨 (비활성화 시도)
+          mode = 'activeOff'
+        }
+        // (선택 사항) 모달에서 최종 확정하기 전까지 UI가 바뀌면 안 되는 경우:
+        // activeCheckbox.checked = !activeCheckbox.checked
+        // 위 코드를 넣으면 클릭 시 체크박스 UI가 즉시 변하지 않고, 모달 결과에 따라 제어할 수 있습니다.
       }
 
       // 3. 모달 열기 이벤트 발송

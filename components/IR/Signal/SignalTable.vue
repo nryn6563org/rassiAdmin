@@ -15,8 +15,8 @@
 </template>
 
 <script>
-import StandardThead from '@/components/IR/StandardThead.vue'
-import SignalTbody from '@/components/IR/SignalTbody.vue'
+import StandardThead from '@/components/IR/Standard/StandardThead.vue'
+import SignalTbody from '@/components/IR/Signal/SignalTbody.vue'
 import BasicPaging from '@/components/TableElement/BasicPaging.vue'
 
 export default {
