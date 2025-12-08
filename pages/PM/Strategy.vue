@@ -1,8 +1,18 @@
 <template>
-  <div>투자전략</div>
+  <section>
+    <StrategySearch />
+    <StrategyTableInfo />
+  </section>
 </template>
 <script>
+import StrategySearch from '@/components/PM/Strategy/StrategySearch.vue'
+import StrategyTableInfo from '@/components/PM/Strategy/StrategyTableInfo.vue'
+
 export default {
+  components: {
+    StrategySearch,
+    StrategyTableInfo
+  },
   data() {
     return {
       // 페이지에서 사용할 제목 문자열

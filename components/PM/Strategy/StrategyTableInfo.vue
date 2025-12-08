@@ -2,36 +2,24 @@
   <div class="tableInfo">
     <div class="lft">
       <div class="totalScore">
-        <span>총&nbsp;<em>{{ total }}</em>&nbsp;건</span>
+        <span
+          >총&nbsp;<em>{{ total }}</em
+          >&nbsp;건</span
+        >
       </div>
       <span></span>
       <!--  -->
       <div class="btn-group">
-        <button class="round btn003 btn-mid stockActiveOn" @click="handleModalClick($event)">
-          <span>추천 활성화</span>
-        </button>
-        <button class="round btn003 btn-mid stockActiveOff" @click="handleModalClick($event)">
-          <span>추천 비활성</span>
-        </button>
         <button class="round btn006 btn-mid btnDlt" @click="handleModalClick($event)">
           <span>삭제하기</span>
-        </button>
-        <span></span>
-        <button class="round btn003 btn-mid stockComment" @click="handleModalClick($event)">
-          <span>코멘트 모아보기</span>
         </button>
       </div>
     </div>
     <!-- ltf -->
 
     <div class="rit">
-      <div class="viewArray">
-        <DropDown :items="viewArray" :initial-label="selectedViewArray" placeholder="" @change="handleChange" />
-      </div>
-      <!-- 보기 개수 정렬 -->
-
-      <button class="btn-mid btn013 round stockAdd" @click="handleModalClick($event)">
-        <span>종목 등록</span>
+      <button class="btn-mid btn013 round">
+        <span>글쓰기</span>
       </button>
     </div>
     <!-- rit -->
@@ -39,12 +27,8 @@
 </template>
 <script>
 import ManageModal from '@/components/Modal/ManageModal.vue'
-import DropDown from '@/components/InputGroup/DropDown.vue'
 
 export default {
-  components: {
-    DropDown
-  },
   data() {
     return {
       total: '100',
@@ -68,21 +52,9 @@ export default {
       let mode = ''
 
       // 2. 버튼 클래스에 따라 컴포넌트 및 모드 설정
-      if (button.classList.contains('stockActiveOn')) {
-        component = ManageModal
-        mode = 'activeOn'
-      } else if (button.classList.contains('stockActiveOff')) {
-        component = ManageModal
-        mode = 'activeOff'
-      } else if (button.classList.contains('btnDlt')) {
+      if (button.classList.contains('btnDlt')) {
         component = ManageModal
         mode = 'delete'
-      } else if (button.classList.contains('stockComment')) {
-        component = ManageModal
-        mode = 'comment'
-      } else if (button.classList.contains('stockAdd')) {
-        component = ManageModal
-        mode = 'addItem'
       }
 
       // 3. 모달 열기 이벤트 발송
@@ -97,7 +69,6 @@ export default {
     }
   }
 }
-
 </script>
 
 <style scoped>
@@ -107,11 +78,11 @@ export default {
 .tableInfo .lft {
   @apply flex items-center gap-4;
 }
-.tableInfo .lft .totalScore{
-  @apply text-[20px] text-[#141414]
+.tableInfo .lft .totalScore {
+  @apply text-[20px] text-[#141414];
 }
-.tableInfo .lft .totalScore span em{
-  @apply text-[#0263E8] font-bold
+.tableInfo .lft .totalScore span em {
+  @apply text-[#0263E8] font-bold;
 }
 .tableInfo .lft > span {
   @apply w-[1px] h-4 bg-[#484F55];
@@ -119,21 +90,21 @@ export default {
 .tableInfo .lft .btn-group {
   @apply flex items-center gap-2.5;
 }
-.tableInfo .lft .btn-group > span{
-  @apply w-[1px] h-4 bg-[#484F55]
+.tableInfo .lft .btn-group > span {
+  @apply w-[1px] h-4 bg-[#484F55];
 }
 
 .tableInfo .rit {
   @apply flex items-center gap-2.5;
 }
-.tableInfo .rit .update{
-  @apply flex items-center gap-[2px] rounded-[6px] bg-[#F9FAFB] px-2 h-[42px]
+.tableInfo .rit .update {
+  @apply flex items-center gap-[2px] rounded-[6px] bg-[#F9FAFB] px-2 h-[42px];
 }
-.tableInfo .rit .update span{
-  @apply text-[16px] text-[#5E6367]
+.tableInfo .rit .update span {
+  @apply text-[16px] text-[#5E6367];
 }
-.tableInfo .rit .date{
-  @apply mr-2.5 text-[16px] text-[#5E6367]
+.tableInfo .rit .date {
+  @apply mr-2.5 text-[16px] text-[#5E6367];
 }
 .tableInfo .rit .viewArray .dropdown_w {
   @apply w-[133px] p-2.5 mr-2.5;
