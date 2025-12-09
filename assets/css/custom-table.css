@@ -90,3 +90,6 @@
 .writeTable table tbody td {
   @apply px-4 text-[#141414];
 }
+.writeTable table tbody td span{
+  @apply text-[18px] text-[#5E6367]
+}

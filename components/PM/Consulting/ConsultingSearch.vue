@@ -22,10 +22,11 @@
           <th><span>검색조건</span></th>
           <td>
             <DropDown ref="searchDrop" :items="searchLabels" :initial-label="selectedSearchLabel" :placeholder="'조건 선택'" @change="handleSearchChange" @opened="closeOtherDropdowns('searchDrop')" />
+            <DropDown ref="statusDrop" :items="statusLabels" :initial-label="selectedStatusLabel" :placeholder="'상태 선택'" @change="handleStatusChange" @opened="closeOtherDropdowns('statusDrop')" />
 
             <span class="gubun"></span>
 
-            <DropDown ref="statusDrop" :items="statusLabels" :initial-label="selectedStatusLabel" :placeholder="'상태 선택'" @change="handleStatusChange" @opened="closeOtherDropdowns('statusDrop')" />
+            <DropDown ref="choiceDrop" :items="choiceLabels" :initial-label="selectedChoiceLabel" :placeholder="'상태 선택'" @change="handleChoiceChange" @opened="closeOtherDropdowns('choiceDrop')" />
             <SearchInput :searchLabel="'검색어를 입력해 주세요.'" />
           </td>
         </tr>
@@ -63,8 +64,12 @@ export default {
       selectedSearchLabel: '최근등록순',
 
       // 3. 검색 조건(2) 관련 데이터 (두 번째 빈 DropDown용)
-      statusLabels: ['제목', '작성자', '종목명', '종목코드'],
-      selectedStatusLabel: '제목'
+      statusLabels: ['처리상태전체', '문의중', '답변완료'],
+      selectedStatusLabel: '처리상태전체',
+
+      // 3. 검색 조건(2) 관련 데이터 (두 번째 빈 DropDown용)
+      choiceLabels: ['제목', '문의자명', '상담자명'],
+      selectedChoiceLabel: '제목'
     }
   },
   methods: {
@@ -94,6 +99,10 @@ export default {
     // 3. 상태 조건 변경 핸들러
     handleStatusChange(label) {
       this.selectedStatusLabel = label
+    },
+
+    handleChoiceChange(label) {
+      this.selectedChoiceLabel = label
     }
   }
 }

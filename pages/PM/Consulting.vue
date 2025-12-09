@@ -1,8 +1,21 @@
 <template>
-  <div>종목 상담</div>
+  <section>
+    <ConsultingSearch />
+    <ConsultingTableInfo />
+    <ConsultingTable />
+  </section>
 </template>
 <script>
+import ConsultingSearch from '@/components/PM/Consulting/ConsultingSearch.vue'
+import ConsultingTableInfo from '@/components/PM/Consulting/ConsultingTableInfo.vue'
+import ConsultingTable from '@/components/PM/Consulting/ConsultingTable.vue'
+
 export default {
+  components: {
+    ConsultingSearch,
+    ConsultingTableInfo,
+    ConsultingTable
+  },
   data() {
     return {
       // 페이지에서 사용할 제목 문자열

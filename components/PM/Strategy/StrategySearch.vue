@@ -23,10 +23,10 @@
           <td>
             <DropDown ref="searchDrop" :items="searchLabels" :initial-label="selectedSearchLabel" :placeholder="'조건 선택'" @change="handleSearchChange" @opened="closeOtherDropdowns('searchDrop')" />
 
-            <DropDown ref="statusDrop" :items="statusLabels" :initial-label="selectedStatusLabel" :placeholder="'상태 선택'" @change="handleStatusChange" @opened="closeOtherDropdowns('statusDrop')" />
-
             <span class="gubun"></span>
-            <SearchInput />
+
+            <DropDown ref="statusDrop" :items="statusLabels" :initial-label="selectedStatusLabel" :placeholder="'상태 선택'" @change="handleStatusChange" @opened="closeOtherDropdowns('statusDrop')" />
+            <SearchInput :searchLabel="'검색어를 입력해 주세요.'" />
           </td>
         </tr>
       </tbody>
@@ -52,19 +52,19 @@ export default {
   data() {
     return {
       // 1. 검색 기간 관련 데이터
-      dateLabels: ['등록일시', '활성일시', '비활성일시', '종목추천발생'],
+      dateLabels: ['등록일시'],
       selectedDateLabel: '등록일시',
 
       dateBtns: ['전체', '오늘', '어제', '지난주', '이번주', '1개월', '3개월', '6개월'],
       updateBtn: 0,
 
       // 2. 검색 조건(1) 관련 데이터 (ArrayLabels 대체)
-      searchLabels: ['최근등록순', '수익률순', '종목명순', '종목코드순(오름차순)', '종목코드순(내림차순)'],
-      selectedSearchLabel: '최근등록순',
+      searchLabels: ['공개범위', '전체공개', '회원전용'],
+      selectedSearchLabel: '공개범위',
 
       // 3. 검색 조건(2) 관련 데이터 (두 번째 빈 DropDown용)
-      statusLabels: ['신호상태전체', '매수신호', '매도신호'],
-      selectedStatusLabel: '수익상태전체'
+      statusLabels: ['제목', '작성자'],
+      selectedStatusLabel: '제목'
     }
   },
   methods: {
@@ -123,10 +123,7 @@ export default {
   @apply mx-2.5;
 }
 .gubun {
-  @apply w-[1px] h-4 bg-[#484F55];
-}
-.schInput {
-  @apply ml-2.5;
+  @apply w-[1px] h-4 bg-[#484F55] !mr-2.5;
 }
 .searchTable tbody td .date::v-deep .customDate {
   @apply !p-[6px_12px];
