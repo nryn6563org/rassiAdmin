@@ -1,11 +1,23 @@
 <template>
   <div class="schInput">
     <label for="schInput">
-      <input type="text" name="" id="schInput" placeholder="종목명 또는 종목코드 검색" />
+      <input type="text" name="" id="schInput" :placeholder="searchLabel" />
       <button type="submit" class="btn007">검색</button>
     </label>
   </div>
 </template>
+
+<script>
+export default {
+  props: {
+    searchLabel: {
+      type: String,
+      default: '종목명 또는 종목코드 검색'
+    }
+  }
+
+}
+</script>
 
 <style scoped>
 .schInput label{

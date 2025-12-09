@@ -8,28 +8,18 @@
       <tbody>
         <tr>
           <th>
-            <span>공개범위</span>
+            <span>제목</span>
           </th>
           <td>
-            <div class="publicCheck">
-              <label for="cfp001" class="custom-radio-label">
-                <input type="radio" name="checkforpublic" id="cfp001" checked class="custom-radio-input" />
-                <span class="custom-radio-txt">전체공개</span>
-              </label>
-
-              <label for="cfp002" class="custom-radio-label">
-                <input type="radio" name="checkforpublic" id="cfp002" class="custom-radio-input" />
-                <span class="custom-radio-txt">회원전용</span>
-              </label>
-            </div>
+            <input type="text" name="" id="" class="custom-text-input" placeholder="제목을 입력해 주세요." style="width: 100%" />
           </td>
         </tr>
         <tr>
           <th>
-            <span>*제목</span>
+            <span>요약글</span>
           </th>
           <td>
-            <input type="text" name="" id="" class="custom-text-input" placeholder="제목을 입력해 주세요." style="width: 100%" />
+            <input type="text" name="" id="" class="custom-text-input" placeholder="요약글을 입력해 주세요." style="width: 100%" />
           </td>
         </tr>
         <tr>
@@ -45,7 +35,7 @@
             <span>관련종목</span>
           </th>
           <td>
-            <SearchInput :searchLabel="'종목명을 검색해 주세요.'" />
+            <SearchInput :searchLabel="'종목명을 검색해 주세요.'"/>
           </td>
         </tr>
         <tr>
