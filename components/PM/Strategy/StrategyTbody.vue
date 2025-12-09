@@ -52,7 +52,7 @@
       <!-- 등록일시 -->
       <td>
         <div class="manage">
-          <button @click="handleModalClick($event)" class="btn012 btn-mid btnMng3">
+          <button @click="gotoReadManage()" class="btn012 btn-mid">
             <span>관리</span>
           </button>
         </div>
@@ -75,6 +75,7 @@
 </template>
 
 <script>
+import BoardModal from '@/components/Modal/BoardModal.vue'
 import ManageModal from '@/components/Modal/ManageModal.vue'
 
 export default {
@@ -85,6 +86,9 @@ export default {
     }
   },
   methods: {
+    gotoReadManage() {
+      this.$router.push('/PM/StrategyRead')
+    },
     getSignalClass(signalHtml) {
       if (!signalHtml) {
         return ''
@@ -107,16 +111,9 @@ export default {
 
       // 2. 버튼 클래스에 따라 컴포넌트 및 모드 설정
       if (button) {
-        if (button.classList.contains('btnMng3')) {
-          // 관리 버튼은 ManageModal 연결
-          component = ManageModal
-          mode = 'manage3'
-        } else if (button.classList.contains('btnCancel')) {
-          component = ManageModal // 혹은 취소 전용 모달
-          mode = 'cancel'
-        } else if (button.classList.contains('btnDlt')) {
+        if (button.classList.contains('btnDlt')) {
           // 삭제
-          component = ManageModal // 혹은 삭제 전용 모달
+          component = BoardModal // 혹은 삭제 전용 모달
           mode = 'delete'
         }
       } else if (activeCheckbox) {
