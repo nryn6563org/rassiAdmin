@@ -76,7 +76,6 @@
 
 <script>
 import BoardModal from '@/components/Modal/BoardModal.vue'
-import ManageModal from '@/components/Modal/ManageModal.vue'
 
 export default {
   props: {
@@ -116,20 +115,6 @@ export default {
           component = BoardModal // 혹은 삭제 전용 모달
           mode = 'delete'
         }
-      } else if (activeCheckbox) {
-        component = ManageModal
-
-        // 2. 체크 상태에 따른 모드 설정
-        if (activeCheckbox.checked) {
-          // 체크됨 (활성화 시도)
-          mode = 'activeOn'
-        } else {
-          // 체크 해제됨 (비활성화 시도)
-          mode = 'activeOff'
-        }
-        // (선택 사항) 모달에서 최종 확정하기 전까지 UI가 바뀌면 안 되는 경우:
-        // activeCheckbox.checked = !activeCheckbox.checked
-        // 위 코드를 넣으면 클릭 시 체크박스 UI가 즉시 변하지 않고, 모달 결과에 따라 제어할 수 있습니다.
       }
 
       // 3. 모달 열기 이벤트 발송
