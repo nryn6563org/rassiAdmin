@@ -8,36 +8,24 @@
         </label>
       </td>
       <!-- check -->
-       <td>
+      <td>
         <div class="num">
           <span>{{ tbodyList.ListNumber }}</span>
         </div>
-       </td>
+      </td>
       <!-- No -->
+      <td>
+        <div class="itemName">
+          <span>{{ tbodyList.ItemName }}&nbsp;({{ tbodyList.ItemNumber }})</span>
+        </div>
+      </td>
+      <!-- 종목명 -->
       <td>
         <div class="obj">
           <NuxtLink to="/" :title="tbodyList.obj">{{ tbodyList.Obj }}</NuxtLink>
         </div>
       </td>
       <!-- 제목 -->
-      <td>
-        <div class="publicScope">
-          <span>{{ tbodyList.PublicScope }}</span>
-        </div>
-      </td>
-      <!-- 공개범위 -->
-      <td>
-        <div class="relatedStock">
-          <span>{{ tbodyList.RelatedStock }}</span>
-        </div>
-      </td>
-      <!-- 관련종목-->
-      <td>
-        <div class="prevImage">
-          <NuxtLink :to="tbodyList.PrevImage" target="_blank">미리보기</NuxtLink>
-        </div>
-      </td>
-      <!-- 대표이미지 -->
       <td>
         <div class="author">
           <span>{{ tbodyList.Author }}</span>
@@ -57,7 +45,7 @@
           </button>
         </div>
       </td>
-      <!-- 삭제 -->
+      <!-- 관리 -->
       <td>
         <div class="delete">
           <button @click="handleModalClick($event)" class="btn006 btn-mid btnDlt">
@@ -65,6 +53,7 @@
           </button>
         </div>
       </td>
+      <!-- 삭제 -->
     </tr>
     <tr v-if="tbodyLists.length === 0">
       <td colspan="11" class="empty">
@@ -86,7 +75,7 @@ export default {
   },
   methods: {
     gotoReadManage() {
-      this.$router.push('/PM/StrategyRead')
+      this.$router.push('/PM/AnalysisRead')
     },
     getSignalClass(signalHtml) {
       if (!signalHtml) {
@@ -135,35 +124,37 @@ export default {
 .listNumber {
   @apply text-[16px] text-[#5E6367] tracking-[130%] w-full text-center;
 }
-.num{
-  @apply flex justify-center w-full
+.num {
+  @apply flex justify-center w-full;
 }
-.obj a{
+.obj a {
   @apply w-full line-clamp-1 text-[16px] text-[#5E6367]
-  hover:underline
+  hover:underline;
 }
 .publicScope {
-  @apply flex w-full justify-center
-}
-.relatedStock {
-  @apply flex w-full justify-center
-}
-.prevImage {
-  @apply flex w-full justify-center
-}
-.prevImage a{
-  @apply underline
-}
-.author {
-  @apply flex w-full justify-center
-}
-.registration {
-  @apply flex w-full justify-center
-}
-.manage, .delete {
   @apply flex w-full justify-center;
 }
-.manage button span, .delete button span {
+.relatedStock {
+  @apply flex w-full justify-center;
+}
+.prevImage {
+  @apply flex w-full justify-center;
+}
+.prevImage a {
+  @apply underline;
+}
+.author {
+  @apply flex w-full justify-center;
+}
+.registration {
+  @apply flex w-full justify-center;
+}
+.manage,
+.delete {
+  @apply flex w-full justify-center;
+}
+.manage button span,
+.delete button span {
   @apply w-[56px];
 }
 .hiddenTr {

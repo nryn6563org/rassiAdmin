@@ -1,8 +1,21 @@
 <template>
-  <div>종목 분석</div>
+  <section>
+    <AnalysisSearch />
+    <AnalysisTableInfo />
+    <AnalysisTable />
+  </section>
 </template>
 <script>
+import AnalysisSearch from '@/components/PM/Analysis/AnalysisSearch.vue'
+import AnalysisTableInfo from '@/components/PM/Analysis/AnalysisTableInfo.vue'
+import AnalysisTable from '@/components/PM/Analysis/AnalysisTable.vue'
+
 export default {
+  components: {
+    AnalysisSearch,
+    AnalysisTableInfo,
+    AnalysisTable
+  },
   data() {
     return {
       // 페이지에서 사용할 제목 문자열

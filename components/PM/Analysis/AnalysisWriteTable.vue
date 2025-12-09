@@ -24,18 +24,10 @@
         </tr>
         <tr>
           <th>
-            <span>*대표이미지</span>
+            <span>종목선택</span>
           </th>
           <td>
-            <FileInputImage @change-file="uploadToServer" />
-          </td>
-        </tr>
-        <tr>
-          <th>
-            <span>관련종목</span>
-          </th>
-          <td>
-            <SearchInput :searchLabel="'종목명을 검색해 주세요.'"/>
+            <SearchInput :searchLabel="'종목명을 검색해 주세요.'" />
           </td>
         </tr>
         <tr>
@@ -56,12 +48,10 @@
   </div>
 </template>
 <script>
-import FileInputImage from '@/components/InputGroup/FileInputImage.vue'
 import SearchInput from '@/components/InputGroup/SearchInputSvg.vue'
 
 export default {
   components: {
-    FileInputImage,
     SearchInput
   },
   methods: {

@@ -68,7 +68,7 @@ export default {
       }
     },
     gotoWritePage() {
-      this.$router.push('/PM/StrategyWrite')
+      this.$router.push('/PM/AnalysisWrite')
     }
   }
 }
