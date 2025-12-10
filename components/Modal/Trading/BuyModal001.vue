@@ -186,13 +186,24 @@
 export default {
   data() {
     return {
-      // 1. 추천 매수가 예약 설정 관련
-      isBuyRsvMode: false, // 상승 구간 구매하기 체크 여부
-      buyStandard: 'price', // 금액 vs 수익률 (매수)
+      // 1. 추천 매수가 예약 설정 관련 (템플릿에는 없지만 로직상 유지)
+      isBuyRsvMode: false,
+      buyStandard: 'price',
 
       // 3. 목표가/손절가 설정 관련
-      isTargetStopMode: false, // 자동 매도 알림 설정 체크 여부
-      targetStandard: 'price', // 금액 vs 수익률 (매도)
+      // [수정] 목표가 관련 변수 추가
+      isTargetPriceMode: false,
+      targetStandard: 'price', // 'price' or 'percent'
+      targetPrice: '', // 목표가 (원) - 빈 문자열 또는 null로 초기화
+      targetRate: '', // 목표 수익률 (%)
+
+      // [수정] 손절가 관련 변수 추가
+      isStopLossMode: false,
+      stopLossStandard: 'price', // [중요] 손절가용 기준 변수 별도 선언 필요
+      stopLossPrice: '', // 손절가 (원)
+      stopLossRate: '', // 손절 수익률 (%)
+
+      isTargetStopMode: false, // 자동 매도 알림 (필요 시 사용)
 
       // 4. 코멘트 관련
       useBuyComment: true,
@@ -209,15 +220,22 @@ export default {
   methods: {
     // 닫기 버튼 클릭 시 실행
     handleClose() {
-      // layouts/default.vue에 정의된 리스너에게 '닫아달라'는 신호를 보냄
+      // layouts/default.vue 혹은 상위 컴포넌트의 $on('close-global-modal') 과 매칭
       this.$nuxt.$emit('close-global-modal')
     },
 
     // 실시간 매수 추천 버튼 클릭 시 실행
     handleConfirm() {
-      // 1. 유효성 검사 또는 API 전송 로직 작성
-      // if ( ... ) { alert('입력을 확인해주세요'); return; }
-      console.log('실시간 매수 추천 전송 로직 수행')
+      // 1. 유효성 검사 예시
+      if (this.isTargetPriceMode && !this.targetPrice && !this.targetRate) {
+        alert('목표가를 입력해주세요.')
+        return
+      }
+
+      console.log('실시간 매수 추천 전송 로직 수행', {
+        target: this.targetPrice,
+        stopLoss: this.stopLossPrice
+      })
 
       // 2. 로직 수행 후 모달 닫기
       this.handleClose()
