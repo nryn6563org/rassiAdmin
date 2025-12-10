@@ -52,7 +52,7 @@ export default {
   },
   router: {
     // 환경에 따라 베이스 경로 설정: 개발 환경은 루트, 프로덕션은 /RassiAdmin/
-    base: process.env.NODE_ENV === 'production' ? '/rassiAdmin/' : '/'
+    base: '/rassiAdmin/'
   },
   target: 'static'
 }

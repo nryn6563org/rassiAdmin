@@ -1,35 +1,47 @@
-name: Deploy to GitHub Pages
+# .github/workflows/deploy.yml
+name: Deploy Nuxt.js App to GitHub Pages
 
 on:
+  # main 브랜치에 코드가 푸시될 때마다 워크플로우 실행
   push:
     branches:
-      - main # main 브랜치에 푸시될 때마다 실행
+      - main
+  # Actions 탭에서 수동 실행 가능하도록 추가
+  workflow_dispatch:
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     
     steps:
-    - name: Checkout 🛎️
-      uses: actions/checkout@v4
-    
-    # Node 18 설정 및 호환성 옵션 적용
-    - name: Setup Node
-      uses: actions/setup-node@v4
-      with:
-        node-version: '18' 
+      # 1. 저장소 코드 체크아웃
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        
+      # 2. Node.js 환경 설정
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 16 # Nuxt 2가 지원하는 Node.js 버전 사용
 
-    - name: Install dependencies 
-      run: npm install
+      # 3. 의존성 설치
+      - name: Install dependencies
+        run: npm install
 
-    # Nuxt generate 실행 (레거시 공급자 옵션 적용)
-    - name: Generate Static Site
-      run: NODE_OPTIONS=--openssl-legacy-provider npm run generate
-
-    # GitHub Pages에 배포
-    - name: Deploy 🚀
-      uses: peaceiris/actions-gh-pages@v4
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./dist # 배포할 폴더 지정 (npm run generate의 결과 폴더)
-        publish_branch: gh-pages # 배포할 브랜치 지정
+      # 4. 정적 사이트 빌드 (generate)
+      - name: Generate static files
+        run: npm run generate
+        
+      # 5. GitHub Pages에 배포
+      # peaceiris/actions-gh-pages 액션을 사용합니다.
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          # GitHub 토큰 사용 (Secrets에 저장할 필요 없이 기본 제공)
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          # 배포할 폴더 (nuxt generate의 결과물)
+          publish_dir: ./dist
+          # 배포할 브랜치
+          publish_branch: gh-pages
+          # 커밋 메시지 지정 (선택 사항)
+          commit_message: "Deploy Nuxt app via GitHub Actions"
