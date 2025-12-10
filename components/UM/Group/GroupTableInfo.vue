@@ -18,6 +18,9 @@
     <!-- ltf -->
 
     <div class="rit">
+      <button class="btn-mid btn007 round" @click="gotoManagePage">
+        <span>소속추가</span>
+      </button>
     </div>
     <!-- rit -->
   </div>
@@ -32,9 +35,6 @@ export default {
     }
   },
   methods: {
-    handleChange(label) {
-      this.selectedViewArray = label
-    },
     handleModalClick(event) {
       // 1. 클릭된 요소 중 가장 가까운 버튼 찾기
       const button = event.target.closest('button')
@@ -60,6 +60,9 @@ export default {
           }
         })
       }
+    },
+    gotoManagePage() {
+      this.$router.push('/UM/GroupManage')
     }
   }
 }

@@ -31,16 +31,10 @@ import ManageModal from '@/components/Modal/ManageModal.vue'
 export default {
   data() {
     return {
-      total: '100',
-      updateDate: '2025.11.06 15:20',
-      viewArray: ['20개씩 보기', '30개씩 보기', '40개씩 보기', '50개씩 보기', '100개씩 보기'],
-      selectedViewArray: '20개씩 보기' // 초기 선택 값 없음
+      total: '100'
     }
   },
   methods: {
-    handleChange(label) {
-      this.selectedViewArray = label
-    },
     handleModalClick(event) {
       // 1. 클릭된 요소 중 가장 가까운 버튼 찾기
       const button = event.target.closest('button')

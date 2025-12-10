@@ -1,12 +1,12 @@
 <template>
-  <div id="Delete">
+  <div id="AnswerDelete">
     <div class="suggestion">
       <section>
-        <strong>게시물을 삭제하시겠습니까?</strong>
+        <strong>답변을 삭제 하시겠습니까?</strong>
 
         <div class="txt">
           <span>
-            <em>선택하신 {n}개의 게시물이 삭제됩니다.</em> <br />
+            <em>기존에 입력하신 답변이 삭제됩니다.</em> <br />
             삭제 시 복구가 불가능하므로 신중하게 삭제해 주세요.
           </span>
         </div>

@@ -59,6 +59,10 @@ export default {
         this.componentProps &&
         (
           this.componentProps.mode === 'delete' ||
+          this.componentProps.mode === 'answer' ||
+          this.componentProps.mode === 'userDelete' ||
+          this.componentProps.mode === 'GroupDelete' ||
+          this.componentProps.mode === 'answer' ||
           this.componentProps.mode === 'activeOn' ||
           this.componentProps.mode === 'activeOff'
         )

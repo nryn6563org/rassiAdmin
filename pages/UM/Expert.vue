@@ -1,8 +1,21 @@
 <template>
-  <div>전문가·관리자 회원 관리</div>
+  <section>
+    <ExpertSearch />
+    <ExpertTableInfo />
+    <ExpertTable />
+  </section>
 </template>
 <script>
+import ExpertSearch from '@/components/UM/Expert/ExpertSearch.vue'
+import ExpertTableInfo from '@/components/UM/Expert/ExpertTableInfo.vue'
+import ExpertTable from '@/components/UM/Expert/ExpertTable.vue'
+
 export default {
+  components: {
+    ExpertSearch,
+    ExpertTableInfo,
+    ExpertTable
+  },
   data() {
     return {
       // 페이지에서 사용할 제목 문자열
@@ -21,3 +34,8 @@ export default {
   }
 }
 </script>
+<style scoped>
+section{
+  @apply pt-[30px]
+}
+</style>

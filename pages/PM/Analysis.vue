@@ -34,3 +34,8 @@ export default {
   }
 }
 </script>
+<style scoped>
+section{
+  @apply pt-[30px]
+}
+</style>

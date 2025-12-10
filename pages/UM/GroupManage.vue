@@ -1,12 +1,12 @@
 <template>
   <section>
-    <ConsultingWriteTable />
-    <ConsultingInquiry />
-    <ConsultingAnswer />
-    <ConsultingViewContent />
+    <GroupManageTable />
     <div class="btn-group">
-      <button class="btn-large btn004 round">
-        <span>취소하기</span>
+      <button class="btn-large btn007 round">
+        <span>목록으로</span>
+      </button>
+      <button class="btn-large btn006 round">
+        <span>삭제하기</span>
       </button>
       <button class="btn-large btn013 round">
         <span>저장하기</span>
@@ -15,22 +15,16 @@
   </section>
 </template>
 <script>
-import ConsultingViewContent from '@/components/PM/Consulting/ConsultingViewContent.vue'
-import ConsultingInquiry from '@/components/PM/Consulting/ConsultingInquiry.vue'
-import ConsultingAnswer from '@/components/PM/Consulting/ConsultingAnswer.vue'
-import ConsultingWriteTable from '@/components/PM/Consulting/ConsultingWriteTable.vue'
+import GroupManageTable from '@/components/UM/Group/GroupManageTable.vue'
 
 export default {
   components: {
-    ConsultingInquiry,
-    ConsultingAnswer,
-    ConsultingViewContent,
-    ConsultingWriteTable
+    GroupManageTable
   },
   data() {
     return {
       // 페이지에서 사용할 제목 문자열
-      pageSpecificTitle: '종목상담'
+      pageSpecificTitle: '소속 등록 관리'
     }
   },
   head() {

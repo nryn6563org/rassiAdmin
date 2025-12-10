@@ -1,8 +1,21 @@
 <template>
-  <div>소속 등록 관리</div>
+  <section>
+    <GroupSearch />
+    <GroupTableInfo />
+    <GroupTable />
+  </section>
 </template>
 <script>
+import GroupSearch from '@/components/UM/Group/GroupSearch.vue'
+import GroupTableInfo from '@/components/UM/Group/GroupTableInfo.vue'
+import GroupTable from '@/components/UM/Group/GroupTable.vue'
+
 export default {
+  components: {
+    GroupSearch,
+    GroupTableInfo,
+    GroupTable
+  },
   data() {
     return {
       // 페이지에서 사용할 제목 문자열
@@ -21,3 +34,8 @@ export default {
   }
 }
 </script>
+<style scoped>
+section{
+  @apply pt-[30px]
+}
+</style>

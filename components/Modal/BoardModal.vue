@@ -11,6 +11,7 @@
 
 <script>
 import DeleteModal from '@/components/Modal/Board/DeleteModal.vue'
+import AnswerDelModal from '@/components/Modal/Board/AnswerDelModal.vue'
 
 export default {
   components: {
@@ -28,6 +29,8 @@ export default {
       switch (this.mode) {
         case 'delete':
           return DeleteModal
+        case 'answer':
+          return AnswerDelModal
         default:
           return DeleteModal // 기본값
       }

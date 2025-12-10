@@ -7,9 +7,6 @@
     <div class="inputArea">
       <textarea name="" id="" placeholder="상담 답변을 입력해주세요."></textarea>
     </div>
-    <div class="viewContent">
-      <span v-html="answerViewContent"></span>
-    </div>
   </div>
 </template>
 
@@ -17,9 +14,7 @@
 export default {
   data() {
     return {
-      answerAutor: '홍길동',
-      answerViewContent:
-        '답변 작성 영역과 답변 내용 영역은 개발단에서 적용합니다 <br>좋은 질문 감사합니다. <br>포스코퓨처엠은 단기 주가 흐름만 보면 불안할 수 있지만,<br>구조적으로 성장 방향이 꺾인 것은 아닙니다.<br>다만, 단기 업황 둔화와 투자심리 위축이 겹치며 시장 전반의 리스크 회피 흐름 속에<br>소재주가 일시적으로 과도하게 조정받고 있는 상황입니다.'
+      answerAutor: '홍길동'
     }
   }
 }
@@ -43,11 +38,5 @@ export default {
 }
 .inputArea textarea{
   @apply w-full h-[200px] p-2.5 text-[18px] text-[#141414] placeholder:text-[18px] placeholder:text-[#9e9e9e] outline-none resize-none rounded-[5px]
-}
-.viewContent{
-  @apply w-full min-h-[185px]
-}
-.viewContent span{
-  @apply text-[18px] text-[#141414] leading-[150%]
 }
 </style>
