@@ -107,6 +107,15 @@
 .suggestion section .itemSearch button {
   @apply absolute top-2.5 left-[373px] z-10;
 }
+.suggestion section .schInput {
+  @apply relative w-[408px];
+}
+.suggestion section .schInput input {
+  @apply pr-[46px] w-[408px] h-[50px] py-0;
+}
+.suggestion section .schInput button {
+  @apply absolute h-[50px] top-0 right-[30px] z-10 w-fit;
+}
 .suggestion section .cho_pp {
   @apply flex flex-col w-full gap-3;
 }

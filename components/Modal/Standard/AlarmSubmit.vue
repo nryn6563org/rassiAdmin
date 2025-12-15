@@ -3,27 +3,13 @@
     <div class="suggestion">
       <section>
         <strong>종목 선택</strong>
-        <div class="itemSearch">
-          <label for="itemSearchInput">
-            <input type="text" placeholder="종목명을 검색해 주세요." id="itemSearchInput" class="custom-text-input" v-model="searchQuery" @keyup.enter="searchItem" />
-            <button type="button" @click="searchItem">
-              <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                <rect width="26" height="26" transform="matrix(-1 0 0 1 26 0)" fill="url(#pattern0_779_12320)" />
-                <defs>
-                  <pattern id="pattern0_779_12320" patternContentUnits="objectBoundingBox" width="1" height="1">
-                    <use xlink:href="#image0_779_12320" transform="scale(0.03125)" />
-                  </pattern>
-                  <image
-                    id="image0_779_12320"
-                    width="32"
-                    height="32"
-                    preserveAspectRatio="none"
-                    xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAAsTAAALEwEAmpwYAAABy0lEQVR4nO1WS0oDQRAdlLjxs1U8gnoH9QL+MOoJRqz3eqKGrHsn4jH8nscPGn+QA7iRZKEbIxUrMGYRnR41CHnQhGH61Xupqq7pKOrjv8J7PyQiawBOAVQBNGxVSZ7oO93zK+IkV0g+kmx2WwAeACz/mLD3fgDAQUrknGTinJsql8vDukRkGkCJ5EVq375ycxuAiQN4IbnZLai+E5Et29sy8RNpb2pA59xsBtNzKRNLQeLe+6FUzTez8kmKce/jOC5kNiAia+2ah9SyWCwOArjUGM651cwGSJ5Z+l0UCADbFuM4xMCtuZ8KNaCnwwxUQwzUlSwiI6EGKpXKqJWxnpkMoJHXgHNuzDLwnJlMOwF5SpAkyUxwCQCcGrkUagDArpXgMIS8YeSL0GNI8ir4GMZxXCBZsz7YysrnBzSDd0GDSCEii+1RrOM1+iacc/MAXkm+AViIQiEiEySfUh8j0dR+kXaauJZvL5c4gBsL1DJhRi51wumQ0SOqy7p9p11z/ecqHvw5lpS4/uqzlaP2jQvJXe60o0O8ozHX9fplN5+GTcxrAEfa7cENp0iSZLydRrvzTUZ/haQvzh6Id0ysTw33pwCAnon3EfUA70nzm/MsCZH5AAAAAElFTkSuQmCC"
-                  />
-                </defs>
-              </svg>
-            </button>
-          </label>
+        <div class="relative z-50 itemSearch">
+          <SearchInput
+            v-model="searchQuery"
+            :items="allStockNames"
+            :searchLabel="'종목명을 검색해 주세요.'"
+            @input="handleSearchInput"
+          />
         </div>
 
         <div class="txt">
@@ -33,10 +19,26 @@
 
             <div class="itemPrice" v-else>
               <span class="prc">{{ Number(selectedItem.price).toLocaleString() }}</span>
-              <span class="per" :class="{ dn: selectedItem.rate < 0 }">({{ selectedItem.rate }}%)</span>
+              <span class="per" :class="selectedItem.rate > 0 ? 'up' : 'dn'">({{ selectedItem.rate }}%)</span>
               <span class="date"> {{ currentTime }} </span>
-              <button class="reset" @click="selectedItem = null">
-                <span>초기화</span>
+              <button class="reset">
+                <svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                  <rect width="21" height="21" fill="url(#pattern0_1474_14620)" />
+                  <defs>
+                    <pattern id="pattern0_1474_14620" patternContentUnits="objectBoundingBox" width="1" height="1">
+                      <use xlink:href="#image0_1474_14620" transform="scale(0.02)" />
+                    </pattern>
+                    <image
+                      id="image0_1474_14620"
+                      width="50"
+                      height="50"
+                      preserveAspectRatio="none"
+                      xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAACXBIWXMAAAsTAAALEwEAmpwYAAADlElEQVR4nO2ZS2sUQRDHO769iUF8nlUEERUlUcHvIKwiy1TtVHXXhIQcPPm4LAjGqxqNX0ARET0oKHoQUVDPPk5KIBrB981HfFMzPXEUMbvuzOrg/mBOO9vV/+nqR/3bmA4dOnRokq6acxuAZB+ynAZ295HcMyD3Hkg+ILnXSHIPyJ0FdnvR2p56vT7NtANkuY3sbv7uHSJagiRDwPIEWb429ZA8BpKDVWuXFS3kqz6/+o2Z5wO5o8gykenYGJIMQxhBGEZrmHkhIs4RkZlBMNAdUN9asNFOZDmGJA8zoiaQZETfaasQCO12ZPdSfwNynzWVNFU0vZppPyDpBZYTSO5jEsu9DFh2mKKF6JeNv+b3L3kVRVa2GiewdjmQu5QZ2ZGt9foMU4QQTREgd96Pwnu0Is2OwJTxwoiB5I0Xc6FS2TU3VyH6dZDlYhLAPfNpVAho7fo4hheTy8ikQoDdEd/wi1pNVpuCCaxdPimG5VjLDWaXyng/4GhjLj1tdGTYvY1jh3Z7a41l13wrA7n1stH4ZF2SEfJcl/s/b6jxze1GrgoyIMtln9bDpmghQHLdFARR3wpk+RSnNkRLTZkBkpN+VIZMmak5t8nv/OOVSmW6KTFdSDKaTPz2rZyFAOyO+zm5x5QZJFv1J4szpszUarLO7yl3TJkJw3BBekxqqjIEklvmH2JwcHB2elRq+E9p1VepVGaZfwhkudHU5gskr1RIYaVnu0CSe7EQ6ltrygyQOxvno412mjIDiTeVT1HzN0Fre/xS9yDvuryt1Ov1acDuUTJPpNeUGSA56HfSE6bMVK1dljiA7qOaAUXuDY0WcOaPg5CM+N30Uq69b7eQIBjoTq1RNc9Mm0GSwVyEKOrF+rr8jVo0ufVyqrgkvT8Y5K0KyaaYmmZFzpcUdfLTYxKyHMpNSGyZklzIWKaFjQxytFl9LD83z2uNnpsQRQ3lSTHqAJJ1Jl+6AnL9mXQ6p0d3/SFXIYo3syevFYDcFfWdWm03DKNVyHLNt/sFSA5nzevchaSoF5sOf2KeyUm1bJo8znQFoWyJ7xSTy6I4bWss235+sTAhinqx8TWb3pV8v6AZjd0OslWtsXX51uJM71aqIovjqzeWMFk83HjWII8nNeK8X8UqVMgPl6HsDqRns6YekjEg2Y/YvyjXyrD1g2a0UX0ntWzU7fBL6ASwvAOSp8juLrCcApLdOmItBezQocP/yTepSM1wODprZwAAAABJRU5ErkJggg=="
+                    />
+                  </defs>
+                </svg>
+
+                <span>실시간 현재가 조회</span>
               </button>
             </div>
           </div>
@@ -59,12 +61,12 @@
           <div class="cho_radio">
             <span>입력 기준 :</span>
             <label for="rdoTargetPrice01" class="custom-radio-label">
-              <input type="radio" name="targetStandard" id="rdoTargetPrice01" class="custom-radio-input" value="price" v-model="targetStandard" :disabled="!isTargetPriceMode" />
+              <input type="radio" name="targetGroup" id="rdoTargetPrice01" class="custom-radio-input" value="price" v-model="targetStandard" :disabled="!isTargetPriceMode" />
               <span class="custom-radio-txt">금액</span>
             </label>
 
             <label for="rdoTargetPrice02" class="custom-radio-label">
-              <input type="radio" name="targetStandard" id="rdoTargetPrice02" class="custom-radio-input" value="percent" v-model="targetStandard" :disabled="!isTargetPriceMode" />
+              <input type="radio" name="targetGroup" id="rdoTargetPrice02" class="custom-radio-input" value="percent" v-model="targetStandard" :disabled="!isTargetPriceMode" />
               <span class="custom-radio-txt">수익률</span>
             </label>
           </div>
@@ -73,10 +75,8 @@
             <div>
               <input type="text" placeholder="목표가 입력" class="custom-text-input" style="width: 233px" v-model="targetPrice" :disabled="!isTargetPriceMode || targetStandard === 'percent'" />
               <label>원</label>
-
               <input type="number" step="0.01" placeholder="00.00" class="custom-text-input" style="width: 90px" v-model="targetRate" :disabled="!isTargetPriceMode || targetStandard === 'price'" />
               <label>%</label>
-
               <p class="caution">*현재가보다 낮거나 동일하게 설정할 수 없습니다.</p>
             </div>
           </div>
@@ -94,12 +94,12 @@
           <div class="cho_radio">
             <span>입력 기준 :</span>
             <label for="rdoStopLossPrice01" class="custom-radio-label">
-              <input type="radio" name="stopLossStandard" id="rdoStopLossPrice01" class="custom-radio-input" value="price" v-model="stopLossStandard" :disabled="!isStopLossMode" />
+              <input type="radio" name="stopGroup" id="rdoStopLossPrice01" class="custom-radio-input" value="price" v-model="stopLossStandard" :disabled="!isStopLossMode" />
               <span class="custom-radio-txt">금액</span>
             </label>
 
             <label for="rdoStopLossPrice02" class="custom-radio-label">
-              <input type="radio" name="stopLossStandard" id="rdoStopLossPrice02" class="custom-radio-input" value="percent" v-model="stopLossStandard" :disabled="!isStopLossMode" />
+              <input type="radio" name="stopGroup" id="rdoStopLossPrice02" class="custom-radio-input" value="percent" v-model="stopLossStandard" :disabled="!isStopLossMode" />
               <span class="custom-radio-txt">수익률</span>
             </label>
           </div>
@@ -108,10 +108,8 @@
             <div>
               <input type="text" placeholder="손절가 입력" class="custom-text-input" style="width: 233px" v-model="stopLossPrice" :disabled="!isStopLossMode || stopLossStandard === 'percent'" />
               <label>원</label>
-
               <input type="number" step="0.01" placeholder="00.00" class="custom-text-input" style="width: 90px" v-model="stopLossRate" :disabled="!isStopLossMode || stopLossStandard === 'price'" />
               <label>%</label>
-
               <p class="caution">*현재가보다 높거나 동일하게 설정할 수 없습니다.</p>
             </div>
           </div>
@@ -136,7 +134,7 @@
             </div>
             <div class="comment">
               <input type="text" class="custom-text-input" placeholder="매수 알림과 제시될 한 줄 코멘트를 작성해 주세요." style="width: 708px" v-model="buyCommentText" :disabled="!useBuyComment" />
-              <p class="caution">*최소 5자, 최대 50자 범위로 입력해 주세요.</p>
+              <p class="caution" v-if="useBuyComment">*최소 5자, 최대 50자 범위로 입력해 주세요.</p>
             </div>
           </div>
 
@@ -150,8 +148,9 @@
             </div>
             <div class="comment">
               <input type="text" class="custom-text-input" placeholder="목표가 매도 알림과 제시될 한 줄 코멘트를 작성해 주세요." style="width: 708px" v-model="targetCommentText" :disabled="!useTargetComment || !isTargetPriceMode" />
+
               <p class="caution" v-if="!isTargetPriceMode">*목표가 설정 체크박스 선택 및 금액 입력이 선행되어야 합니다.</p>
-              <p class="caution" v-else>*최소 5자, 최대 50자 범위로 입력해 주세요.</p>
+              <p class="caution" v-else-if="useTargetComment">*최소 5자, 최대 50자 범위로 입력해 주세요.</p>
             </div>
           </div>
 
@@ -165,8 +164,9 @@
             </div>
             <div class="comment">
               <input type="text" class="custom-text-input" placeholder="손절가 매도 알림과 제시될 한 줄 코멘트를 작성해 주세요." style="width: 708px" v-model="stopCommentText" :disabled="!useStopComment || !isStopLossMode" />
+
               <p class="caution" v-if="!isStopLossMode">*손절가 설정 체크박스 선택 및 금액 입력이 선행되어야 합니다.</p>
-              <p class="caution" v-else>*최소 5자, 최대 50자 범위로 입력해 주세요.</p>
+              <p class="caution" v-else-if="useStopComment">*최소 5자, 최대 50자 범위로 입력해 주세요.</p>
             </div>
           </div>
         </div>
@@ -188,97 +188,94 @@
 </template>
 
 <script>
+import SearchInput from '@/components/InputGroup/SearchInputSvg.vue'
+
 export default {
+  components: {
+    SearchInput
+  },
   data() {
     return {
       // 1. 종목 검색 관련
-      searchQuery: '', // [추가] 검색어 바인딩
-      selectedItem: null, // 선택된 종목 (null이면 선택 안됨)
-      currentTime: new Date().toLocaleString(), // [추가] 현재 시간 표시용
+      searchQuery: '',
+      selectedItem: null,
+      currentTime: new Date().toLocaleString(),
 
-      // 2. 목표가 설정 관련
-      isTargetPriceMode: false,
-      targetStandard: 'price',
-      targetPrice: '', // [추가] 목표 금액 값
-      targetRate: '', // [추가] 목표 수익률 값
+      // 더미 데이터
+      stockDatabase: [
+        { name: '삼성전자', code: '005930', price: 72000, rate: 1.5 },
+        { name: 'LG전자', code: '066570', price: 105000, rate: -0.8 },
+        { name: 'NAVER', code: '035420', price: 215000, rate: -0.5 },
+        { name: '카카오', code: '035720', price: 54000, rate: 0.2 },
+        { name: 'SK하이닉스', code: '000660', price: 130000, rate: 2.1 }
+      ],
 
-      // 3. 손절가 설정 관련
-      isStopLossMode: false,
-      stopLossStandard: 'price',
-      stopLossPrice: '', // [추가] 손절 금액 값
-      stopLossRate: '', // [추가] 손절 수익률 값
+      // 2. 목표가 설정 변수들
+      isTargetPriceMode: false, // 목표가 체크박스
+      targetStandard: 'price', // 라디오버튼
+      targetPrice: '',
+      targetRate: '',
 
-      // 4. 코멘트 관련 체크 여부
-      useBuyComment: true,
-      useTargetComment: true,
-      useStopComment: false,
+      // 3. 손절가 설정 변수들 (목표가와 완전히 분리됨)
+      isStopLossMode: false, // 손절가 체크박스
+      stopLossStandard: 'price', // 라디오버튼
+      stopLossPrice: '',
+      stopLossRate: '',
 
-      // 5. 코멘트 내용 관련 [추가]
+      // 4. 코멘트 설정 변수들 (각각 분리됨)
+      useBuyComment: true, // 매수 코멘트 체크박스
+      useTargetComment: true, // 목표가 코멘트 체크박스
+      useStopComment: false, // 손절가 코멘트 체크박스
+
       buyCommentText: '',
       targetCommentText: '',
       stopCommentText: ''
     }
   },
+  computed: {
+    allStockNames() {
+      return this.stockDatabase.map(stock => stock.name)
+    }
+  },
   watch: {
-    // 목표가 모드가 해제되면 관련 코멘트 체크도 해제하고 싶을 때 (선택사항)
     isTargetPriceMode(val) {
       if (!val) {
         this.useTargetComment = false
+        // 값 초기화 (선택사항)
         this.targetPrice = ''
         this.targetRate = ''
+        this.targetCommentText = ''
       }
     },
+    // 손절가 설정 꺼짐 -> 손절가 코멘트도 꺼짐
     isStopLossMode(val) {
       if (!val) {
         this.useStopComment = false
+        // 값 초기화 (선택사항)
         this.stopLossPrice = ''
         this.stopLossRate = ''
+        this.stopCommentText = ''
       }
     }
   },
   methods: {
-    // 종목 검색 로직
-    searchItem() {
-      if (!this.searchQuery) {
-        alert('종목명을 입력해 주세요.')
-        return
-      }
-      // TODO: 실제 API 호출 로직으로 대체
-      console.log('검색어:', this.searchQuery)
-
-      // 테스트용 더미 데이터 세팅
-      this.selectedItem = {
-        code: '005930',
-        name: '삼성전자',
-        price: 72000,
-        rate: 1.5
+    handleSearchInput(val) {
+      const found = this.stockDatabase.find(stock => stock.name === val)
+      if (found) {
+        this.selectedItem = found
+        this.currentTime = new Date().toLocaleString()
       }
     },
-
     handleClose() {
       this.$nuxt.$emit('close-global-modal')
     },
-
     handleConfirm() {
-      // 1. 유효성 검사
       if (!this.selectedItem) {
         alert('종목을 먼저 선택해 주세요.')
         return
       }
 
-      // 목표가 설정 시 값 체크
-      if (this.isTargetPriceMode) {
-        if (this.targetStandard === 'price' && !this.targetPrice) {
-          alert('목표 금액을 입력해 주세요.')
-          return
-        }
-        if (this.targetStandard === 'percent' && !this.targetRate) {
-          alert('목표 수익률을 입력해 주세요.')
-          return
-        }
-      }
-
-      // 2. 데이터 페이로드 구성
+      // 데이터 전송 준비
       const payload = {
         item: this.selectedItem,
         target: {
@@ -299,10 +296,16 @@ export default {
       }
 
       console.log('전송할 데이터:', payload)
-      // this.$axios.post('/api/recommend', payload)...
+      // this.$axios.post(...)
 
       this.handleClose()
     }
   }
 }
 </script>
+
+<style scoped>
+.itemSearch::v-deep .schInput input {
+  @apply w-full border-[#BFBFBF];
+}
+</style>
