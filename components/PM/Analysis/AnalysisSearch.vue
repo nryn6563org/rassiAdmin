@@ -26,7 +26,7 @@
             <span class="gubun"></span>
 
             <DropDown ref="statusDrop" :items="statusLabels" :initial-label="selectedStatusLabel" :placeholder="'상태 선택'" @change="handleStatusChange" @opened="closeOtherDropdowns('statusDrop')" />
-            <SearchInput :searchLabel="'검색어를 입력해 주세요.'" />
+            <SearchInput :searchLabel="'검색어를 입력해 주세요.'" :items="fruitList" v-model="selectedFruit" />
           </td>
         </tr>
       </tbody>
@@ -64,7 +64,18 @@ export default {
 
       // 3. 검색 조건(2) 관련 데이터 (두 번째 빈 DropDown용)
       statusLabels: ['제목', '작성자', '종목명', '종목코드'],
-      selectedStatusLabel: '제목'
+      selectedStatusLabel: '제목',
+      selectedFruit: '',
+      fruitList: [
+        'Apple',
+        'aanana',
+        'aherry',
+        'aate',
+        'alderberry',
+        'aig',
+        'arape',
+        'aoneydew'
+      ]
     }
   },
   methods: {

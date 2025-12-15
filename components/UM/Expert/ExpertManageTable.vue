@@ -11,7 +11,7 @@
             <span>*씽크풀계정</span>
           </th>
           <td>
-            <SearchInput :searchLabel="'씽크풀 계정을 입력해 주세요.'" />
+            <SearchInput :searchLabel="'씽크풀 계정을 입력해 주세요.'" :items="fruitList" v-model="selectedFruit" />
           </td>
         </tr>
         <!-- 계정 -->
@@ -178,7 +178,18 @@ export default {
       AffiliationLabels: ['씽크풀', '씽크풀투자자문'],
       selectedAffiliationLabel: '씽크풀',
       AuthorityLabels: ['관리자', '전문가', '유사투자', '투자자문'],
-      selectedAuthorityLabel: '관리자'
+      selectedAuthorityLabel: '관리자',
+      selectedFruit: '',
+      fruitList: [
+        'Apple',
+        'aanana',
+        'aherry',
+        'aate',
+        'alderberry',
+        'aig',
+        'arape',
+        'aoneydew'
+      ]
     }
   },
   methods: {

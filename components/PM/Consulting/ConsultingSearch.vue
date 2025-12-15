@@ -27,7 +27,7 @@
             <span class="gubun"></span>
 
             <DropDown ref="choiceDrop" :items="choiceLabels" :initial-label="selectedChoiceLabel" :placeholder="'상태 선택'" @change="handleChoiceChange" @opened="closeOtherDropdowns('choiceDrop')" />
-            <SearchInput :searchLabel="'검색어를 입력해 주세요.'" />
+            <SearchInput :searchLabel="'검색어를 입력해 주세요.'" :items="fruitList" v-model="selectedFruit" />
           </td>
         </tr>
       </tbody>
@@ -69,7 +69,18 @@ export default {
 
       // 3. 검색 조건(2) 관련 데이터 (두 번째 빈 DropDown용)
       choiceLabels: ['제목', '문의자명', '상담자명'],
-      selectedChoiceLabel: '제목'
+      selectedChoiceLabel: '제목',
+      selectedFruit: '',
+      fruitList: [
+        'Apple',
+        'aanana',
+        'aherry',
+        'aate',
+        'alderberry',
+        'aig',
+        'arape',
+        'aoneydew'
+      ]
     }
   },
   methods: {
