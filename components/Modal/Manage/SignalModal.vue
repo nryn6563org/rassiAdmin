@@ -3,6 +3,7 @@
     <div class="suggestion">
       <section>
         <strong>종목추천 발생 내역 (최근 10개)</strong>
+        <span class="itemName"><em>씽크풀</em>&nbsp;(041710)</span>
 
         <div class="signalList">
           <div class="signalbox" v-for="(signal, signalIndex) in signals" :key="signalIndex">
@@ -123,6 +124,15 @@ export default {
 <style scoped>
 .suggestion {
   @apply mt-0;
+}
+.suggestion strong{
+  @apply h-[30px] text-[24px] text-[#000] font-normal block w-full
+}
+.suggestion span.itemName{
+  @apply block w-full h-6 leading-6 text-[20px] text-[#141414]
+}
+.suggestion span.itemName em{
+  @apply text-[#3c68cd]
 }
 .signalList {
   @apply flex flex-col w-full gap-4 mt-2;

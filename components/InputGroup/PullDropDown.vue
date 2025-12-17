@@ -11,7 +11,7 @@
 
     <div v-if="isOpen" class="dropdown-menu" role="menu">
       <draggable v-model="localItems" tag="ul" :animation="200" @end="onDragEnd">
-        <li v-for="label in localItems" :key="label" class="menu-item" :class="{ selected: label === selectedLabel }" @click="selectItem(label)" role="menuitem">
+        <li v-for="(label, index) in localItems" :key="index" class="menu-item" :class="{ selected: label === selectedLabel }" @click="selectItem(label)" role="menuitem">
           {{ label }}
         </li>
       </draggable>
