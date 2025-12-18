@@ -142,7 +142,7 @@
               </label>
             </div>
             <div class="comment">
-              <input type="text" class="custom-text-input" placeholder="목표가 매도 알림과 제시될 한 줄 코멘트를 작성해 주세요." style="width: 708px" :disabled="!useTargetComment" />
+              <input type="text" class="custom-text-input" placeholder="목표가 매도 알림과 제시될 한 줄 코멘트를 작성해 주세요." style="width: 708px" v-model="targetComment" :disabled="!useTargetComment" />
               <p class="caution">*목표가 / 손절가 설정 체크박스 선택 후 금액을 먼저 입력해 주세요.</p>
               <p class="caution">*최소 5자, 최대 50자 범위로 입력해 주세요.</p>
             </div>
@@ -157,7 +157,7 @@
               </label>
             </div>
             <div class="comment">
-              <input type="text" class="custom-text-input" placeholder="손절가 매도 알림과 제시될 한 줄 코멘트를 작성해 주세요." style="width: 708px" :disabled="!useStopComment" />
+              <input type="text" class="custom-text-input" placeholder="손절가 매도 알림과 제시될 한 줄 코멘트를 작성해 주세요." style="width: 708px" v-model="stopComment" :disabled="!useStopComment" />
             </div>
           </div>
         </div>
@@ -187,13 +187,21 @@ export default {
       buyStandard: 'price', // 금액 vs 수익률 (매수)
 
       // 3. 목표가/손절가 설정 관련
-      isTargetStopMode: false, // 자동 매도 알림 설정 체크 여부
-      targetStandard: 'price', // 금액 vs 수익률 (매도)
+      isTargetPriceMode: false, // 목표가 설정 체크 여부
+      targetStandard: 'price', // 금액 vs 수익률 (목표가)
+      targetPrice: '', // 목표가 (금액)
+      targetRate: '', // 목표가 (수익률)
+      isStopLossMode: false, // 손절가 설정 체크 여부
+      stopLossStandard: 'price', // 금액 vs 수익률 (손절가)
+      stopLossPrice: '', // 손절가 (금액)
+      stopLossRate: '', // 손절가 (수익률)
 
       // 4. 코멘트 관련
       useBuyComment: true,
       useTargetComment: true,
-      useStopComment: false
+      targetComment: '', // 목표가 매도 코멘트
+      useStopComment: false,
+      stopComment: '' // 손절가 매도 코멘트
     }
   },
   methods: {

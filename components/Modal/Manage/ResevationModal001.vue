@@ -78,10 +78,10 @@
 
           <div class="cho_input">
             <div>
-              <input type="text" placeholder="목표가 입력" class="custom-text-input" style="width: 233px" :disabled="!isBuyRsvMode || buyStandard === 'percent'" />
+              <input type="text" placeholder="목표가 입력" class="custom-text-input" style="width: 233px" v-model="buyPrice" :disabled="!isBuyRsvMode || buyStandard === 'percent'" />
               <label>원</label>
 
-              <input type="number" step="0.01" value="00.00" class="custom-text-input" style="width: 90px" :disabled="!isBuyRsvMode || buyStandard === 'price'" />
+              <input type="number" step="0.01" placeholder="00.00" class="custom-text-input" style="width: 90px" v-model="buyRate" :disabled="!isBuyRsvMode || buyStandard === 'price'" />
               <label>%</label>
               <p class="caution">*상승 구간에 구매하기 선택 시 현재가보다 낮거나 동일하게 설정할 수 없습니다.</p>
             </div>
@@ -198,7 +198,7 @@
               </label>
             </div>
             <div class="comment">
-              <input type="text" class="custom-text-input" placeholder="매수 알림과 제시될 한 줄 코멘트를 작성해 주세요." style="width: 708px" :disabled="!useBuyComment" />
+              <input type="text" class="custom-text-input" placeholder="매수 알림과 제시될 한 줄 코멘트를 작성해 주세요." style="width: 708px" v-model="buyComment" :disabled="!useBuyComment" />
               <p class="caution">*최소 5자, 최대 50자 범위로 입력해 주세요.</p>
             </div>
           </div>
@@ -212,7 +212,7 @@
               </label>
             </div>
             <div class="comment">
-              <input type="text" class="custom-text-input" placeholder="목표가 매도 알림과 제시될 한 줄 코멘트를 작성해 주세요." style="width: 708px" :disabled="!useTargetComment" />
+              <input type="text" class="custom-text-input" placeholder="목표가 매도 알림과 제시될 한 줄 코멘트를 작성해 주세요." style="width: 708px" v-model="targetComment" :disabled="!useTargetComment" />
               <p class="caution">*목표가 / 손절가 설정 체크박스 선택 후 금액을 먼저 입력해 주세요.</p>
               <p class="caution">*최소 5자, 최대 50자 범위로 입력해 주세요.</p>
             </div>
@@ -227,7 +227,7 @@
               </label>
             </div>
             <div class="comment">
-              <input type="text" class="custom-text-input" placeholder="손절가 매도 알림과 제시될 한 줄 코멘트를 작성해 주세요." style="width: 708px" :disabled="!useStopComment" />
+              <input type="text" class="custom-text-input" placeholder="손절가 매도 알림과 제시될 한 줄 코멘트를 작성해 주세요." style="width: 708px" v-model="stopComment" :disabled="!useStopComment" />
             </div>
           </div>
         </div>
@@ -260,19 +260,30 @@ export default {
       // 1. 추천 매수가 예약 설정 관련
       isBuyRsvMode: false, // 상승 구간 구매하기 체크 여부
       buyStandard: 'price', // 금액 vs 수익률 (매수)
+      buyPrice: '', // 매수 목표가 (금액)
+      buyRate: '', // 매수 목표가 (수익률)
 
       // 2. 날짜 관련
       startDate: '',
       endDate: '',
 
       // 3. 목표가/손절가 설정 관련
-      isTargetStopMode: false, // 자동 매도 알림 설정 체크 여부
-      targetStandard: 'price', // 금액 vs 수익률 (매도)
+      isTargetPriceMode: false, // 목표가 설정 체크 여부
+      targetStandard: 'price', // 금액 vs 수익률 (목표가)
+      targetPrice: '', // 목표가 (금액)
+      targetRate: '', // 목표가 (수익률)
+      isStopLossMode: false, // 손절가 설정 체크 여부
+      stopLossStandard: 'price', // 금액 vs 수익률 (손절가)
+      stopLossPrice: '', // 손절가 (금액)
+      stopLossRate: '', // 손절가 (수익률)
 
       // 4. 코멘트 관련
       useBuyComment: true,
+      buyComment: '', // 매수 코멘트
       useTargetComment: true,
-      useStopComment: false
+      targetComment: '', // 목표가 매도 코멘트
+      useStopComment: false,
+      stopComment: '' // 손절가 매도 코멘트
     }
   },
   computed: {

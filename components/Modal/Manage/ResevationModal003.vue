@@ -64,8 +64,7 @@
               </label>
             </div>
             <div class="comment">
-              <input type="text" class="custom-text-input" placeholder="목표가 매도 알림과 제시될 한 줄 코멘트를 작성해 주세요." style="width: 708px" :disabled="!useBuyComment" />
-              <p class="caution">*목표가 / 손절가 설정 체크박스 선택 후 금액을 먼저 입력해 주세요.</p>
+              <input type="text" class="custom-text-input" placeholder="매수 알림과 제시될 한 줄 코멘트를 작성해 주세요." style="width: 708px" v-model="buyComment" :disabled="!useBuyComment" />
               <p class="caution">*최소 5자, 최대 50자 범위로 입력해 주세요.</p>
             </div>
           </div>
@@ -79,7 +78,7 @@
               </label>
             </div>
             <div class="comment">
-              <input type="text" class="custom-text-input" placeholder="수익실현 매도 알림과 제시될 한 줄 코멘트를 작성해 주세요." style="width: 708px" :disabled="!useSellComment" />
+              <input type="text" class="custom-text-input" placeholder="수익실현 매도 알림과 제시될 한 줄 코멘트를 작성해 주세요." style="width: 708px" v-model="sellComment" :disabled="!useSellComment" />
             </div>
           </div>
 
@@ -92,7 +91,7 @@
               </label>
             </div>
             <div class="comment">
-              <input type="text" class="custom-text-input" placeholder="손절가 매도 알림과 제시될 한 줄 코멘트를 작성해 주세요." style="width: 708px" :disabled="!useStopComment" />
+              <input type="text" class="custom-text-input" placeholder="손절가 매도 알림과 제시될 한 줄 코멘트를 작성해 주세요." style="width: 708px" v-model="stopComment" :disabled="!useStopComment" />
             </div>
           </div>
         </div>
@@ -127,8 +126,11 @@ export default {
 
       // 4. 코멘트 관련
       useBuyComment: true,
+      buyComment: '', // 매수 코멘트
       useSellComment: false,
-      useStopComment: false
+      sellComment: '', // 수익실현 매도 코멘트
+      useStopComment: false,
+      stopComment: '' // 손절가 매도 코멘트
     }
   },
   methods: {
