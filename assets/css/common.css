@@ -39,20 +39,20 @@
 
 
 /* scroll */
-*:not(#container)::-webkit-scrollbar {
+*::-webkit-scrollbar {
   @apply w-[10px]/* 세로스크롤넓이 */  h-[7px] /* 가로스크롤 높이 */  transition-all duration-75
 }
 /* 스크롤바 트랙 (배경) */
-*:not(#container)::-webkit-scrollbar-track {
+*::-webkit-scrollbar-track {
   @apply bg-[#F2F2F2] rounded-[5px];
 }
 
 /* 스크롤바 핸들 (움직이는 부분) */
-*:not(#container)::-webkit-scrollbar-thumb {  
+*::-webkit-scrollbar-thumb {  
   @apply bg-[#0263E8] rounded-[5px] cursor-grab opacity-60
 }
 
 /* 핸들에 마우스를 올렸을 때 */
-*:not(#container)::-webkit-scrollbar-thumb:hover {
+*::-webkit-scrollbar-thumb:hover {
   @apply bg-[#0263E8] w-[15px] h-[10px]
 }

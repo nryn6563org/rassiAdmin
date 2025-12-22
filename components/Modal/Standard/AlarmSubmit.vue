@@ -67,7 +67,7 @@
 
             <label for="rdoTargetPrice02" class="custom-radio-label">
               <input type="radio" name="targetGroup" id="rdoTargetPrice02" class="custom-radio-input" value="percent" v-model="targetStandard" :disabled="!isTargetPriceMode" />
-              <span class="custom-radio-txt">수익률</span>
+              <span class="custom-radio-txt">변동률</span>
             </label>
           </div>
 
@@ -100,7 +100,7 @@
 
             <label for="rdoStopLossPrice02" class="custom-radio-label">
               <input type="radio" name="stopGroup" id="rdoStopLossPrice02" class="custom-radio-input" value="percent" v-model="stopLossStandard" :disabled="!isStopLossMode" />
-              <span class="custom-radio-txt">수익률</span>
+              <span class="custom-radio-txt">변동률</span>
             </label>
           </div>
 

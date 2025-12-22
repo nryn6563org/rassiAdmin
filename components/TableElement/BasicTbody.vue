@@ -34,7 +34,7 @@
           </span>
         </div>
       </td>
-      <!-- 현재가(등락률) -->
+      <!-- 현재가 (등락률) -->
       <td>
         <div class="myInfo">
           <div class="signal" v-html="tbodyList.Signal"></div>
