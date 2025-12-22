@@ -54,5 +54,9 @@ export default {
     // 환경에 따라 베이스 경로 설정: 개발 환경은 루트, 프로덕션은 /RassiAdmin/
     base: '/rassiAdmin/'
   },
-  target: 'static'
+  target: 'static',
+  server: {
+    port: 8000,
+    host: '0.0.0.0'
+  }
 }
