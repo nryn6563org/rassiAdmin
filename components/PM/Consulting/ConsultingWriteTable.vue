@@ -8,10 +8,19 @@
       <tbody>
         <tr>
           <th>
-            <span>종목명</span>
+            <span>공개여부</span>
           </th>
           <td>
-            <span>포스코퓨처엠</span>
+            <div class="public_check">
+              <label for="pbCheck001" class="custom-radio-label">
+                <input type="radio" name="public" id="pbCheck001" class="custom-radio-input" checked>
+                <span class="custom-radio-txt">전체공개</span>
+              </label>
+              <label for="pbCheck002" class="custom-radio-label">
+                <input type="radio" name="public" id="pbCheck002" class="custom-radio-input">
+                <span class="custom-radio-txt">비밀글</span>
+              </label>
+            </div>
           </td>
         </tr>
         <tr>
@@ -34,3 +43,8 @@
     </table>
   </div>
 </template>
+<style scoped>
+  .public_check{
+    @apply flex gap-2.5
+  }
+</style>

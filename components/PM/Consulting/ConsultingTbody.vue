@@ -15,23 +15,22 @@
       </td>
       <!-- No -->
       <td>
-        <div class="itemName">
-          <span>{{ tbodyList.ItemName }}&nbsp;({{ tbodyList.ItemNumber }})</span>
+        <div class="obj">
+          <NuxtLink to="/" :title="tbodyList.obj">{{ tbodyList.Obj }}</NuxtLink>
         </div>
       </td>
-      <!-- 종목명 -->
+      <!-- 제목 -->
       <td>
         <div class="author">
           <span>{{ tbodyList.Author }}</span>
         </div>
       </td>
       <!-- 작성자 -->
-      <td>
-        <div class="obj">
-          <NuxtLink to="/" :title="tbodyList.obj">{{ tbodyList.Obj }}</NuxtLink>
+       <td>
+        <div class="public">
+          <span>{{ tbodyList.Public }}</span>
         </div>
-      </td>
-      <!-- 제목 -->
+       </td>
       <td>
         <div class="registration">
           <span>{{ tbodyList.Registration }}</span>
@@ -143,6 +142,9 @@ export default {
   hover:underline;
 }
 .author {
+  @apply flex w-full justify-center;
+}
+.public {
   @apply flex w-full justify-center;
 }
 .registration {

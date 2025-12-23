@@ -67,7 +67,7 @@ export default {
               link: '/PM/Analysis'
             },
             {
-              title: '종목상담',
+              title: '전문가상담',
               link: '/PM/Consulting'
             }
           ],

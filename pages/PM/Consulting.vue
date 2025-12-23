@@ -19,7 +19,7 @@ export default {
   data() {
     return {
       // 페이지에서 사용할 제목 문자열
-      pageSpecificTitle: '종목상담'
+      pageSpecificTitle: '전문가상담'
     }
   },
   head() {
