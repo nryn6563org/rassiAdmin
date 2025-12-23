@@ -19,41 +19,35 @@
 </template>
 
 <script>
-// 외부 클릭을 감지하기 위한 간단한 커스텀 디렉티브 (이전과 동일)
-const clickOutside = {
-  mounted(el, binding) {
-    el.__ClickOutsideHandler__ = (event) => {
-      // 드롭다운 wrapper 자체가 아니며, wrapper의 자식 요소도 아닌 경우
-      if (!(el === event.target || el.contains(event.target))) {
-        binding.value(event) // 바인딩된 메소드 (closeDropdown) 실행
+export default {
+  directives: {
+    'click-outside': {
+      bind(el, binding, vnode) {
+        el.clickOutsideEvent = function(event) {
+          // 클릭한 대상이 엘리먼트(el) 자신도 아니고, 자식 요소도 아닐 때
+          if (!(el === event.target || el.contains(event.target))) {
+            // 바인딩된 함수(closeDropdown) 실행
+            binding.value(event)
+          }
+        }
+        document.addEventListener('click', el.clickOutsideEvent)
+      },
+      unbind(el) {
+        document.removeEventListener('click', el.clickOutsideEvent)
       }
     }
-    document.addEventListener('click', el.__ClickOutsideHandler__)
-  },
-  unmounted(el) {
-    document.removeEventListener('click', el.__ClickOutsideHandler__)
-  }
-}
-
-export default {
-  // 외부 클릭 디렉티브 등록
-  directives: {
-    clickOutside
   },
 
   props: {
-    // 드롭다운 목록: 이제 단순한 문자열 배열을 받습니다. (예: ['빨강', '파랑', '초록'])
     items: {
       type: Array,
       required: true,
       default: () => []
     },
-    // 드롭다운에 표시할 기본 텍스트
     placeholder: {
       type: String,
       default: '회원 선택'
     },
-    // 외부에서 초기 선택 Label을 받을 수 있도록 수정 (선택 사항)
     initialLabel: {
       type: String,
       default: null
@@ -62,13 +56,12 @@ export default {
 
   data() {
     return {
-      isOpen: false, // 드롭다운 메뉴 열림/닫힘 상태
-      selectedLabel: this.initialLabel // 현재 선택된 항목의 label
+      isOpen: false,
+      selectedLabel: this.initialLabel
     }
   },
 
   watch: {
-    // initialLabel이 변경될 때마다 selectedLabel을 업데이트
     initialLabel(newLabel) {
       this.selectedLabel = newLabel
     }
@@ -77,8 +70,6 @@ export default {
   methods: {
     toggleDropdown() {
       this.isOpen = !this.isOpen
-
-      // [추가] 드롭다운이 열렸을 때만 부모에게 알림 이벤트를 보냄
       if (this.isOpen) {
         this.$emit('opened')
       }
@@ -89,10 +80,8 @@ export default {
     },
 
     selectItem(label) {
-      this.selectedLabel = label // 내부 상태 업데이트
-      this.isOpen = false // 선택 후 드롭다운 닫기
-
-      // 부모 컴포넌트로 선택된 항목의 label만 전달
+      this.selectedLabel = label
+      this.isOpen = false
       this.$emit('change', label)
     }
   }

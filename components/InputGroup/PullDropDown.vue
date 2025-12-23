@@ -25,28 +25,29 @@
 </template>
 
 <script>
-import draggable from 'vuedraggable' // 라이브러리 import
-
-const clickOutside = {
-  mounted(el, binding) {
-    el.__ClickOutsideHandler__ = (event) => {
-      if (!(el === event.target || el.contains(event.target))) {
-        binding.value(event)
-      }
-    }
-    document.addEventListener('click', el.__ClickOutsideHandler__)
-  },
-  unmounted(el) {
-    document.removeEventListener('click', el.__ClickOutsideHandler__)
-  }
-}
+import draggable from 'vuedraggable'
 
 export default {
   components: {
     draggable // 컴포넌트 등록
   },
   directives: {
-    clickOutside
+    // Nuxt 2(Vue 2) 전용 디렉티브 라이프사이클 훅
+    'click-outside': {
+      bind(el, binding, vnode) {
+        el.clickOutsideEvent = function(event) {
+          // 클릭된 요소가 드롭다운 바깥일 때만 실행
+          if (!(el === event.target || el.contains(event.target))) {
+            // binding.value는 컴포넌트의 closeDropdown 메서드
+            binding.value(event)
+          }
+        }
+        document.addEventListener('click', el.clickOutsideEvent)
+      },
+      unbind(el) {
+        document.removeEventListener('click', el.clickOutsideEvent)
+      }
+    }
   },
 
   props: {
@@ -69,7 +70,6 @@ export default {
     return {
       isOpen: false,
       selectedLabel: this.initialLabel,
-      // props인 items를 직접 수정할 수 없으므로 로컬 변수 생성
       localItems: []
     }
   },
@@ -78,11 +78,10 @@ export default {
     initialLabel(newLabel) {
       this.selectedLabel = newLabel
     },
-    // 부모로부터 items가 변경되면 로컬 데이터도 동기화
+    // 초기 로드 및 부모 데이터 변경 시 localItems 동기화
     items: {
       immediate: true,
       handler(newItems) {
-        // 배열 복사 (참조 끊기)
         this.localItems = [...newItems]
       }
     }
@@ -91,8 +90,6 @@ export default {
   methods: {
     toggleDropdown() {
       this.isOpen = !this.isOpen
-
-      // [추가] 드롭다운이 열렸을 때만 부모에게 알림 이벤트를 보냄
       if (this.isOpen) {
         this.$emit('opened')
       }
@@ -108,10 +105,8 @@ export default {
       this.$emit('change', label)
     },
 
-    // 드래그가 끝났을 때 호출되는 메서드
     onDragEnd() {
-      // 변경된 순서의 배열을 부모에게 알림 (필요한 경우)
-      // 부모 컴포넌트에서 @update:items="items = $event" 와 같이 받아주면 됩니다.
+      // 변경된 순서를 부모에게 전달
       this.$emit('update-order', this.localItems)
     }
   }
