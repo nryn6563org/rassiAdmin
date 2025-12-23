@@ -27,10 +27,17 @@
       </td>
       <!-- 작성자 -->
        <td>
+        <div class="divide">
+          <span>{{ tbodyList.Divide }}</span>
+        </div>
+       </td>
+       <!-- 회원구분 -->
+       <td>
         <div class="public">
           <span>{{ tbodyList.Public }}</span>
         </div>
        </td>
+       <!-- 공개여부 -->
       <td>
         <div class="registration">
           <span>{{ tbodyList.Registration }}</span>
@@ -142,6 +149,9 @@ export default {
   hover:underline;
 }
 .author {
+  @apply flex w-full justify-center;
+}
+.divide {
   @apply flex w-full justify-center;
 }
 .public {

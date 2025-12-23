@@ -60,12 +60,12 @@ export default {
       updateBtn: 0,
 
       // 2. 검색 조건(1) 관련 데이터 (ArrayLabels 대체)
-      searchLabels: ['공개여부', '전체공개', '비밀글'],
-      selectedSearchLabel: '공개여부',
+      searchLabels: ['회원구분', '잠재고객', '유료고객'],
+      selectedSearchLabel: '회원구분',
 
       // 3. 검색 조건(2) 관련 데이터 (두 번째 빈 DropDown용)
-      statusLabels: ['처리상태전체', '문의중', '답변완료'],
-      selectedStatusLabel: '처리상태전체',
+      statusLabels: ['공개여부', '전체공개', '비밀글'],
+      selectedStatusLabel: '공개여부',
 
       // 3. 검색 조건(2) 관련 데이터 (두 번째 빈 DropDown용)
       choiceLabels: ['제목', '문의자명', '상담자명'],

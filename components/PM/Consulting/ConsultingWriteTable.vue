@@ -33,6 +33,14 @@
         </tr>
         <tr>
           <th>
+            <span>회원구분</span>
+          </th>
+          <td>
+            <span>잠재고객</span>
+          </td>
+        </tr>
+        <tr>
+          <th>
             <span>등록일시</span>
           </th>
           <td>

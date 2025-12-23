@@ -28,9 +28,9 @@ export default {
   data() {
     return {
       isAllChecked: false,
-      headerData: ['', 'No', '제목', '문의자', '공개여부', '등록일시', '상담자', '처리상태', '관리', '삭제'],
+      headerData: ['', 'No', '제목', '문의자', '회원구분', '공개여부', '등록일시', '상담자', '처리상태', '관리', '삭제'],
       // 4. 원본 컬럼 너비 정의 (고정값 관리)
-      originColWidths: [60, 90, 415, 120, 120, 160, 120, 120, 130, 130],
+      originColWidths: [60, 90, 415, 120, 120, 120, 160, 120, 120, 130, 130],
       // 실제 화면에 렌더링될 컬럼 너비들 (가변)
       currentColWidths: [],
       // 테이블 태그에 적용할 스타일 너비
@@ -44,6 +44,7 @@ export default {
           ListNumber: num,
           Obj: '2025년 특별 매매 코멘트 전격 분석 내용전격으로 파헤쳐보는 시간 2025년 특별 매매 코멘트 전격 분석 내용전격으로 파헤쳐보는 시간 2025년 특별 매매 코멘트 전격 분석 내용전격으로 파헤쳐보는 시간',
           ItemNumber: String(num).padStart(6, '0'),
+          Divide: Math.random() < 0.5 ? '유료회원' : '잠재고객',
           Public: Math.random() < 0.5 ? '비밀글' : '공개',
           Author: '홍길동',
           Customer: '씽크풀',
