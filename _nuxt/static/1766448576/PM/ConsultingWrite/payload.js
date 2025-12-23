@@ -1,0 +1,1 @@
+__NUXT_JSONP__("/PM/ConsultingWrite", {data:[{}],fetch:{},mutations:[]});

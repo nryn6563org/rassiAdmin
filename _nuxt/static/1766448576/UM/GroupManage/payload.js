@@ -1,0 +1,1 @@
+__NUXT_JSONP__("/UM/GroupManage", {data:[{}],fetch:{},mutations:[]});

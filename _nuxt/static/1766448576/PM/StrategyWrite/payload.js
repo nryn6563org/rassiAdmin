@@ -1,0 +1,1 @@
+__NUXT_JSONP__("/PM/StrategyWrite", {data:[{}],fetch:{},mutations:[]});

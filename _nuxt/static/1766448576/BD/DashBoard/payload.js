@@ -1,0 +1,1 @@
+__NUXT_JSONP__("/BD/DashBoard", {data:[{}],fetch:{},mutations:[]});

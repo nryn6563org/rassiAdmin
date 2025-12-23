@@ -1,0 +1,1 @@
+__NUXT_JSONP__("/IR/Standard", {data:[{}],fetch:{},mutations:[]});
