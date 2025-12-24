@@ -16,7 +16,7 @@
       <!-- No -->
       <td>
         <div class="itemName">
-          <span>{{ tbodyList.ItemName }}&nbsp;({{ tbodyList.ItemNumber }})</span>
+          <span class="name">{{ tbodyList.ItemName }}</span>&nbsp;<span class="number">({{ tbodyList.ItemNumber }})</span>
         </div>
       </td>
       <!-- 종목명 -->
@@ -121,6 +121,15 @@ export default {
 </script>
 
 <style scoped>
+.itemName {
+  @apply flex items-center pl-4 text-[16px] text-[#141414] tracking-[130%] font-medium;
+}
+.itemName .name {
+  @apply max-w-[calc(100%-86px)] line-clamp-1;
+}
+.itemName .number{
+  @apply text-[#5E6367]
+}
 .listNumber {
   @apply text-[16px] text-[#5E6367] tracking-[130%] w-full text-center;
 }

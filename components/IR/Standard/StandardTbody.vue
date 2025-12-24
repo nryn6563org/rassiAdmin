@@ -169,6 +169,9 @@ export default {
 .itemName .name {
   @apply max-w-[calc(100%-86px)] line-clamp-1;
 }
+.itemName .number{
+  @apply text-[#5E6367]
+}
 td > .price {
   @apply pl-4;
 }
