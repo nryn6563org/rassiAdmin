@@ -38,7 +38,7 @@
                 </dd>
               </dl>
             </div>
-            <button class="modify">
+            <button class="modify btnMng" @click="handleModalClick($event)">
               <span>수정</span>
             </button>
           </div>
@@ -55,6 +55,8 @@
 </template>
 
 <script>
+
+import ManageModal from '@/components/Modal/ManageModal.vue'
 export default {
   data() {
     return {
@@ -140,6 +142,35 @@ export default {
     handleConfirm() {
       console.log('예약 취소 로직 수행')
       this.handleClose()
+    },
+    handleModalClick(event) {
+      // 1. 클릭된 요소 중 가장 가까운 버튼 찾기
+      const button = event.target.closest('button')
+      if (!button) {
+        return
+      }
+
+      let component = null
+      let mode = ''
+
+      // 2. 버튼 클래스에 따라 컴포넌트 및 모드 설정
+      if (button.classList.contains('btnMng')) {
+        component = ManageModal
+        mode = 'manage1'
+      } else if (button.classList.contains('btnMng2')) {
+        component = ManageModal
+        mode = 'manage2'
+      }
+
+      // 3. 모달 열기 이벤트 발송
+      if (component) {
+        this.$nuxt.$emit('open-global-modal', {
+          component,
+          props: {
+            mode // TradingModal 등에서 사용할 모드값 전달
+          }
+        })
+      }
     }
   }
 }

@@ -1,6 +1,6 @@
 <template>
   <div ref="myStaticModal" class="modal animate__animated animate__fadeIn animate__faster" tabindex="-1" role="dialog">
-    <div class="modal-dialog">
+    <div class="modal-dialog" ref="modalDialog">
       <div
         ref="modalContent"
         class="modal-content animate__animated animate__fadeInDown animate__faster"
@@ -85,6 +85,7 @@ export default {
   methods: {
     openModal() {
       const modalEl = this.$refs.myStaticModal
+      const dialogEl = this.$refs.modalDialog
       const contentEl = this.$refs.modalContent
 
       // 1. 열기 애니메이션 클래스 초기화
@@ -104,6 +105,13 @@ export default {
 
       // 3. 라이브러리의 show 메서드 호출
       this.modalInstance.show()
+
+      // ★ 3. 스크롤 최상단 초기화 추가
+      this.$nextTick(() => {
+        if (dialogEl) {
+          dialogEl.scrollTop = 0 // modal-content 스크롤 초기화
+        }
+      })
     },
 
     closeModal() {
