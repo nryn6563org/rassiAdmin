@@ -81,7 +81,8 @@
               <input type="text" placeholder="목표가 입력" class="custom-text-input" style="width: 233px" v-model="targetPrice" :disabled="!isTargetPriceMode || targetStandard === 'percent'" />
               <label>원</label>
 
-              <input type="number" step="0.01" placeholder="00.00" class="custom-text-input" style="width: 90px" v-model="targetRate" :disabled="!isTargetPriceMode || targetStandard === 'price'" />
+              <span class="sign">+</span>
+              <input type="number" class="text-center custom-text-input" style="width: 90px" v-model="targetRate" :disabled="!isTargetPriceMode || targetStandard === 'price'" />
               <label>%</label>
 
               <p class="caution">*현재가보다 낮거나 동일하게 설정할 수 없습니다.</p>
@@ -116,7 +117,8 @@
               <input type="text" placeholder="손절가 입력" class="custom-text-input" style="width: 233px" v-model="stopLossPrice" :disabled="!isStopLossMode || stopLossStandard === 'percent'" />
               <label>원</label>
 
-              <input type="number" step="0.01" placeholder="00.00" class="custom-text-input" style="width: 90px" v-model="stopLossRate" :disabled="!isStopLossMode || stopLossStandard === 'price'" />
+              <span class="sign">-</span>
+              <input type="number" class="text-center custom-text-input" style="width: 90px" v-model="stopLossRate" :disabled="!isStopLossMode || stopLossStandard === 'price'" />
               <label>%</label>
 
               <p class="caution">*현재가보다 높거나 동일하게 설정할 수 없습니다.</p>
@@ -227,5 +229,8 @@ export default {
 <style scoped>
 .suggestion {
   @apply !mt-0;
+}
+.sign{
+  @apply text-[20px] text-[#5E6367] ml-4
 }
 </style>

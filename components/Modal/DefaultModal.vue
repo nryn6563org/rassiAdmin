@@ -1,11 +1,7 @@
 <template>
   <div ref="myStaticModal" class="modal animate__animated animate__fadeIn animate__faster" tabindex="-1" role="dialog">
     <div class="modal-dialog" ref="modalDialog">
-      <div
-        ref="modalContent"
-        class="modal-content animate__animated animate__fadeInDown animate__faster"
-        :class="computedModalClass"
-      >
+      <div ref="modalContent" class="modal-content animate__animated animate__fadeInDown animate__faster" :class="computedModalClass">
         <component :is="contentComponent" v-if="contentComponent" v-bind="componentProps"></component>
         <div class="close">
           <button type="button" class="btn btn-secondary" @click="closeModal">
@@ -16,7 +12,7 @@
           </button>
         </div>
         <!-- 닫기 -->
-</div>
+      </div>
     </div>
   </div>
 </template>
@@ -55,19 +51,7 @@ export default {
 
       // 2. props로 넘어온 mode가 'delete', 'activeOn', 'activeOff' 중 하나면 'modal-pull' 클래스 추가
       // (componentProps가 존재하는지 안전하게 확인 후 체크)
-      if (
-        this.componentProps &&
-        (
-          this.componentProps.mode === 'delete' ||
-          this.componentProps.mode === 'cancel' ||
-          this.componentProps.mode === 'answer' ||
-          this.componentProps.mode === 'userDelete' ||
-          this.componentProps.mode === 'GroupDelete' ||
-          this.componentProps.mode === 'answer' ||
-          this.componentProps.mode === 'activeOn' ||
-          this.componentProps.mode === 'activeOff'
-        )
-      ) {
+      if (this.componentProps && (this.componentProps.mode === 'delete' || this.componentProps.mode === 'cancel' || this.componentProps.mode === 'answer' || this.componentProps.mode === 'userDelete' || this.componentProps.mode === 'GroupDelete' || this.componentProps.mode === 'answer' || this.componentProps.mode === 'activeOn' || this.componentProps.mode === 'activeOff')) {
         classes.push('modal-pull')
       }
 

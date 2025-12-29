@@ -48,7 +48,7 @@
             <label for="checkBuyRsv" class="custom-checkbox-label">
               <input type="checkbox" id="checkBuyRsv" class="custom-checkbox-input" v-model="isBuyRsvMode" />
               <span class="custom-checkbox-box"></span>
-              <span class="custom-checkbox-txt">상승 구간에 구매하기</span>
+              <span class="custom-checkbox-txt">상승 구간에 매수하기</span>
             </label>
           </div>
           <div class="cho_radio">
@@ -66,7 +66,9 @@
             <div>
               <input type="text" placeholder="매수 희망가 입력" class="custom-text-input" style="width: 233px" v-model="rsvPrice" :disabled="!isBuyRsvMode || buyStandard === 'percent'" />
               <label>원</label>
-              <input type="number" step="0.01" placeholder="00.00" class="custom-text-input" style="width: 90px" v-model="rsvRate" :disabled="!isBuyRsvMode || buyStandard === 'price'" />
+
+              <span class="sign">+</span>
+              <input type="number" class="text-center custom-text-input" style="width: 90px" v-model="rsvRate" :disabled="!isBuyRsvMode || buyStandard === 'price'" />
               <label>%</label>
             </div>
           </div>
@@ -115,7 +117,9 @@
             <div>
               <input type="text" placeholder="목표가 입력" class="custom-text-input" style="width: 233px" v-model="targetPrice" :disabled="!isTargetPriceMode || targetStandard === 'percent'" />
               <label>원</label>
-              <input type="number" step="0.01" placeholder="00.00" class="custom-text-input" style="width: 90px" v-model="targetRate" :disabled="!isTargetPriceMode || targetStandard === 'price'" />
+
+              <span class="sign">+</span>
+              <input type="number" class="text-center custom-text-input" style="width: 90px" v-model="targetRate" :disabled="!isTargetPriceMode || targetStandard === 'price'" />
               <label>%</label>
               <p class="caution">*현재가보다 낮거나 동일하게 설정할 수 없습니다.</p>
             </div>
@@ -145,7 +149,9 @@
             <div>
               <input type="text" placeholder="손절가 입력" class="custom-text-input" style="width: 233px" v-model="stopLossPrice" :disabled="!isStopLossMode || stopLossStandard === 'percent'" />
               <label>원</label>
-              <input type="number" step="0.01" placeholder="00.00" class="custom-text-input" style="width: 90px" v-model="stopLossRate" :disabled="!isStopLossMode || stopLossStandard === 'price'" />
+
+              <span class="sign">-</span>
+              <input type="number" class="text-center custom-text-input" style="width: 90px" v-model="stopLossRate" :disabled="!isStopLossMode || stopLossStandard === 'price'" />
               <label>%</label>
               <p class="caution">*현재가보다 높거나 동일하게 설정할 수 없습니다.</p>
             </div>
@@ -357,5 +363,8 @@ export default {
 <style scoped>
 .itemSearch::v-deep .schInput input {
   @apply w-full border-[#BFBFBF];
+}
+.sign{
+  @apply text-[20px] text-[#5E6367] ml-4
 }
 </style>
