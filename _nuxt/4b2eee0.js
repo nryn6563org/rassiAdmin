@@ -1,1 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[92],{730:function(n,e,t){"use strict";t.r(e);var r={middleware:[function(n){n.redirect("/BD/DashBoard")}]},c=t(2),component=Object(c.a)(r,function(){return(0,this._self._c)("div")},[],!1,null,"6dbb271a",null);e.default=component.exports}}]);
