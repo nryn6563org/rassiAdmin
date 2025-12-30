@@ -27,7 +27,7 @@
             <span>종목선택</span>
           </th>
           <td>
-            <SearchInput :searchLabel="'종목명을 검색해 주세요.'" />
+            <SearchInput :searchLabel="'종목명을 검색해 주세요.'" :items="itemList" v-model="selectedItem" />
           </td>
         </tr>
         <tr>
@@ -53,6 +53,21 @@ import SearchInput from '@/components/InputGroup/SearchInputSvg.vue'
 export default {
   components: {
     SearchInput
+  },
+  data() {
+    return {
+      selectedItem: '',
+      itemList: [
+        'Apple',
+        'aanana',
+        'aherry',
+        'aate',
+        'alderberry',
+        'aig',
+        'arape',
+        'aoneydew'
+      ]
+    }
   },
   methods: {
     uploadToServer(file) {

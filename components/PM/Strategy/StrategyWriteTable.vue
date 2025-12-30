@@ -45,7 +45,7 @@
             <span>관련종목</span>
           </th>
           <td>
-            <SearchInput :searchLabel="'종목명을 검색해 주세요.'" />
+            <SearchInput :searchLabel="'종목명을 검색해 주세요.'" :items="itemList" v-model="selectedItem" />
 
             <div class="searchResult">
               <strong>총 <em>10</em> 종목 선택됨</strong>
@@ -93,6 +93,17 @@ export default {
       resultList: [
         '씨제이바이오사이언스 (311690)', '씨제이바이오사이언스 (311690)', '씨제이바이오사이언스 (311690)', '씨제이바이오사이언스 (311690)', '씨제이바이오사이언스 (311690)',
         '씨제이바이오사이언스 (311690)', '씨제이바이오사이언스 (311690)', '씨제이바이오사이언스 (311690)', '씨제이바이오사이언스 (311690)', '씨제이바이오사이언스 (311690)'
+      ],
+      selectedItem: '',
+      itemList: [
+        'Apple',
+        'aanana',
+        'aherry',
+        'aate',
+        'alderberry',
+        'aig',
+        'arape',
+        'aoneydew'
       ]
     }
   },
