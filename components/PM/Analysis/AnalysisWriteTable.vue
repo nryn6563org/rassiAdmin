@@ -35,12 +35,7 @@
             <span>차트입력</span>
           </th>
           <td>
-            <div class="addChart">
-              <label for="addChartInput">
-                <input type="text" name="" id="addChartInput" class="custom-text-input" placeholder="종목명 또는 종목코드" style="width:220px" />
-                <button class="btn013 round" type="submit">차트추가</button>
-              </label>
-            </div>
+            <AddChart :searchLabel="'종목명 또는 종목코드'" :items="chartItems" v-model="selectedChartItem" />
           </td>
         </tr>
       </tbody>
@@ -49,15 +44,28 @@
 </template>
 <script>
 import SearchInput from '@/components/InputGroup/SearchInputSvg.vue'
+import AddChart from '@/components/InputGroup/AddChart.vue'
 
 export default {
   components: {
-    SearchInput
+    SearchInput,
+    AddChart
   },
   data() {
     return {
       selectedItem: '',
       itemList: [
+        'Apple',
+        'aanana',
+        'aherry',
+        'aate',
+        'alderberry',
+        'aig',
+        'arape',
+        'aoneydew'
+      ],
+      selectedChartItem: '',
+      chartItems: [
         'Apple',
         'aanana',
         'aherry',
@@ -80,11 +88,5 @@ export default {
 <style scoped>
 .publicCheck{
   @apply flex items-center gap-3
-}
-.addChart label {
-  @apply flex items-center gap-2;
-}
-.addChart button {
-  @apply h-[46px] w-[91px];
 }
 </style>
