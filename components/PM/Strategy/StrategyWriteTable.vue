@@ -151,4 +151,13 @@ export default {
 .resultList button span{
   @apply text-[16px] text-[#5E6367]
 }
+::v-deep .schInput{
+  @apply h-[49px] relative w-[408px]
+}
+::v-deep .schInput input{
+  @apply !h-[49px]
+}
+::v-deep .schInput button{
+  @apply absolute top-2.5 right-2.5 w-fit h-fit;
+}
 </style>
