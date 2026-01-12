@@ -59,8 +59,8 @@ export default {
       updateBtn: 0,
 
       // 2. 검색 조건(1) 관련 데이터 (ArrayLabels 대체)
-      searchLabels: ['최근등록순', '종목명순', '종목코드순(오름차순)', '종목코드순(내림차순)'],
-      selectedSearchLabel: '최근등록순',
+      searchLabels: ['공개범위', '전체공개', '회원전용'],
+      selectedSearchLabel: '공개범위',
 
       // 3. 검색 조건(2) 관련 데이터 (두 번째 빈 DropDown용)
       statusLabels: ['제목', '작성자', '종목명', '종목코드'],

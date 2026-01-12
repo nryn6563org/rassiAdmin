@@ -11,6 +11,9 @@
       <button class="btn-large btn013 round">
         <span>저장하기</span>
       </button>
+      <button class="btn-large btn008 round">
+        <span>목록으로</span>
+      </button>
     </div>
   </section>
 </template>

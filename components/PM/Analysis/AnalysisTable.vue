@@ -28,9 +28,9 @@ export default {
   data() {
     return {
       isAllChecked: false,
-      headerData: ['', 'No', '종목명', '제목', '작성자', '등록일시', '관리', '삭제'],
+      headerData: ['', 'No', '종목명', '제목', '공개범위', '작성자', '등록일시', '관리', '삭제'],
       // 4. 원본 컬럼 너비 정의 (고정값 관리)
-      originColWidths: [60, 90, 250, 610, 120, 200, 130, 130],
+      originColWidths: [60, 90, 250, 490, 120, 120, 200, 130, 130],
       // 실제 화면에 렌더링될 컬럼 너비들 (가변)
       currentColWidths: [],
       // 테이블 태그에 적용할 스타일 너비

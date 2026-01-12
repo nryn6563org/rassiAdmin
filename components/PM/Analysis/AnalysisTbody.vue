@@ -27,6 +27,11 @@
       </td>
       <!-- 제목 -->
       <td>
+        <div class="publicScope">
+          <span>전체공개</span>
+        </div>
+      </td>
+      <td>
         <div class="author">
           <span>{{ tbodyList.Author }}</span>
         </div>

@@ -21,6 +21,18 @@
       </td>
       <!-- 제목 -->
       <td>
+        <div class="c_item">
+          <span>삼성전자 (011111)</span>
+        </div>
+      </td>
+      <!-- 상담종목 -->
+      <td>
+        <div class="c_category">
+          <span>종목상담</span>
+        </div>
+      </td>
+      <!-- 상담유형 -->
+      <td>
         <div class="author">
           <span>{{ tbodyList.Author }}</span>
         </div>
@@ -175,6 +187,12 @@ export default {
   @apply w-full text-center
 }
 .status{
+  @apply w-full text-center
+}
+.c_item{
+  @apply w-full px-4 line-clamp-1
+}
+.c_category{
   @apply w-full text-center
 }
 </style>

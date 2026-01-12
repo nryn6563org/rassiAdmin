@@ -25,6 +25,22 @@
         </tr>
         <tr>
           <th>
+            <span>상담유형</span>
+          </th>
+          <td>
+            <span></span>
+          </td>
+        </tr>
+        <tr>
+          <th>
+            <span>상담종목</span>
+          </th>
+          <td>
+            <span>삼성전자(011111)</span>
+          </td>
+        </tr>
+        <tr>
+          <th>
             <span>처리상태</span>
           </th>
           <td>
