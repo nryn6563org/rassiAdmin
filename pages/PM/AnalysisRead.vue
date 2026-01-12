@@ -139,7 +139,7 @@ section {
   @apply w-full flex flex-col items-center gap-[80px] mt-[50px];
 }
 .viewContent > div {
-  @apply text-[16px] text-[#5E6367] leading-[160%];
+  @apply w-full text-[16px] text-[#5E6367] leading-[160%];
 }
 .viewContent button {
   @apply w-[160px];
