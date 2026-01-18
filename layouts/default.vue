@@ -63,9 +63,9 @@ export default {
 
 <style scoped>
 #wrap {
-  @apply fixed inset-0 flex flex-wrap items-start justify-start w-full h-full;
+  @apply fixed inset-0 flex flex-wrap items-start justify-start w-full h-full overflow-auto;
 }
 #container {
-  @apply relative w-[calc(100%-262px)] min-w-[1400px] h-[calc(100%-71px)] p-[30px_33px] overflow-y-auto;
+  @apply relative w-[calc(100%-262px)] h-[calc(100%-71px)] p-[30px_33px] overflow-y-auto;
 }
 </style>
