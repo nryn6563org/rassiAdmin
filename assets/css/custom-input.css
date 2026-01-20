@@ -72,6 +72,10 @@ input:disabled{
 .custom-label-file{
   @apply w-[70px] h-[46px] rounded-[6px] bg-[#404040] flex justify-center items-center text-[16px] text-white cursor-pointer
 }
-.custom-file-name{
-  @apply border-[1px] border-[#E3E3E3] rounded-[6px] h-[46px] w-[376px] flex items-center gap-[5px] px-2.5 text-[18px] text-[#9E9E9E]
+.custom-file-name {
+  /* min-w-0 또는 overflow-hidden이 필수입니다 */
+  @apply border-[1px] border-[#E3E3E3] rounded-[6px] h-[46px] w-[376px] flex items-center gap-[5px] px-2.5 text-[18px] text-[#9E9E9E] min-w-0
+}
+.custom-file-name > span{
+  @apply block w-full truncate
 }
