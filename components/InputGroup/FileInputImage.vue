@@ -8,7 +8,9 @@
       accept="image/*"
       @change="handleFileChange"
     />
-    <span class="custom-file-name">{{ fileName }}</span>
+    <div class="custom-file-name">
+      <span>{{ fileName }}</span>
+    </div>
     <label for="fileForImage" class="custom-label-file">등록</label>
   </div>
 </template>
