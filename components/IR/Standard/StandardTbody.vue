@@ -133,6 +133,7 @@ export default {
       } else if (button.classList.contains('btnMng')) {
         // 관리 버튼은 ManageModal 연결
         component = ManageModal
+        mode = 'manage1'
       } else if (button.classList.contains('btnCancel')) {
         component = ManageModal // 혹은 취소 전용 모달
         mode = 'cancel'
@@ -160,6 +161,9 @@ export default {
 </script>
 
 <style scoped>
+td{
+  @apply !h-[74px]
+}
 .listNumber {
   @apply text-[16px] text-[#5E6367] tracking-[130%] w-full text-center;
 }

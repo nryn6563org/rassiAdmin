@@ -169,6 +169,9 @@ export default {
 </script>
 
 <style scoped>
+td{
+  @apply !h-[74px]
+}
 .listNumber {
   @apply text-[16px] text-[#5E6367] tracking-[130%] w-full text-center;
 }
