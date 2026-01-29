@@ -16,7 +16,9 @@
     </div>
     <!-- top -->
     <div class="viewContent">
-      {{ inquiryViewContent }}
+      <div>
+        {{ inquiryViewContent }}
+      </div>
 
       <div class="imgFile">
         <span>이미지첨부 :</span>
@@ -77,31 +79,40 @@ export default {
 .inquiry {
   @apply w-full bg-[#F9FAFB] rounded-[10px] p-[30px_40px] flex flex-col gap-5 mt-[30px]
 }
+
 .top {
   @apply relative flex flex-col w-full gap-4
 }
+
 .top .title {
   @apply w-[calc(100%-95px)] min-h-[42px] leading-[42px] text-[24px] text-[#141414] font-normal
 }
+
 .top .info {
   @apply flex w-full justify-between items-center
 }
+
 .top .info span {
   @apply text-[18px] text-[#5E6367]
 }
+
 .top .btn-group {
   @apply absolute top-0 right-0
 }
+
 .viewContent {
-  @apply text-[18px] leading-[130%] text-[#141414] min-h-[185px] relative
+  @apply text-[18px] leading-[130%] text-[#141414] min-h-[225px] pb-10 relative
 }
+
 .viewContent .imgFile {
   @apply absolute bottom-0 left-0 flex gap-1 items-center
 }
-.viewContent .imgFile span{
+
+.viewContent .imgFile span {
   @apply text-[#5E6367] text-[18px]
 }
-.viewContent .imgFile a{
+
+.viewContent .imgFile a {
   @apply text-[#333] underline text-[18px]
 }
 </style>
