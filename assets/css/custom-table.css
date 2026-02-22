@@ -7,7 +7,7 @@
 .table_w .table table {
 }
 .table_w .table table thead tr th {
-  @apply h-[60px] text-center bg-[#F2F2F2] text-[16px] text-[#5E6367] tracking-[130%] font-medium;
+  @apply h-[60px] text-center bg-[#F2F2F2] text-[16px] text-[#5E6367] font-medium;
 }
 .table_w .table table tbody tr {
   @apply bg-white even:bg-[#F9FAFB];

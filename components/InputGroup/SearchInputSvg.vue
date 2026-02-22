@@ -31,6 +31,7 @@
         </svg>
       </button>
     </label>
+
     <ul v-if="isOpen && filteredItems.length > 0" class="suggestions-list">
       <li
         v-for="(item, index) in filteredItems"

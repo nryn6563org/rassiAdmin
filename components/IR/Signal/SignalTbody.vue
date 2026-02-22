@@ -173,10 +173,10 @@ td{
   @apply !h-[74px]
 }
 .listNumber {
-  @apply text-[16px] text-[#5E6367] tracking-[130%] w-full text-center;
+  @apply text-[16px] text-[#5E6367]  w-full text-center;
 }
 .itemName {
-  @apply flex items-center pl-4 text-[16px] text-[#141414] tracking-[130%] font-medium;
+  @apply flex items-center pl-4 text-[16px] text-[#141414]  font-medium;
 }
 .itemName .name {
   @apply max-w-[calc(100%-86px)] line-clamp-1;

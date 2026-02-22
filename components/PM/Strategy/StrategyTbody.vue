@@ -133,7 +133,7 @@ export default {
 
 <style scoped>
 .listNumber {
-  @apply text-[16px] text-[#5E6367] tracking-[130%] w-full text-center;
+  @apply text-[16px] text-[#5E6367]  w-full text-center;
 }
 .num{
   @apply flex justify-center w-full
