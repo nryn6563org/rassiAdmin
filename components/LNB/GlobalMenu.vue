@@ -74,6 +74,21 @@ export default {
           isOpen: false
         },
         {
+          title: '나의 결제 조회',
+          ico: require('~/assets/img/lnb/menu05.png'),
+          subMenus: [
+            {
+              title: '결제 회원 리스트',
+              link: '/PY/List'
+            },
+            {
+              title: '결제 통계',
+              link: '/PY/Stats'
+            }
+          ],
+          isOpen: false
+        },
+        {
           title: '회원 등록 관리',
           ico: require('~/assets/img/lnb/menu04.png'),
           subMenus: [

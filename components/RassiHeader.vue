@@ -7,7 +7,7 @@
     </h1>
     <div class="rbtn">
       <div class="checkingZoom">
-        <span>축소보기</span>
+        <span>넓게보기</span>
         <label for="active_zoom">
           <input type="checkbox" id="active_zoom" class="activeZoom" v-model="isZoomActive" autocomplete="off" />
           <span class="custom-zoomActive"></span>
