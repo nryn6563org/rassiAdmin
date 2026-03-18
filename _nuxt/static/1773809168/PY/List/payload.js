@@ -1,0 +1,1 @@
+__NUXT_JSONP__("/PY/List", {data:[{}],fetch:{},mutations:[]});
