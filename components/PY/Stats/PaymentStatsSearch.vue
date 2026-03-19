@@ -92,4 +92,7 @@ export default {
 .searchTable tbody td .date::v-deep .customDate {
   @apply !p-[6px_12px];
 }
+button.reset{
+  @apply ml-2.5
+}
 </style>

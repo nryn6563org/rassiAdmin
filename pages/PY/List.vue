@@ -1,8 +1,5 @@
 <template>
   <section>
-    <div class="page-header">
-      <AdminPageTitle />
-    </div>
     <div class="content-body">
       <PaymentSearch />
       <PaymentTableInfo />

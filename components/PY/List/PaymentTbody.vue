@@ -52,7 +52,7 @@ export default {
 
 <style scoped>
 td > div {
-  @apply text-center text-[14px] text-[#141414] py-3;
+  @apply text-center text-[16px] text-[#5E6367] py-3;
 }
 .empty {
   @apply h-[200px] text-center text-gray-400;

@@ -1,35 +1,35 @@
 <template>
   <div class="table_w">
     <div class="table" ref="tableContainer">
-      <table :style="{ width: tableStyleWidth }">
+      <table>
         <colgroup>
-          <col v-for="(width, index) in currentColWidths" :key="index" :width="width" />
+          <col v-for="(width, index) in originColWidths" :key="index" :width="width" />
         </colgroup>
         <thead>
           <tr>
-            <th rowspan="2" class="border-b">결제일</th>
-            <th colspan="4" class="bg-[#F2F4F7] border-b border-r">정기결제</th>
-            <th colspan="4" class="bg-[#F2F4F7] border-b border-r">단건결제</th>
-            <th colspan="4" class="bg-[#F2F4F7] border-b border-r">무통장결제</th>
-            <th colspan="4" class="bg-[#FFF9E5] border-b">합계</th>
+            <th rowspan="2" class="bg-date-t !border-r">결제일</th>
+            <th colspan="4" class="bg-group border-r">정기결제</th>
+            <th colspan="4" class="bg-group border-r">단건결제</th>
+            <th colspan="4" class="bg-group border-r">무통장결제</th>
+            <th colspan="4" class="bg-total">합계</th>
           </tr>
           <tr>
-            <th class="bg-[#F9FAFB]">결제금액</th>
-            <th class="bg-[#F9FAFB]">결제건수</th>
-            <th class="bg-[#F9FAFB]">환불금액</th>
-            <th class="bg-[#F9FAFB] border-r">환불건수</th>
-            <th class="bg-[#F9FAFB]">결제금액</th>
-            <th class="bg-[#F9FAFB]">결제건수</th>
-            <th class="bg-[#F9FAFB]">환불금액</th>
-            <th class="bg-[#F9FAFB] border-r">환불건수</th>
-            <th class="bg-[#F9FAFB]">결제금액</th>
-            <th class="bg-[#F9FAFB]">결제건수</th>
-            <th class="bg-[#F9FAFB]">환불금액</th>
-            <th class="bg-[#F9FAFB] border-r">환불건수</th>
-            <th class="bg-[#FFF9E5]">결제금액</th>
-            <th class="bg-[#FFF9E5]">결제건수</th>
-            <th class="bg-[#FFF9E5]">환불금액</th>
-            <th class="bg-[#FFF9E5]">환불건수</th>
+            <th class="border-none">결제금액</th>
+            <th class="border-none">결제건수</th>
+            <th class="border-none">환불금액</th>
+            <th class="group-end-border">환불건수</th>
+            <th class="border-none">결제금액</th>
+            <th class="border-none">결제건수</th>
+            <th class="border-none">환불금액</th>
+            <th class="group-end-border">환불건수</th>
+            <th class="border-none">결제금액</th>
+            <th class="border-none">결제건수</th>
+            <th class="border-none">환불금액</th>
+            <th class="group-end-border">환불건수</th>
+            <th class="border-none">결제금액</th>
+            <th class="border-none">결제건수</th>
+            <th class="border-none">환불금액</th>
+            <th class="group-end-border">환불건수</th>
           </tr>
         </thead>
         <PaymentStatsTbody :tbodyLists="bodyData" :summary="summaryData" />
@@ -50,9 +50,7 @@ export default {
     const totalCell = { amount: '999,187,000', count: '12', refundAmount: '999,187,000', refundCount: '12' }
 
     return {
-      tableStyleWidth: '100%',
-      originColWidths: [120, 100, 80, 100, 80, 100, 80, 100, 80, 100, 80, 100, 80, 100, 80, 100, 80],
-      currentColWidths: [],
+      originColWidths: [140, 120, 80, 120, 80, 120, 80, 120, 80, 120, 80, 120, 80, 120, 80, 120, 80],
       bodyData: [
         {
           date: '2026.03.10',
@@ -77,38 +75,6 @@ export default {
         total: { amount: '999,187,000', count: '224', refundAmount: '2,187,120', refundCount: '44' }
       }
     }
-  },
-  mounted() {
-    this.adjustColumnWidths()
-    this.resizeObserver = new ResizeObserver(() => {
-      this.adjustColumnWidths()
-    })
-    if (this.$refs.tableContainer) {
-      this.resizeObserver.observe(this.$refs.tableContainer)
-    }
-  },
-  beforeDestroy() {
-    if (this.resizeObserver && this.$refs.tableContainer) {
-      this.resizeObserver.unobserve(this.$refs.tableContainer)
-    }
-  },
-  methods: {
-    adjustColumnWidths() {
-      const container = this.$refs.tableContainer
-      if (!container) {
-        return
-      }
-      const containerWidth = container.clientWidth
-      const totalColWidth = this.originColWidths.reduce((acc, curr) => acc + curr, 0)
-
-      if (totalColWidth < containerWidth) {
-        this.currentColWidths = this.originColWidths.map(() => '*')
-        this.tableStyleWidth = '100%'
-      } else {
-        this.currentColWidths = this.originColWidths
-        this.tableStyleWidth = `${totalColWidth}px`
-      }
-    }
   }
 }
 </script>
@@ -121,9 +87,25 @@ export default {
   @apply overflow-x-auto w-full border border-[#eaeaea];
 }
 table {
-  @apply table-fixed border-collapse min-w-full;
+  @apply table-fixed border-collapse w-full min-w-[1560px];
 }
 thead th {
-  @apply h-[44px] text-[14px] font-semibold text-[#5E6367] border-r border-[#eaeaea] last:border-r-0;
+  @apply h-[40px] text-[14px] font-semibold text-[#5E6367] border-r border-b border-[#eaeaea] last:border-r-0;
+}
+::v-deep .bg-date-t {
+  @apply !bg-[#E9E9E9];
+}
+::v-deep .bg-group {
+  @apply !bg-[#E6EAED];
+  border-right: 1px solid #cfcfcf !important;
+}
+::v-deep .group-end-border {
+  border-right: 1px solid #cfcfcf !important;
+}
+::v-deep .bg-sub {
+  @apply !bg-[#E9E9E9];
+}
+::v-deep .bg-total {
+  @apply !bg-[#F7F3DD];
 }
 </style>
