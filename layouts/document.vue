@@ -1,5 +1,5 @@
 <template>
-  <div class="flex justify-center py-[60px] min-h-screen bg-white">
+  <div class="flex justify-center pb-[60px] pt-0 min-h-screen bg-white">
     <nuxt />
   </div>
 </template>
