@@ -1,1 +1,0 @@
-__NUXT_JSONP__("/DOC/MD/Contract", {data:[{}],fetch:{},mutations:[]});
