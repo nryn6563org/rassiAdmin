@@ -1,0 +1,1 @@
+window.__NUXT__=(function(a){return {staticAssetsBase:"\u002FrassiAdmin\u002F_nuxt\u002Fstatic\u002F1774231228",layout:"document",error:a,state:{pageTitle:""},serverRendered:true,routePath:"\u002FDOC\u002FSM\u002FProposal",config:{_app:{basePath:"\u002FrassiAdmin\u002F",assetsPath:"\u002FrassiAdmin\u002F_nuxt\u002F",cdnURL:a}}}}(null));
