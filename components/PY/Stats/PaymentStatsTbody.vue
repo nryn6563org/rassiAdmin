@@ -21,7 +21,7 @@
       <td><div class="amount"><span>{{ tbodyList.total.amount }}</span></div></td>
       <td><div class="count"><span>{{ tbodyList.total.count }}</span></div></td>
       <td><div class="refundAmount"><span>{{ tbodyList.total.refundAmount }}</span></div></td>
-      <td class="group-end-border"><div class="refundCount"><span>{{ tbodyList.total.refundCount }}</span></div></td>
+      <td class=""><div class="refundCount"><span>{{ tbodyList.total.refundCount }}</span></div></td>
     </tr>
     <!-- 합계 행 -->
     <tr class="summary-row" v-if="tbodyLists.length > 0">
@@ -41,7 +41,7 @@
       <td><div class="amount"><span>{{ summary.total.amount }}</span></div></td>
       <td><div class="count"><span>{{ summary.total.count }}</span></div></td>
       <td><div class="refundAmount"><span>{{ summary.total.refundAmount }}</span></div></td>
-      <td class="group-end-border"><div class="refundCount"><span>{{ summary.total.refundCount }}</span></div></td>
+      <td class=""><div class="refundCount"><span>{{ summary.total.refundCount }}</span></div></td>
     </tr>
     <tr v-if="tbodyLists.length === 0">
       <td colspan="17" class="empty">

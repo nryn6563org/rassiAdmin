@@ -29,7 +29,7 @@
             <th class="border-none">결제금액</th>
             <th class="border-none">결제건수</th>
             <th class="border-none">환불금액</th>
-            <th class="group-end-border">환불건수</th>
+            <th class="border-none">환불건수</th>
           </tr>
         </thead>
         <PaymentStatsTbody :tbodyLists="bodyData" :summary="summaryData" />
@@ -101,6 +101,7 @@ thead th {
 }
 ::v-deep .group-end-border {
   border-right: 1px solid #cfcfcf !important;
+  border-bottom:0;
 }
 ::v-deep .bg-sub {
   @apply !bg-[#E9E9E9];
