@@ -60,4 +60,7 @@ td > div {
 .btn-text {
   @apply text-[#0263E8] underline;
 }
+td{
+  @apply !h-[74px]
+}
 </style>
