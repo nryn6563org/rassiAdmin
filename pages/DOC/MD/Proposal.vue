@@ -18,11 +18,11 @@
     <div class="doc-top-info">
       <div class="info-row">
         <span class="label">이용고객 : </span>
-        <span class="value underline">#{고객명}</span>
+        <span class="value">#{고객명}</span>
       </div>
       <div class="info-row">
         <span class="label">계약일 : </span>
-        <span class="value underline">#{결제일}</span>
+        <span class="value">#{결제일}</span>
       </div>
       <div class="info-row align-start">
         <span class="label">자문회사 : </span>
