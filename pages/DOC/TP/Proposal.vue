@@ -30,6 +30,28 @@
 </template>
 
 <script>
+const DEPOSITOR_PROTECTION_NOTICE = `
+  <div class="depositor-protection-notice" role="note">
+    <img
+      src="/img/DOC/depositor-protection.png"
+      alt="예금자보호 비보호"
+      class="depositor-protection-mark"
+    >
+    <p>이 금융상품은 예금자보호법에 따라 보호되지 않습니다.</p>
+  </div>
+`
+
+function addDepositorProtectionNotice(html) {
+  if (html.includes('depositor-protection-notice')) {
+    return html
+  }
+
+  return html.replace(
+    /(<h2[^>]*>\s*■?\s*회사 개요\s*<\/h2>)/i,
+    `${DEPOSITOR_PROTECTION_NOTICE}$1`
+  )
+}
+
 export default {
   layout: 'document',
   async asyncData() {
@@ -54,7 +76,7 @@ export default {
       console.error('Failed to load HTML', err)
       proposalHtml = '<p>문서를 불러오는 중 오류가 발생했습니다.</p>'
     }
-    return { proposalHtml }
+    return { proposalHtml: addDepositorProtectionNotice(proposalHtml) }
   },
   methods: {
     printPage() {
@@ -133,6 +155,30 @@ h1 {
 
 .intro-box {
   @apply mb-10 p-6 bg-slate-50 border-l-4 border-slate-800 text-[14px] text-justify space-y-4;
+}
+
+.doc-body ::v-deep .depositor-protection-notice {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 30px 0;
+  padding: 0 30px;
+  color: #202632;
+  font-family: Pretendard, 'Malgun Gothic', sans-serif;
+  font-size: 16px;
+  line-height: 24px;
+  break-inside: avoid;
+}
+
+.doc-body ::v-deep .depositor-protection-notice p {
+  margin: 0;
+}
+
+.doc-body ::v-deep .depositor-protection-mark {
+  width: 41px;
+  height: 26px;
+  flex: 0 0 41px;
+  object-fit: cover;
 }
 
 .doc-body h2 {
